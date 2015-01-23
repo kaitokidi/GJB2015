@@ -4,7 +4,7 @@
 #include "utils.hpp"
 
 class Collisionable {
-private:
+protected:
     sf::Sprite sprite;
     sf::Vector2f speed;
     int spriteWidth;
@@ -13,6 +13,7 @@ private:
     int nSpriteY;
 
 public:
+    Collisionable();
     Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
     int getWidth();
     int getHeight();

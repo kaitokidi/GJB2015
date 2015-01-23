@@ -3,8 +3,10 @@
 
 
 #include "utils.hpp"
+#include "Collisionable.hpp"
 
-class Player:Colisionable {
+
+class Player : Collisionable {
 public:
     Player();
     ~Player();
