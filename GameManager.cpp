@@ -33,6 +33,6 @@ void GameManager::processEvents() {
 }
 
 sf::RenderTexture *GameManager::getRenderTexture() {
-   return *renderText;
+   return &renderText;
 }
 

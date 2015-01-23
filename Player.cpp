@@ -1,18 +1,19 @@
 #include "Player.hpp"
+#include "Resources.hpp"
 
-Player::Player(){
+Player::Player() {
     sprite.setTexture(Resources::playerTexture);
 }
 
 Player::~Player() {
-
+	
 }
 
 
 void Player::draw() {
 
 }
-void Player::update() {
+void Player::update(float deltaTime) {
 
 }
 

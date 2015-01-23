@@ -1,5 +1,9 @@
 #include "Collisionable.hpp"
 
+Collisionable::Collisionable() {
+
+}
+
 Collisionable::Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
     sprite.setTexture(*text);
     this->spriteWidth = spriteWidth;
