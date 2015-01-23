@@ -55,7 +55,8 @@ extern const int PLAYER_5_SIZE_Y;
 extern const int PLAYER_6_SIZE_Y;
 
 
-
-enum Direction { down, left, right, up , none };
+namespace Dir {
+    enum Direction { down, left, right, up , none };
+}
 
 #endif // UTILS_HPP

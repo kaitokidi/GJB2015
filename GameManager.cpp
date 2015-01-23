@@ -33,11 +33,11 @@ void GameManager::processEvents() {
 }
 
 void GameManager::checkMovement(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))    player.move(direction::up);
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  player.move(direction::down);
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) player.move(direction::right);
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  player.move(direction::left);
-	else player.move(direction::none);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))    player.move(Dir::up);
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  player.move(Dir::down);
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) player.move(Dir::right);
+    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  player.move(Dir::left);
+    else player.move(Dir::none);
 }
 
 sf::RenderTexture *GameManager::getRenderTexture() {
