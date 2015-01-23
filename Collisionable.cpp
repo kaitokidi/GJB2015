@@ -36,10 +36,10 @@ sf::Vector2f Collisionable::getPosition() {
     return sprite.getPosition();
 }
 
-bool Collisionable::areCollisioning(Collisionable a, Collisionable b) {
-    if(a.getPosition().x > b.getPosition().x + b.getWidth()) return false;
-    if(a.getPosition().x + a.getWidth() < b.getPosition().x) return false;
-    if(a.getPosition().y > b.getPosition().y + b.getHeight()) return false;
-    if(a.getPosition().y + a.getHeight() < b.getPosition().y) return false;
+bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
+    if(a->getPosition().x > b->getPosition().x + b->getWidth()) return false;
+    if(a->getPosition().x + a->getWidth() < b->getPosition().x) return false;
+    if(a->getPosition().y > b->getPosition().y + b->getHeight()) return false;
+    if(a->getPosition().y + a->getHeight() < b->getPosition().y) return false;
     return true;
 }

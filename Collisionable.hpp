@@ -15,13 +15,14 @@ protected:
 public:
     Collisionable();
     Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
+    virtual void update(float deltaTime) = 0;
     int getWidth();
     int getHeight();
     int getNSpriteX();
     int getNSpriteY();
     sf::Vector2f getSpeed();
     sf::Vector2f getPosition();
-    static bool areCollisioning(Collisionable a, Collisionable b);
+    static bool areCollisioning(Collisionable *a, Collisionable *b);
 };
 
 #endif // COLLISIONABLE_H
