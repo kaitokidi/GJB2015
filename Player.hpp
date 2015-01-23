@@ -7,11 +7,14 @@
 
 
 class Player : Collisionable {
+private:
+    Direction direction;
 public:
     Player();
     ~Player();
     void update(float deltaTime);
     void draw();
+    Direction getDirection();
 };
 
 #endif // PLAYER_H
