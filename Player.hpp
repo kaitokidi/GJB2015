@@ -17,5 +17,6 @@ public:
     void move(Dir::Direction dir);
     Dir::Direction getDirection();
 };
+//penguins
 
 #endif // PLAYER_H

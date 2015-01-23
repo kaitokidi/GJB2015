@@ -25,7 +25,9 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
-
+	if(direction==Dir::none){
+		
+	}
 }
 
 
