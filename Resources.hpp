@@ -6,6 +6,9 @@
 class Resources {
 public:
     static void load();
+    static sf::Texture playerTexture;
+    static sf::Texture visibleBoard;
+    static sf::Image colorBoard;
 };
 
 #endif // RESOURCES_H
