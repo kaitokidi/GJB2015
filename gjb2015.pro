@@ -10,11 +10,13 @@ SOURCES += main.cpp \
     Resources.cpp \
     utils.cpp \
     Game.cpp \
-    GameManager.cpp
+    GameManager.cpp \
+    Collisionable.cpp
 
 HEADERS += \
     Resources.hpp \
     utils.hpp \
     Game.hpp \
-    GameManager.hpp
+    GameManager.hpp \
+    Collisionable.hpp
 

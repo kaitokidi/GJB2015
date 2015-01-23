@@ -25,6 +25,21 @@ extern float deltaSpeed; // You must to declare this avariable again on utils.cp
 extern const int mx[5];
 extern const int my[5];
 
+extern const int PLAYER_0_MAX_SPEED;
+extern const int PLAYER_1_MAX_SPEED;
+extern const int PLAYER_2_MAX_SPEED;
+extern const int PLAYER_3_MAX_SPEED;
+extern const int PLAYER_4_MAX_SPEED;
+extern const int PLAYER_5_MAX_SPEED;
+extern const int PLAYER_6_MAX_SPEED;
+extern const int PLAYER_0_ACCELERATION;
+extern const int PLAYER_1_ACCELERATION;
+extern const int PLAYER_2_ACCELERATION;
+extern const int PLAYER_3_ACCELERATION;
+extern const int PLAYER_4_ACCELERATION;
+extern const int PLAYER_5_ACCELERATION;
+extern const int PLAYER_6_ACCELERATION;
+
 
 enum direction { down, left, right, up , none };
 
