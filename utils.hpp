@@ -39,6 +39,21 @@ extern const int PLAYER_3_ACCELERATION;
 extern const int PLAYER_4_ACCELERATION;
 extern const int PLAYER_5_ACCELERATION;
 extern const int PLAYER_6_ACCELERATION;
+extern const int PLAYER_0_SIZE_X;
+extern const int PLAYER_1_SIZE_X;
+extern const int PLAYER_2_SIZE_X;
+extern const int PLAYER_3_SIZE_X;
+extern const int PLAYER_4_SIZE_X;
+extern const int PLAYER_5_SIZE_X;
+extern const int PLAYER_6_SIZE_X;
+extern const int PLAYER_0_SIZE_Y;
+extern const int PLAYER_1_SIZE_Y;
+extern const int PLAYER_2_SIZE_Y;
+extern const int PLAYER_3_SIZE_Y;
+extern const int PLAYER_4_SIZE_Y;
+extern const int PLAYER_5_SIZE_Y;
+extern const int PLAYER_6_SIZE_Y;
+
 
 
 enum direction { down, left, right, up , none };

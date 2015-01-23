@@ -1,8 +1,10 @@
 #include "Player.hpp"
 #include "Resources.hpp"
 
-Player::Player() {
-    sprite.setTexture(Resources::playerTexture);
+int SPRITE_FOOT_X = 10;
+int SPRITE_FOOT_Y = 10;
+Player::Player() :Collisionable(Resources::playerTexture, SPRITE_FOOT_X, SPRITE_FOOT_Y, 1, 1){
+    //sprite.setTexture(Resources::playerTexture);
 }
 
 Player::~Player() {
