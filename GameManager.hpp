@@ -15,6 +15,7 @@ public:
     void update(float deltaTime);
     void draw();
     void processEvents();
+	void checkMovement();
     sf::RenderTexture *getRenderTexture();
 };
 
