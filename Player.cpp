@@ -1,27 +1,17 @@
-#include "Game.hpp"
+#include "Player.hpp"
 
-Game::Game(int scrwidth, int scrheight, std::string title, int style)
-    : window(sf::VideoMode(scrwidth,scrheight),title,style) {
-    window.setMouseCursorVisible(true); //Config as you want
-    window.setVerticalSyncEnabled(true); //Config as you want
+Player::Player(){
+
 }
 
-Game::~Game() {}
+Player::~Player() {
 
-void Game::run() {
-    sf::Clock c;
-    srand(time(0));
-    while(window.isOpen()) {
-        float deltaTime = c.restart().asSeconds();
-
-        processEvents();
-        update(deltaTime);
-        render();
-    }
 }
 
-void Game::render() {
-    window.clear(sf::Color(100,195,95));
-    draw();
-    window.display();
+
+void Player::draw() {
+
+}
+void Player::update() {
+
 }
