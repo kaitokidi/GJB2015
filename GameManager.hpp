@@ -13,6 +13,9 @@ public:
 
     sf::RenderWindow* getWindow();
 
+private:
+	std::vector<Collisionable> collisionables;
+	
 };
 
 #endif // GAMEMANAGER_HPP
