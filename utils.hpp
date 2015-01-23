@@ -53,7 +53,7 @@ extern const int PLAYER_3_SIZE_Y;
 extern const int PLAYER_4_SIZE_Y;
 extern const int PLAYER_5_SIZE_Y;
 extern const int PLAYER_6_SIZE_Y;
-
+//soy un comentario
 
 namespace Dir {
     enum Direction { down, left, right, up , none };
