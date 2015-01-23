@@ -25,38 +25,19 @@ extern float deltaSpeed; // You must to declare this avariable again on utils.cp
 extern const int mx[5];
 extern const int my[5];
 
-extern const int PLAYER_0_MAX_SPEED;
-extern const int PLAYER_1_MAX_SPEED;
-extern const int PLAYER_2_MAX_SPEED;
-extern const int PLAYER_3_MAX_SPEED;
-extern const int PLAYER_4_MAX_SPEED;
-extern const int PLAYER_5_MAX_SPEED;
-extern const int PLAYER_6_MAX_SPEED;
-extern const int PLAYER_0_ACCELERATION;
-extern const int PLAYER_1_ACCELERATION;
-extern const int PLAYER_2_ACCELERATION;
-extern const int PLAYER_3_ACCELERATION;
-extern const int PLAYER_4_ACCELERATION;
-extern const int PLAYER_5_ACCELERATION;
-extern const int PLAYER_6_ACCELERATION;
-extern const int PLAYER_0_SIZE_X;
-extern const int PLAYER_1_SIZE_X;
-extern const int PLAYER_2_SIZE_X;
-extern const int PLAYER_3_SIZE_X;
-extern const int PLAYER_4_SIZE_X;
-extern const int PLAYER_5_SIZE_X;
-extern const int PLAYER_6_SIZE_X;
-extern const int PLAYER_0_SIZE_Y;
-extern const int PLAYER_1_SIZE_Y;
-extern const int PLAYER_2_SIZE_Y;
-extern const int PLAYER_3_SIZE_Y;
-extern const int PLAYER_4_SIZE_Y;
-extern const int PLAYER_5_SIZE_Y;
-extern const int PLAYER_6_SIZE_Y;
+extern const int PLAYER_MAX_SPEED[7];
+extern const int PLAYER_ACCELERATION[7];
+extern const int PLAYER_SIZE_X[7];
+extern const int PLAYER_SIZE_Y[7];
+extern const float GRAVITY;
 
 
 namespace Dir {
     enum Direction { down, left, right, up , none };
+}
+
+namespace PState {
+    enum state { shoes, legs, body, arms, hands, head, wings };
 }
 
 #endif // UTILS_HPP
