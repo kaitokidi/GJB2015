@@ -2,6 +2,7 @@
 #include "GameManager.hpp"
 
 int main() {
+	//	WE LOVE PENGUINS
     Resources::load();
     GameManager gm(sf::VideoMode::getFullscreenModes()[0].width,sf::VideoMode::getFullscreenModes()[0].height // Size of the window <width,height>
             ,"What do we do now?" // Title of the window
