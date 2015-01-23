@@ -19,8 +19,7 @@ sf::Texture     Resources::visibleBoard;
 sf::Image		Resources::colorBoard;
 
 void Resources::load() {
-	playerTexture.loadFromFile("res/playerTexture.png");
-    visibleBoard.loadFromFile("res/mapaNormal.png");
-	colorBoard.loadFromFile( "res/mapaColors.png");
-
+	if(!playerTexture.loadFromFile("res/playerTexture.png")) std::cout << "unable to load playerTexture" << std::endl;
+    if(!visibleBoard.loadFromFile("res/mapaNormal.png")) std::cout << "unable to load mapNormal" << std::endl;
+	if(!colorBoard.loadFromFile( "res/mapaColors.png")) std::cout << "unable to load mapaColors" << std::endl;
 }

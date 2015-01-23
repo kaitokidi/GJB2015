@@ -4,31 +4,34 @@ Board::Board(){
 
 }
 
-Board(sf::Texture vM, sf::Image cM){
-		visibleMap = vM;
-		colorMap = cM;
+Board::Board(sf::Texture* vM, sf::Image* cM){
+		visibleMap = *vM;
+		colorMap = *cM;
 		map.setTexture(visibleMap);
 }
 
-std::string Board::getPixelColor(float destix, float destiy){
-	if(image.getPixel(px,py) == sf::Color::Black) {
+std::string Board::getPixelColor(float px, float py){
+	if(colorMap.getPixel(px,py) == sf::Color::Black) {
 		return "Black";
 	}
 	else {
-		if(image.getPixel(px,py) == sf::Color::Red) {
+		if(colorMap.getPixel(px,py) == sf::Color::Red) {
 			return "Red";
 		}
 		else {
-			if(image.getPixel(px,py) == sf::Color::Blue) {
+			if(colorMap.getPixel(px,py) == sf::Color::Blue) {
 				return "Blue";
 			}
 			else {
-				if(image.getPixel(px,py) == sf::Color::Green) {
+				if(colorMap.getPixel(px,py) == sf::Color::Green) {
 					return "Green";
 				}
 				else {
-					if(image.getPixel(px,py) == sf::Color::White) {
+					if(colorMap.getPixel(px,py) == sf::Color::White) {
 						return "White";
+					}
+					else {
+						return "Penguin";
 					}
 				}
 			}
@@ -36,6 +39,6 @@ std::string Board::getPixelColor(float destix, float destiy){
 	}
 }
 
-std::string Board::draw(sf::RenderWindow& rw){
-	rw.draw(Map);
+void Board::draw(sf::RenderTexture* rT){
+	rT->draw(map);
 }
