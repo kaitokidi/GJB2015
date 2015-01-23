@@ -6,10 +6,10 @@
 
 class Player:Colisionable {
 public:
-    Player(int scrwidth, int scrheight, std::string title, int style);
+    Player();
     ~Player();
-    void update(float deltaTime) = 0;
-    void draw() = 0;
+    void update(float deltaTime);
+    void draw();
 };
 
 #endif // PLAYER_H
