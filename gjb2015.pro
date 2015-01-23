@@ -11,12 +11,14 @@ SOURCES += main.cpp \
     utils.cpp \
     Game.cpp \
     GameManager.cpp \
-    Collisionable.cpp
+    Collisionable.cpp \
+    Player.cpp
 
 HEADERS += \
     Resources.hpp \
     utils.hpp \
     Game.hpp \
     GameManager.hpp \
-    Collisionable.hpp
+    Collisionable.hpp \
+    Player.hpp
 
