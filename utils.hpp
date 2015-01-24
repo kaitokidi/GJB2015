@@ -26,7 +26,7 @@ namespace Dir {
 
 namespace PState {
     enum level { shoes, legs, body, arms, hands, head, wings, qttLevel};
-    enum state { idle, walkingRight, walkingLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft, runningRight, runningLeft, qttState};
+    enum state { idleRight, idleLeft, walkingRight, walkingLeft, runningRight, runningLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft,  qttState};
 }
 
 namespace colors {
@@ -59,7 +59,8 @@ extern const float ARMS_TIMER[PState::qttState];
 // hands
 extern const float HANDS_TIMER[PState::qttState];
 // head
-extern const float HEAD_TIMER[PState::qttState];
+extern float HEAD_TIMER[PState::qttState];
+extern int HEAD_N[PState::qttState];
 // wings
 extern const float WINGS_TIMER[PState::qttState];
 

@@ -22,7 +22,7 @@ Door::Door(GameManager *gm, float px, float py)
 }
 
 Door::Door(GameManager *gm, float px, float py, float sx, float sy) 
-    : Collisionable(gm, &Resources::doorTexture, Resources::doorTexture.getSize().x, Resources::doorTexture.getSize().y, px, py) {
+    : Collisionable(gm, &Resources::doorTexture, sx, sy, 1, 1) {
     sprite.setPosition(px,py);
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
         down = false;
