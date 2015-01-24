@@ -4,31 +4,10 @@
 const int mx[5] = {0,  -1,	 1,	   0,   0   };
 const int my[5] = {1,	0,	 0,   -1,   0   };
 
-const int PLAYER_0_MAX_SPEED = 0;
-const int PLAYER_1_MAX_SPEED = 0;
-const int PLAYER_2_MAX_SPEED = 0;
-const int PLAYER_3_MAX_SPEED = 0;
-const int PLAYER_4_MAX_SPEED = 0;
-const int PLAYER_5_MAX_SPEED = 0;
-const int PLAYER_6_MAX_SPEED = 0;
-const int PLAYER_0_ACCELERATION = 0;
-const int PLAYER_1_ACCELERATION = 0;
-const int PLAYER_2_ACCELERATION = 0;
-const int PLAYER_3_ACCELERATION = 0;
-const int PLAYER_4_ACCELERATION = 0;
-const int PLAYER_5_ACCELERATION = 0;
-const int PLAYER_6_ACCELERATION = 0;
-const int PLAYER_0_SIZE_X = 10;
-const int PLAYER_1_SIZE_X = 10;
-const int PLAYER_2_SIZE_X = 10;
-const int PLAYER_3_SIZE_X = 10;
-const int PLAYER_4_SIZE_X = 10;
-const int PLAYER_5_SIZE_X = 10;
-const int PLAYER_6_SIZE_X = 10;
-const int PLAYER_0_SIZE_Y = 10;
-const int PLAYER_1_SIZE_Y = 10;
-const int PLAYER_2_SIZE_Y = 10;
-const int PLAYER_3_SIZE_Y = 10;
-const int PLAYER_4_SIZE_Y = 10;
-const int PLAYER_5_SIZE_Y = 10;
-const int PLAYER_6_SIZE_Y = 10;
+
+const int PLAYER_MAX_SPEED[7] =    {  0,   0,   0,   0,   0,   0,   0};
+const int PLAYER_ACCELERATION[7] = {  0,   0,   0,   0,   0,   0,   0};
+const int PLAYER_SIZE_X[7] =       { 10,  10,  10,  10,  10,  10,  10};
+const int PLAYER_SIZE_Y[7] =       { 10,  10,  10,  10,  10,  10,  10};
+
+const float GRAVITY = 98;

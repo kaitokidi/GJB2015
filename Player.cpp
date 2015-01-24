@@ -2,7 +2,7 @@
 #include "Resources.hpp"
 
 
-Player::Player() : Collisionable(&Resources::playerTexture, PLAYER_0_SIZE_X, PLAYER_0_SIZE_Y, 1, 1){
+Player::Player() : Collisionable(&Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1){
     //sprite.setTexture(Resources::playerTexture);
     direction = Dir::none;
 }

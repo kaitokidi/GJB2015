@@ -1,16 +1,16 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Utils.hpp"
+#include "utils.hpp"
 #include "Resources.hpp"
 
 class Board {
 
 	public:
 		Board();
-		Board(sf::Texture vM, sf::Image cM);
+		Board(sf::Texture* vM, sf::Image* cM);
 		std::string getPixelColor(float x, float y);
-		void draw(sf::RenderWindow& rw);
+		void draw(sf::RenderTexture* rT);
 		
 	private:
 		

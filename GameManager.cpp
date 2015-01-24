@@ -1,7 +1,8 @@
 #include "GameManager.hpp"
 
 GameManager::GameManager(int scrwidth, int scrheight, std::string title, int style)
-    : Game(scrwidth,scrheight,title,style) {
+    : Game(scrwidth,scrheight,title,style) { //RECKT 
+		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
 }
 
 GameManager::~GameManager() {}
@@ -11,6 +12,7 @@ void GameManager::update(float deltaTime) {
 }
 
 void GameManager::draw() {
+	board.draw(& renderText);
     player.draw();
 }
 
