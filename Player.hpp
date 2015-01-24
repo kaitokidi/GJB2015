@@ -16,6 +16,7 @@ private:
     float time_to_next_sprite;
     bool jumping;
     float jumpTimer;
+    void colStone(Stone *s);
 
 public:
     Player();

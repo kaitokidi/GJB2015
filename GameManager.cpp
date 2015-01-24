@@ -92,7 +92,7 @@ void GameManager::draw() {
     window.clear();
 	board.draw(&window);
     player.draw(&window);
-    
+
     for(uint i = 0; i < stones.size(); ++i){
         stones[i].draw(&window);
     }
@@ -141,3 +141,6 @@ Board *GameManager::getBoard() {
     return &board;
 }
 
+    std::vector<Stone> GameManager::getStones() { return stones; }
+    std::vector<Door> GameManager::getDoors(){ return doors; }
+    std::vector<Button> GameManager::getButtons(){ return buttons; }

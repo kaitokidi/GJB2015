@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Stone.hpp"
 #include "Resources.hpp"
 
 Player::Player() {}
@@ -49,6 +50,20 @@ void Player::move(Dir::Direction dir) {
     direction = dir;
 }
 
+void Player::colStone(Stone *s){
+
+    if(sprite.getPosition.x > s->sprite.getPosition.x && direction == Dir::left){
+        s->move(direction);
+        speed.x=0;
+    }
+    else if(sprite.getPosition.x < s->sprite.getPosition.x && direction == Dir::right) {
+        s->move(direction);
+        speed.x=0;
+    }
+    s->move(direction);
+    speed.x=0;
+}
+
 Dir::Direction Player::getDirection() {
     return direction;
 }
@@ -89,6 +104,8 @@ void Player::update(float deltaTime) {
         }
     }
 
+
+    //Colisions amb el mon & moviment
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
@@ -122,6 +139,14 @@ void Player::update(float deltaTime) {
             scont = 0;
             spriteSource.x = (spriteSource.x+1)%nSpriteX;
         }
+    }
+    //colisions amb caixes
+    for(int i=0; i<gm->getStones.size();++i){
+        bool col = Collisionable::areCollisioning(this, *gm->getStones[i]);
+        if(col){
+            colStone(gm->getStones[i]);
+        }
+
     }
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
