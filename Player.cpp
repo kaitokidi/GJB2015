@@ -123,22 +123,21 @@ void Player::update(float deltaTime) {
                 }
             }
         }
-<<<<<<< HEAD
+
         //colisions amb bodyParts
         for(int i = 0; i < this->gm->getBodyParts().size();++i){
             BodyPart* c = gm->getBodyParts()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-            std::cout << " " << state << " , "  << std::endl;
+//             std::cout << " " << state << " , "  << std::endl;
             if (Collisionable::areCollisioning(&p, c)) {
-                 std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
+//                  std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
                 if(c->getId()==state+1){
                     state=state+1;
                     gm->eliminaElBody(i);
                 }
             }
         }
-=======
         
         //colisions Doors
         for(uint i = 0; i < this->gm->getDoors().size();++i){
@@ -171,7 +170,6 @@ void Player::update(float deltaTime) {
         }
         
         
->>>>>>> b2c0706c53ee84af8e0a3e7ed814b98022f0ec97
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();
