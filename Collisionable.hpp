@@ -18,7 +18,6 @@ protected:
 public:
     Collisionable();
     Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
-    virtual void update(float deltaTime) = 0;
     int getWidth();
     int getHeight();
     int getNSpriteX();
