@@ -3,7 +3,7 @@
 GameManager::GameManager(int scrwidth, int scrheight, std::string title, int style)
     : Game(scrwidth,scrheight,title,style) { //RECKT 
 		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
-        if (! renderText.create(window.getSize().x, window.getSize().y)) std::cout << "The motherfuking rendertexture is not being created" << std::endl;
+        if (! renderText.create(8000, 3204)) std::cout << "The motherfuking rendertexture is not being created" << std::endl;
 }
 
 GameManager::~GameManager() {}
@@ -15,8 +15,12 @@ void GameManager::update(float deltaTime) {
 void GameManager::draw() {
     renderText.clear();
 	board.draw(&renderText);
-//    player.draw();
-    sf::Sprite spr(renderText.getTexture());
+    sf::Texture txt;
+    sf::Image img(renderText.getTexture().copyToImage());
+    img.flipVertically();
+    txt.loadFromImage(img);
+    sf::Sprite spr(txt);
+    spr.setPosition(0,0);
     window.draw(spr);
     window.display();
 }

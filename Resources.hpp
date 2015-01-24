@@ -9,6 +9,8 @@ public:
     static sf::Texture playerTexture;
     static sf::Texture visibleBoard;
     static sf::Image colorBoard;
+    static sf::Image auxPlayerTexture;
+    static sf::Image auxVisibleBoard;
 };
 
 #endif // RESOURCES_H
