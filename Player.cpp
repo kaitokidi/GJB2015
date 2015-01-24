@@ -108,7 +108,7 @@ void Player::update(float deltaTime) {
         if (collision2) speed.x = 0;
 
         //colisions amb caixes
-        for(int i = 0; i < this->gm->getStones().size();++i){
+        for(uint i = 0; i < this->gm->getStones().size();++i){
             Collisionable* c = gm->getStones()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
@@ -123,6 +123,38 @@ void Player::update(float deltaTime) {
                 }
             }
         }
+        
+        //colisions Doors
+        for(uint i = 0; i < this->gm->getDoors().size();++i){
+            Collisionable* c = gm->getDoors()[i];
+            Collisionable p = *this;
+            p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+            if (Collisionable::areCollisioning(&p, c)) {
+                if (y+spriteHeight < c->getPosition().y) {
+                    speed.y = 0;
+                }
+                else {
+                    speed.x = 0;
+                }
+            }
+        }
+        
+        //colisions Buttons
+        for(uint i = 0; i < this->gm->getButtons().size();++i){
+            Collisionable* c = gm->getButtons()[i];
+            Collisionable p = *this;
+            p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+            if (Collisionable::areCollisioning(&p, c)) {
+                if (gm->getButtons()[i]->getID() == 1) { //aball
+                    gm->getDoors()[1]->moveDown(true);
+                }
+                else {
+                    gm->getDoors()[gm->getButtons()[i]->getID()]->moveUp(true);
+                }
+            }
+        }
+        
+        
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();

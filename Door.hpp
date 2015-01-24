@@ -7,6 +7,7 @@
 class Door : public Collisionable {
 
 private:
+    bool acted;
     bool down;
     bool up;
 public:
