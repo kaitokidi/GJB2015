@@ -13,15 +13,9 @@ class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
     std::vector<Stone*> stones;
-<<<<<<< HEAD
-    std::vector<Door> doors;
-    std::vector<Button> buttons;
     std::vector<BodyPart*> parts;
-=======
     std::vector<Door*> doors;
     std::vector<Button*> buttons;
-    std::vector<BodyPart> parts;
->>>>>>> b2c0706c53ee84af8e0a3e7ed814b98022f0ec97
     Player player;
 	Board board;
 	
@@ -30,14 +24,9 @@ private:
 public:
     
     std::vector<Stone*> getStones();
-<<<<<<< HEAD
-    std::vector<Door> getDoors();
-    std::vector<Button> getButtons();
     std::vector<BodyPart*> getBodyParts();
-=======
     std::vector<Door*> getDoors();
     std::vector<Button*> getButtons();
->>>>>>> b2c0706c53ee84af8e0a3e7ed814b98022f0ec97
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);
