@@ -2,7 +2,8 @@
 
 GameManager::GameManager(int scrwidth, int scrheight, std::string title, int style)
     : Game(scrwidth,scrheight,title,style) { //RECKT 
-		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
+    board = Board(& Resources::visibleBoard, & Resources::colorBoard);
+    player = Player(this);
 }
 
 GameManager::~GameManager() {}
@@ -12,7 +13,7 @@ void GameManager::update(float deltaTime) {
 }
 
 void GameManager::draw() {
-	board.draw(& renderText);
+    board.draw(&renderText);
     player.draw();
 }
 

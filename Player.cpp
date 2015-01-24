@@ -1,8 +1,9 @@
 #include "Player.hpp"
 #include "Resources.hpp"
 
+Player::Player() {}
 
-Player::Player() : Collisionable(&Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1){
+Player::Player(GameManager *gm) : Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1){
     //sprite.setTexture(Resources::playerTexture);
     direction = Dir::none;
 }
@@ -26,7 +27,7 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
 	if(direction==Dir::none){
-		speed.x=
+//		speed.x=
 	}
 	if(direction==Dir::left){
 		

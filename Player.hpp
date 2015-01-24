@@ -11,6 +11,7 @@ private:
     Dir::Direction direction;
 public:
     Player();
+    Player(GameManager *gm);
     ~Player();
     void update(float deltaTime);
     void draw();

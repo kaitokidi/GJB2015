@@ -3,8 +3,10 @@
 
 #include "utils.hpp"
 
+class GameManager;
 class Collisionable {
 protected:
+    GameManager *gm;
     sf::Sprite sprite;
     sf::Vector2f speed;
     int spriteWidth;
@@ -14,7 +16,7 @@ protected:
 
 public:
     Collisionable();
-    Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
+    Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
     virtual void update(float deltaTime) = 0;
     int getWidth();
     int getHeight();
@@ -23,6 +25,8 @@ public:
     sf::Vector2f getSpeed();
     sf::Vector2f getPosition();
     static bool areCollisioning(Collisionable *a, Collisionable *b);
+    bool collisionBackground();
+
 };
 
 #endif // COLLISIONABLE_H

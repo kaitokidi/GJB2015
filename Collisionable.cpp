@@ -4,7 +4,8 @@ Collisionable::Collisionable() {
 
 }
 
-Collisionable::Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
+Collisionable::Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
+    this->gm = gm;
     sprite.setTexture(*text);
     this->spriteWidth = spriteWidth;
     this->spriteHeight = spriteHeight;
@@ -41,5 +42,9 @@ bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
     if(a->getPosition().x + a->getWidth() < b->getPosition().x) return false;
     if(a->getPosition().y > b->getPosition().y + b->getHeight()) return false;
     if(a->getPosition().y + a->getHeight() < b->getPosition().y) return false;
+    return true;
+}
+
+bool Collisionable::collisionBackground() {
     return true;
 }
