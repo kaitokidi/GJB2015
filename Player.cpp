@@ -3,6 +3,7 @@
 #include "Resources.hpp"
 #include "GameManager.hpp"
 
+
 Player::Player() {}
 
 
@@ -125,7 +126,13 @@ void Player::update(float deltaTime) {
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();
-    
+
+    animation(deltaTime);
+
+}
+
+
+void Player::animation(float deltaTime) {
     if (!onGround) spriteSource.y = Dir::down;
     else {
         scont += deltaTime;
@@ -138,11 +145,7 @@ void Player::update(float deltaTime) {
             spriteSource.x = (spriteSource.x+1)%nSpriteX;
         }
     }
-    std::cout << "bounds player " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
-
 }
-
-
 
