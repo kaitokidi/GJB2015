@@ -10,14 +10,15 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::head;
+    level= PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    sprite.setPosition(2800,400);
+    sprite.setPosition(2600,800);
     jumping = false;
     jumpTimer = 0;
     lastDir = Dir::none;
-    loadNewLevel(state);
+    lastState = PState::idleRight;
+    loadNewLevel(level);
     pushing = false;
 }
 
@@ -25,7 +26,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
 Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::shoes;
+    level = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(px,py);
@@ -44,7 +45,7 @@ void Player::jump(bool jump){
     if (onGround && jump) {
         jumping = true;
         speed.y = 0;
-        jumpTimer = PLAYER_JUMP_TIME[state]/1000;
+        jumpTimer = PLAYER_JUMP_TIME[level]/1000;
     }
     else if (!(jumping && jump)) jumping = false;
 }
@@ -55,7 +56,7 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
     
-    if(state > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x += PLAYER_SPRINT_SPEED;
+    if(level > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x += PLAYER_SPRINT_SPEED;
         
     pushing = false;
     if (jumping && jumpTimer > 0) {
@@ -65,32 +66,32 @@ void Player::update(float deltaTime) {
     else speed.y += GRAVITY*deltaTime;
     if(direction == Dir::none){
         if (speed.x > 0){
-            speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            speed.x -= 1.5*PLAYER_ACCELERATION[level]*deltaTime;
             if(speed.x < 0) speed.x = 0;
         }
         else if( speed.x < 0) {
-            speed.x += 1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
             if (speed.x > 0) speed.x = 0;
         }
     }
     else if(direction == Dir::left){
         lastDir = direction;
         if (speed.x > 0){
-            speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            speed.x -= 1.5*PLAYER_ACCELERATION[level]*deltaTime;
         }
         else {
-            speed.x -= PLAYER_ACCELERATION[state]*deltaTime;
-            if (speed.x < -PLAYER_MAX_SPEED[state]) speed.x = -PLAYER_MAX_SPEED[state];
+            speed.x -= PLAYER_ACCELERATION[level]*deltaTime;
+            if (speed.x < -PLAYER_MAX_SPEED[level]) speed.x = -PLAYER_MAX_SPEED[level];
         }
     }
     else if(direction == Dir::right){
         lastDir = direction;
         if (speed.x >= 0){
-            speed.x += PLAYER_ACCELERATION[state]*deltaTime;
-            if(speed.x > PLAYER_MAX_SPEED[state]) speed.x = PLAYER_MAX_SPEED[state];
+            speed.x += PLAYER_ACCELERATION[level]*deltaTime;
+            if(speed.x > PLAYER_MAX_SPEED[level]) speed.x = PLAYER_MAX_SPEED[level];
         }
         else {
-            speed.x += 1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
             if (speed.x > 0) speed.x = 0;
         }
     }
@@ -126,7 +127,7 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
-                    if(state >= 2) {
+                    if(level >= 2) {
                         pushing = true;
                         c->move(direction);
                     }
@@ -140,11 +141,11 @@ void Player::update(float deltaTime) {
             BodyPart* c = gm->getBodyParts()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-//             std::cout << " " << state << " , "  << std::endl;
+//             std::cout << " " << level << " , "  << std::endl;
             if (Collisionable::areCollisioning(&p, c)) {
-//                  std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
-                if(c->getId() == state+1){
-                    state = state+1;
+//                  std::cout << "COOOOOOOOOOOOL" << level << " , " << c->getId() << std::endl;
+                if(c->getId() == level+1){
+                    level = level+1;
                     gm->eliminaElBody(i);
                 }
             }
@@ -170,7 +171,7 @@ void Player::update(float deltaTime) {
             Collisionable* c = gm->getButtons()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-            if (Collisionable::areCollisioning(&p, c) && state >= 5) {
+            if (Collisionable::areCollisioning(&p, c) && level >= 5) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
                     gm->getDoors()[1]->moveDown(true);
                 }
@@ -196,6 +197,11 @@ void Player::loadNewLevel(int level) {
     scont = 0;
 
     switch (level) {
+    case PState::shoes:
+        sprite.setTexture(Resources::playerShoes);
+        nSprites = SHOES_N;
+        time_to_next_sprite = SHOES_TIMER;
+        break;
     case PState::head:
         sprite.setTexture(Resources::playerHead);
         nSprites = HEAD_N;
@@ -207,49 +213,59 @@ void Player::loadNewLevel(int level) {
 }
 
 void Player::animation(float deltaTime) {
-    if (!onGround)  {
-        if (speed.y < 0) {
-            if (lastDir == Dir::right) {
-                spriteSource.y = PState::jumpingRight;
-                spriteSource.x = 1;
-            }
-            else {
-                spriteSource.y = PState::jumpingLeft;
-                spriteSource.x = 5;
-            }
-        }
-        else {
-            if (lastDir == Dir::right) {
-                spriteSource.y = PState::jumpingRight;
-                spriteSource.x = 4;
-            }
-            else {
-                spriteSource.y = PState::jumpingLeft;
-                spriteSource.x = 2;
-            }
-        }
+//    if (!onGround)  {
+//        if (speed.y < 0) {
+//            if (lastDir == Dir::right) {
+//                spriteSource.y = PState::jumpingRight;
+//                spriteSource.x = 1;
+//            }
+//            else {
+//                spriteSource.y = PState::jumpingLeft;
+//                spriteSource.x = 5;
+//            }
+//        }
+//        else {
+//            if (lastDir == Dir::right) {
+//                spriteSource.y = PState::jumpingRight;
+//                spriteSource.x = 4;
+//            }
+//            else {
+//                spriteSource.y = PState::jumpingLeft;
+//                spriteSource.x = 2;
+//            }
+//        }
+//    }
+//    else if (pushing) {
+//        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
+//        else spriteSource.y = PState::pushingLeft;
+//        spriteSource.x = 1;
+//    }
+//    else {
+//        scont += deltaTime;
+//        if (speed.x > 0) spriteSource.y = PState::walkingRight;
+//        else if (speed.x == 0) {
+//            if (lastDir == Dir::right) spriteSource.y = PState::idleRight;
+//            else spriteSource.y = PState::idleLeft;
+//        }
+//        else spriteSource.y = PState::walkingLeft;
+//        nextFrame();
+//    }
+    scont += deltaTime;
+    if (speed.x == 0) {
+        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::idleRight;
+        else spriteSource.y = PState::idleLeft;
     }
-    else if (pushing) {
-        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
-        else spriteSource.y = PState::pushingLeft;
-        spriteSource.x = 1;
-    }
-    else {
-        scont += deltaTime;
-        if (speed.x > 0) spriteSource.y = PState::walkingRight;
-        else if (speed.x == 0) {
-            if (lastDir == Dir::right) spriteSource.y = PState::idleRight;
-            else spriteSource.y = PState::idleLeft;
-        }
-        else spriteSource.y = PState::walkingLeft;
-        nextFrame();
-    }
+    else if (speed.x > 0) spriteSource.y = PState::walkingRight;
+    else spriteSource.y = PState::walkingLeft;
+    nextFrame();
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
 }
 
 void Player::nextFrame() {
     int n = 1;
+    if (lastState != spriteSource.y) spriteSource.x = 0;
+    lastState = spriteSource.y;
     if (spriteSource.y % 2 == 1) n = -1;
     if (scont >= time_to_next_sprite[spriteSource.y]){
         scont = 0;
