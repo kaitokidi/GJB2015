@@ -54,7 +54,6 @@ void Stone::update(float deltaTime) {
         }
     }
     else if(direction == Dir::left){
-        //si et movies en direccio contraria
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[0]*deltaTime;
         }
@@ -68,7 +67,6 @@ void Stone::update(float deltaTime) {
             speed.x += PLAYER_ACCELERATION[0]*deltaTime;
             if(speed.x > PLAYER_MAX_SPEED[0]) speed.x = PLAYER_MAX_SPEED[0];
         }
-        //si et movies en direccio contraria
         else if(speed.x < 0){
             speed.x += 1.5*PLAYER_ACCELERATION[0]*deltaTime;
             if (speed.x > 0) speed.x = 0;
@@ -88,11 +86,6 @@ void Stone::update(float deltaTime) {
     }
     if (collisionMap(x+deltaTime*speed.x,y)) {
         speed.x = 0;
-    }
-    if (collisionMap(x+deltaTime*speed.x,y+deltaTime*speed.y)) {
-        if (speed.y > 0) onGround = true;
-        speed.x = 0;
-        speed.y = 0;
     }
    
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);

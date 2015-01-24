@@ -12,10 +12,11 @@ const sf::Color colorsArray[12] = {
     
 };
 
-const int PLAYER_MAX_SPEED[7] =         {800,   0,   0,   0,   0,   0,   0};
-const int PLAYER_ACCELERATION[7] =      {800,   0,   0,   0,   0,   0,   0};
-const int PLAYER_SIZE_X[7] =            { 10,  10,  10,  10,  10,  10,  10};
-const int PLAYER_SIZE_Y[7] =            { 10,  10,  10,  10,  10,  10,  10};
-const float PLAYER_ANIMATION_TIMER[7] =   {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
+const int PLAYER_MAX_SPEED[7] =         { 100, 260,   0,   0,   0,   0,   0};
+const int PLAYER_ACCELERATION[7] =      { 800, 800,   0,   0,   0,   0,   0};
+const int PLAYER_JUMP_SPEED[7] =        { 100, 750, 999, 999, 999, 999, 999};
+const int PLAYER_SIZE_X[7] =            {  10,  10,  10,  10,  10,  10,  10};
+const int PLAYER_SIZE_Y[7] =            {  10,  10,  10,  10,  10,  10,  10};
+const float PLAYER_ANIMATION_TIMER[7] = { 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
 
 const float GRAVITY = 980;

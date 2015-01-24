@@ -112,11 +112,10 @@ void GameManager::processEvents() {
 
 void GameManager::checkMovement(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  player.jump(true);
+    else player.jump(false);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) player.move(Dir::right);
     else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  player.move(Dir::left);
     else player.move(Dir::none);
-    
-//     else player.jump(false);
 }
 
 sf::RenderTexture *GameManager::getRenderTexture() {
