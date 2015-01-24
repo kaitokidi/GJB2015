@@ -11,6 +11,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
     state = PState::shoes;
+
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2800,400);
@@ -25,7 +26,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
 Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::legs;
+    state = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(px,py);
@@ -54,6 +55,9 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
+    
+    if(state > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x += PLAYER_SPRINT_SPEED;
+        
     pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
@@ -123,22 +127,25 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
-                    c->move(direction);
-                    pushing = true;
+                    if(state >= 2) {
+                        pushing = true;
+                        c->move(direction);
+                    }
+
                 }
             }
         }
 
         //colisions amb bodyParts
-        for(int i = 0; i < this->gm->getBodyParts().size();++i){
+        for(uint i = 0; i < this->gm->getBodyParts().size();++i){
             BodyPart* c = gm->getBodyParts()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 //             std::cout << " " << state << " , "  << std::endl;
             if (Collisionable::areCollisioning(&p, c)) {
 //                  std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
-                if(c->getId()==state+1){
-                    state=state+1;
+                if(c->getId() == state+1){
+                    state = state+1;
                     gm->eliminaElBody(i);
                 }
             }
@@ -164,7 +171,7 @@ void Player::update(float deltaTime) {
             Collisionable* c = gm->getButtons()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-            if (Collisionable::areCollisioning(&p, c)) {
+            if (Collisionable::areCollisioning(&p, c) && state >= 5) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
                     gm->getDoors()[1]->moveDown(true);
                 }
@@ -184,7 +191,7 @@ void Player::update(float deltaTime) {
 }
 
 
-void Player::loadNewLevel(PState::level level) {
+void Player::loadNewLevel(int level) {
     spriteHeight = PLAYER_SIZE_Y[level];
     spriteWidth = PLAYER_SIZE_X[level];
     scont = 0;

@@ -47,6 +47,7 @@ extern const int PLAYER_JUMP_SPEED;
 extern const int PLAYER_SIZE_X[PState::qttLevel];
 extern const int PLAYER_SIZE_Y[PState::qttLevel];
 extern const float PLAYER_ANIMATION_TIMER[7];
+extern const int PLAYER_SPRINT_SPEED;
 
 // shoes
 extern const float SHOES_TIMER[PState::qttState];

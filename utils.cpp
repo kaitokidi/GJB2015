@@ -14,19 +14,12 @@ const sf::Color colorsArray[12] = {
 
 const float GRAVITY = 980;
 
-<<<<<<< HEAD
-const int PLAYER_MAX_SPEED[PState::qttLevel] =         { 100, 260,   0,   0,   0, 260,   0};
-const int PLAYER_ACCELERATION[PState::qttLevel] =      { 800, 800,   0,   0,   0, 800,   0};
-const float PLAYER_JUMP_TIME[PState::qttLevel] =       { 100, 300, 999, 999, 999, 300, 999};
-=======
-
-const int PLAYER_MAX_SPEED[PState::qttLevel] =         { 100, 260,   0,   0,   0,   0,   0};
-const int PLAYER_ACCELERATION[PState::qttLevel] =      { 800, 800,   0,   0,   0,   0,   0};
-const float PLAYER_JUMP_TIME[PState::qttLevel] =       { 100, 300, 999, 999, 999, 999, 999};
->>>>>>> 5a419b40aa18f8754b7c181fa5ec32e5bed3ca02
+const int PLAYER_MAX_SPEED[PState::qttLevel] =         { 100, 260,   260,   260,   300,   320,  4000};
+const int PLAYER_ACCELERATION[PState::qttLevel] =      { 800, 800,   800,   800,   800,   800,  1000};
+const float PLAYER_JUMP_TIME[PState::qttLevel] =       { 100, 300, 300, 300, 999, 999, 999};
 const int PLAYER_JUMP_SPEED = 500;
 const float PLAYER_ANIMATION_TIMER[PState::qttLevel] = { 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
-
+const int PLAYER_SPRINT_SPEED = 200;
 //                                           sho leg bod arm han hed wing
 const int PLAYER_SIZE_X[PState::qttLevel] = {  0,  0,  0,  0,250,150,  0};
 const int PLAYER_SIZE_Y[PState::qttLevel] = {  0,  0,  0,  0,240,220,  0};
