@@ -168,7 +168,7 @@ void Player::update(float deltaTime) {
             Collisionable* c = gm->getButtons()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-            if (Collisionable::areCollisioning(&p, c)) {
+            if (Collisionable::areCollisioning(&p, c) && state >= 5) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
                     gm->getDoors()[1]->moveDown(true);
                 }
