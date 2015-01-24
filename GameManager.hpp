@@ -6,12 +6,14 @@
 #include "Board.hpp"
 #include "Stone.hpp"
 #include "Player.hpp"
+#include "Button.hpp"
 
 class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
 	std::vector<Stone> stones;
     std::vector<Door> doors;
+    std::vector<Button> buttons;
     Player player;
 	Board board;
 	

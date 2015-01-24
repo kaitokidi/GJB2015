@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     Player.cpp \
     Board.cpp \
     Stone.cpp \
-    Door.cpp
+    Door.cpp \
+    Button.cpp
 
 HEADERS += \
     Resources.hpp \
@@ -26,5 +27,6 @@ HEADERS += \
     Player.hpp  \
     Board.hpp \
     Stone.hpp \
-    Door.hpp
+    Door.hpp \
+    Button.hpp
 
