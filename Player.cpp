@@ -103,23 +103,23 @@ void Player::update(float deltaTime) {
             if (speed.y > 0) onGround = true;
             speed.y = 0;
         }
-        else {
-            onGround = false;
-        }
+        else onGround = false;
         if (collision2) speed.x = 0;
+
         //colisions amb caixes
         for(int i = 0; i < this->gm->getStones().size();++i){
-            Collisionable* c = &gm->getStones()[i];
+            Collisionable* c = gm->getStones()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
             if (Collisionable::areCollisioning(&p, c)) {
-                if (abs(speed.x) > 0) {
-                    speed.x = 0;
-                    c->move(direction);
-                }
-                if (abs(speed.y) > 0) {
+                if (y+spriteHeight < c->getPosition().y) {
                     speed.y = 0;
                     onGround = true;
+                }
+                else {
+                    speed.x = 0;
+                    c->move(Dir::right);
+                    std::cout << "penis" << std::endl;
                 }
             }
         }
