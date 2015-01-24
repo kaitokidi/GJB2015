@@ -118,8 +118,7 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
-                    c->move(Dir::right);
-                    std::cout << "penis" << std::endl;
+                    c->move(direction);
                 }
             }
         }
