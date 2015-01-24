@@ -21,7 +21,6 @@
 #include <map>
 
 // If you want to declare global variables you can do it here:
-extern float deltaSpeed; // You must to declare this avariable again on utils.cpp
 extern const int mx[5];
 extern const int my[5];
 

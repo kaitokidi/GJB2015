@@ -26,6 +26,12 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
 	if(direction==Dir::none){
+		speed.x=
+	}
+	if(direction==Dir::left){
+		
+	}
+	if(direction==Dir::right){
 		
 	}
 }
