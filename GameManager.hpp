@@ -13,9 +13,9 @@ class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
     std::vector<Stone*> stones;
+    std::vector<BodyPart*> parts;
     std::vector<Door*> doors;
     std::vector<Button*> buttons;
-    std::vector<BodyPart> parts;
     Player player;
 	Board board;
 	
@@ -24,6 +24,7 @@ private:
 public:
     
     std::vector<Stone*> getStones();
+    std::vector<BodyPart*> getBodyParts();
     std::vector<Door*> getDoors();
     std::vector<Button*> getButtons();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
@@ -32,6 +33,7 @@ public:
     void draw();
     void processEvents();
 	void checkMovement();
+    void eliminaElBody(int i);
     sf::RenderTexture *getRenderTexture();
     Board *getBoard();
     sf::View view;
