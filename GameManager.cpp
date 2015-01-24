@@ -5,7 +5,8 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 
         player = Player(this);
 		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
-        if (! renderText.create(8000, 3204)) std::cout << "The motherfuking rendertexture is not being created" << std::endl;
+        
+
 
 }
 
