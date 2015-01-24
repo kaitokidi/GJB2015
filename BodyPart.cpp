@@ -8,7 +8,6 @@ BodyPart::BodyPart(GameManager *gm, float px, float py, float sx, float sy, int 
     sprite.setPosition(px,py);
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
     id= idBody;
-    sprite.setPosition(3000, 1000);
 }
 
 BodyPart::~BodyPart() {
