@@ -7,14 +7,12 @@
 class Stone : public Collisionable {
 
 private:
-    Dir::Direction direction;
 public:
     Stone();
     Stone(GameManager *gm, float px, float py, float sx, float sy);
     ~Stone();
     void update(float deltaTime);
     void draw(sf::RenderWindow* window);
-    void move(Dir::Direction dir);
     Dir::Direction getDirection();
 
 };
