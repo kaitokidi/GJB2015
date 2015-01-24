@@ -21,12 +21,13 @@ const int PLAYER_JUMP_SPEED = 500;
 const float PLAYER_ANIMATION_TIMER[PState::qttLevel] = { 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
 const int PLAYER_SPRINT_SPEED = 200;
 //                                           sho leg bod arm han hed wing
-const int PLAYER_SIZE_X[PState::qttLevel] = {  0,  0,  0,  0,250,150,  0};
-const int PLAYER_SIZE_Y[PState::qttLevel] = {  0,  0,  0,  0,240,220,  0};
+const int PLAYER_SIZE_X[PState::qttLevel] = {  100,  0,  0,  0,250,150,  0};
+const int PLAYER_SIZE_Y[PState::qttLevel] = {  50 ,  0,  0,  0,240,220,  0};
 
 //  idleRight, idleLeft, walkingRight, walkingLeft, runningRight, runningLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft
 // shoes
-const float SHOES_TIMER[PState::qttState] = {};
+float SHOES_TIMER[4] = {1,1,0.5,0.5};
+int SHOES_N[4] = {1,1,6,6};
 // legs
 const float LEGS_TIMER[PState::qttState] = {};
 // body

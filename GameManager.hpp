@@ -18,7 +18,7 @@ private:
     std::vector<Button*> buttons;
     Player player;
 	Board board;
-	
+	sf::Sprite mapaForeground;
     void generaItems();
     
 public:

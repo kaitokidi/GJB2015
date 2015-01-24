@@ -6,6 +6,11 @@ void GameManager::generaItems(){
     size_x = aux.getSize().x;
     size_y = aux.getSize().y;
     
+    /***************************/
+//     sf::Texture text;
+//     text.loadFromFile("res/foregroundMap.png");
+//     mapaForeground.setTexture(text);
+    
     for(int x = 1; x < size_x; ++x){
         for(int y = 1; y < size_y; ++y){
             sf::Color pixelColor = board.get_pixel_color(x,y);
@@ -43,14 +48,14 @@ void GameManager::generaItems(){
                 }
             }
 
-            int part = 0;
-            if(pixelColor == colorsArray[colors::footColor]) part = 1 ;//peus (inici player)
-            else if(pixelColor == colorsArray[colors::legsColor]) part = 2 ;//cames
-            else if(pixelColor == colorsArray[colors::bodyColor]) part = 3 ;//cos
-            else if(pixelColor == colorsArray[colors::armsColor]) part = 4 ;//brac,os
-            else if(pixelColor == colorsArray[colors::handColor]) part = 5 ;//ma1
-            else if(pixelColor == colorsArray[colors::headColor]) part = 6 ;//cap
-            else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
+//             int part = 0;
+//             if(pixelColor == colorsArray[colors::footColor]) part = 1 ;//peus (inici player)
+//             else if(pixelColor == colorsArray[colors::legsColor]) part = 2 ;//cames
+//             else if(pixelColor == colorsArray[colors::bodyColor]) part = 3 ;//cos
+//             else if(pixelColor == colorsArray[colors::armsColor]) part = 4 ;//brac,os
+//             else if(pixelColor == colorsArray[colors::handColor]) part = 5 ;//ma1
+//             else if(pixelColor == colorsArray[colors::headColor]) part = 6 ;//cap
+//             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
         }
     }
     Door* d = new Door(this, 5100, 100, 50, 400);
@@ -61,10 +66,10 @@ void GameManager::generaItems(){
     doors.push_back(d3);
                      
     Button* bu = new Button(this, 5250, 300, 150,75, 3);
-    buttons.push_back(bu);
     Button* bu2 = new Button(this, 5200, 1900, 150,75, 1);
-    buttons.push_back(bu2);
     Button* bu3 = new Button(this, 5600, 1900, 150,75, 2);
+    buttons.push_back(bu);
+    buttons.push_back(bu2);
     buttons.push_back(bu3);
 
     BodyPart *p1 = new BodyPart(this, 4360, 1300,100,100,PState::legs);
@@ -133,7 +138,8 @@ void GameManager::draw() {
         parts[i]->draw(&window);
     }
     
-    
+//     mapaForeground.setScale(window.getSize().y/mapaForeground.getGlobalBounds().height, window.getSize().y/mapaForeground.getGlobalBounds().height);
+    window.draw(mapaForeground);
     
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
