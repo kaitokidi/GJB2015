@@ -23,8 +23,7 @@ void GameManager::generaItems(){
                 else if(pixelColor == colorsArray[colors::doorColor]) { //add door
 
 //                     std::cout << "Generate door on" << x << " , " << y << std::endl;
-                    Door* d = new Door(this, x, y, 50, 400);
-                    doors.push_back(d);
+
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
@@ -54,6 +53,13 @@ void GameManager::generaItems(){
             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
         }
     }
+    Door* d = new Door(this, 5100, 100, 50, 400);
+    Door* d2 = new Door(this, 5400, 1700, 50, 400);
+    Door* d3 = new Door(this, 6700, 700, 50, 400);
+    doors.push_back(d);
+    doors.push_back(d2);
+    doors.push_back(d3);
+                     
     Button* bu = new Button(this, 5250, 300, 150,75, 3);
     buttons.push_back(bu);
     Button* bu2 = new Button(this, 5200, 1900, 150,75, 1);
@@ -126,6 +132,9 @@ void GameManager::draw() {
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->draw(&window);
     }
+    
+    
+    
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
 //      view.zoom(0.4);

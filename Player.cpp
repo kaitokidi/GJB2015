@@ -54,10 +54,7 @@ Dir::Direction Player::getDirection() {
     return direction;
 }
 
-void Player::update(float deltaTime) {
-    
-    if(level > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x += PLAYER_SPRINT_SPEED;
-        
+void Player::update(float deltaTime) {       
     pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
@@ -181,7 +178,7 @@ void Player::update(float deltaTime) {
             }
         }
         
-        
+        if(level > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x *= 1.1;
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();
