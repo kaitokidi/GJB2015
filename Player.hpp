@@ -10,6 +10,9 @@ class Player : public Collisionable {
 private:
     Dir::Direction direction;
     int state;
+    sf::Vector2u spriteSource;
+    float scont;
+    float time_to_next_sprite;
 public:
     Player();
     Player(GameManager *gm);

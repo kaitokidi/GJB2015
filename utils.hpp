@@ -28,16 +28,18 @@ extern const int PLAYER_MAX_SPEED[7];
 extern const int PLAYER_ACCELERATION[7];
 extern const int PLAYER_SIZE_X[7];
 extern const int PLAYER_SIZE_Y[7];
-extern const int PLAYER_ANIMATION_TIMER[7];
+extern const float PLAYER_ANIMATION_TIMER[7];
 extern const float GRAVITY;
 
 
 namespace Dir {
-    enum Direction { down, left, right, up , none };
+    enum Direction { down, left, right, none , up };
 }
 
 namespace PState {
-    enum state { shoes, legs, body, arms, hands, head, wings };
+    enum level { shoes, legs, body, arms, hands, head, wings };
+    enum state { idle, walkingRight, walkingLeft, jumping, pushing, running};
 }
+
 
 #endif // UTILS_HPP

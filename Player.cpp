@@ -3,9 +3,14 @@
 
 Player::Player() {}
 
-Player::Player(GameManager *gm) : Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 4, 4){
+
+Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
+    Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
     state = PState::shoes;
+    spriteSource = sf::Vector2u(0,Dir::none);
+    scont = 0;
+    time_to_next_sprite = 0.2;
 }
 
 Player::~Player() {
@@ -29,6 +34,7 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
+
     if(direction == Dir::none){
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
@@ -65,14 +71,29 @@ void Player::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
 
-//    if (collisionMap(x,y+deltaTime*speed.y)) {
-//        speed.y = 0;
-//        if (speed.y > 0) onGround = true;
-//    }
-//    if (collisionMap(x+deltaTime*speed.x,y)) {
-//        speed.x = 0;
-//    }
+    if (collisionMap(x,y+deltaTime*speed.y)) {
+        speed.y = 0;
+        if (speed.y > 0) onGround = true;
+    }
+    if (collisionMap(x+deltaTime*speed.x,y)) {
+        speed.x = 0;
+    }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+
+    if (!onGround) spriteSource.y = Dir::down;
+    else {
+    scont += deltaTime;
+    if (speed.x > 0) spriteSource.y = Dir::right;
+    else if (speed.x == 0) spriteSource.y = Dir::none;
+    else spriteSource.y = Dir::left;
+
+        if (scont >= time_to_next_sprite){
+        scont = 0;
+        spriteSource.x = (spriteSource.x+1)%nSpriteX;
+        }
+        sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
+                    spriteSource.y*spriteHeight, spriteWidth, spriteWidth));
+    }
 }
 
 
