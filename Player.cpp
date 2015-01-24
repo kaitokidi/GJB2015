@@ -18,7 +18,7 @@ void Player::draw(sf::RenderTexture* render) {
 }
 
 void Player::jump(bool b){
-
+    speed.y = -100;
 }
 void Player::move(Dir::Direction dir) {
     direction = dir;
@@ -39,28 +39,27 @@ void Player::update(float deltaTime) {
             if(speed.x > 0) speed.x = 0;
 		}
 	}
-	if(direction==Dir::left){
+    if(direction == Dir::left){
 		//si et movies en direccio contraria
-		if(speed.x>0){
-            speed.x=-1.5*PLAYER_ACCELERATION[state]*deltaTime + speed.x;
-			if(speed.x<0)speed.x=0;
+        if(speed.x > 0){
+            speed.x += -1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            if(speed.x < 0) speed.x = 0;
 		}
-        else if(speed.x<=0 && speed.x>-PLAYER_MAX_SPEED[state]){
-            speed.x=-PLAYER_ACCELERATION[state]*deltaTime + speed.x;
-			if(speed.x>0)speed.x=0;
-            if(speed.x<-PLAYER_MAX_SPEED[state])speed.x=-PLAYER_MAX_SPEED[state];
+        else if(speed.x <= 0) {
+            speed.x += -PLAYER_ACCELERATION[state]*deltaTime;
+            if(speed.x > 0) speed.x = 0;
+            if(speed.x < -PLAYER_MAX_SPEED[state]) speed.x = -PLAYER_MAX_SPEED[state];
         }
 	}
-	if(direction==Dir::right){
-		
-        if(speed.x>=0 && speed.x<PLAYER_MAX_SPEED[state]){
-            speed.x=PLAYER_ACCELERATION[state]*deltaTime + speed.x;
-            if(speed.x>PLAYER_MAX_SPEED[state])speed.x=PLAYER_MAX_SPEED[state];
+    if(direction == Dir::right){
+        if(speed.x >= 0){
+            speed.x += PLAYER_ACCELERATION[state]*deltaTime;
+            if(speed.x > PLAYER_MAX_SPEED[state]) speed.x = PLAYER_MAX_SPEED[state];
 		}
 		//si et movies en direccio contraria
-		else if(speed.x<0){
-            speed.x=1.5*PLAYER_ACCELERATION[state]*deltaTime + speed.x;
-			if(speed.x>0)speed.x=0;
+        else if(speed.x < 0){
+            speed.x += 1.5*PLAYER_ACCELERATION[state]*deltaTime;
+            if (speed.x > 0) speed.x = 0;
         }
 	}
     speed.y += GRAVITY * deltaTime;
@@ -68,14 +67,14 @@ void Player::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
 
-    if (collisionMap(x,y+deltaTime*speed.y)) {
-        speed.y = 0;
-        if (speed.y > 0) onGround = true;
-    }
-    if (collisionMap(x+deltaTime*speed.x,y)) {
-        speed.x = 0;
-    }
-    sprite.setPosition(sprite.getPosition().x*speed.x*deltaTime,sprite.getPosition().y*speed.y*deltaTime);
+//    if (collisionMap(x,y+deltaTime*speed.y)) {
+//        speed.y = 0;
+//        if (speed.y > 0) onGround = true;
+//    }
+//    if (collisionMap(x+deltaTime*speed.x,y)) {
+//        speed.x = 0;
+//    }
+    sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 }
 
 
