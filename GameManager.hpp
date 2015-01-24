@@ -15,7 +15,7 @@ private:
     std::vector<Stone*> stones;
     std::vector<Door> doors;
     std::vector<Button> buttons;
-    std::vector<BodyPart> parts;
+    std::vector<BodyPart*> parts;
     Player player;
 	Board board;
 	
@@ -26,12 +26,14 @@ public:
     std::vector<Stone*> getStones();
     std::vector<Door> getDoors();
     std::vector<Button> getButtons();
+    std::vector<BodyPart*> getBodyParts();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);
     void draw();
     void processEvents();
 	void checkMovement();
+    void eliminaElBody(int i);
     sf::RenderTexture *getRenderTexture();
     Board *getBoard();
     sf::View view;

@@ -9,7 +9,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::legs;
+    state = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     time_to_next_sprite = 0.1;
@@ -119,6 +119,20 @@ void Player::update(float deltaTime) {
                 else {
                     speed.x = 0;
                     c->move(direction);
+                }
+            }
+        }
+        //colisions amb bodyParts
+        for(int i = 0; i < this->gm->getBodyParts().size();++i){
+            BodyPart* c = gm->getBodyParts()[i];
+            Collisionable p = *this;
+            p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+            std::cout << " " << state << " , "  << std::endl;
+            if (Collisionable::areCollisioning(&p, c)) {
+                 std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
+                if(c->getId()==state+1){
+                    state=state+1;
+                    gm->eliminaElBody(i);
                 }
             }
         }
