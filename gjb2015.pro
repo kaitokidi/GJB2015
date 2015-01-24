@@ -17,8 +17,9 @@ SOURCES += main.cpp \
     Stone.cpp \
     Door.cpp \
     Button.cpp \
-    Portada.cpp \
-    BodyPart.cpp
+    BodyPart.cpp \
+    Portada.cpp
+
 
 HEADERS += \
     Resources.hpp \
@@ -31,6 +32,6 @@ HEADERS += \
     Stone.hpp \
     Door.hpp \
     Button.hpp \
-    Portada.hpp \
-    BodyPart.hpp
+    BodyPart.hpp \
+    Portada.hpp
 

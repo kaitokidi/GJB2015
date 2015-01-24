@@ -12,6 +12,7 @@ public:
     static sf::Texture visibleBoard;
     static sf::Texture doorTexture;
     static sf::Image colorBoard;
+    static sf::Texture bodyPartTexture;
 };
 
 #endif // RESOURCES_H
