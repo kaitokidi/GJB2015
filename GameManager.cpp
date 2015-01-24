@@ -12,8 +12,14 @@ void GameManager::update(float deltaTime) {
 }
 
 void GameManager::draw() {
+    renderText.clear();
 	board.draw(& renderText);
     player.draw();
+    sf::Texture text(renderText.getTexture());
+    sf::Sprite spr; spr.setTexture(text);
+    spr.setPosition(0,0);
+    window.draw(spr);
+    window.display();
 }
 
 void GameManager::processEvents() {
