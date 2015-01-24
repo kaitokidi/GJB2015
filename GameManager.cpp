@@ -21,7 +21,7 @@ void GameManager::draw() {
 	board.draw(&window);
     player.draw(&window);
     
-     view.reset(sf::FloatRect(player.getPosition().x,player.getPosition().y, window.getSize().x*2, window.getSize().y*2));
+     view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
 //      view.zoom(0.4);
         
