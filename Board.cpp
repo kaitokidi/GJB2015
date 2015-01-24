@@ -31,7 +31,7 @@ std::string Board::getPixelColor(float px, float py){
 						return "White";
 					}
 					else {
-						return "Penguin";
+						return "Penguins";
 					}
 				}
 			}
