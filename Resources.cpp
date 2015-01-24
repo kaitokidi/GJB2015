@@ -23,6 +23,15 @@ sf::Image		Resources::colorBoard;
 sf::Texture     Resources::bodyPartTexture;
 sf::Texture     Resources::playerHead;
 
+sf::Texture Resources::shoesText;
+sf::Texture Resources::legsText;
+sf::Texture Resources::bodyText;
+sf::Texture Resources::armsText;
+sf::Texture Resources::handText;
+sf::Texture Resources::headText;
+sf::Texture Resources::wingsText;
+
+
 void Resources::load() {
     if(!buttonTexture.loadFromFile("res/buttonTexture.png")) std::cout << "unable to load buttonTexture" << std::endl;
     if(!playerTexture.loadFromFile("res/playerTexture.png")) std::cout << "unable to load playerTexture" << std::endl;
@@ -33,4 +42,12 @@ void Resources::load() {
     if(!bodyPartTexture.loadFromFile( "res/BodyPartTexture.png")) std::cout << "unable to load BodyPartTexture" << std::endl;
 
     if(!playerHead.loadFromFile( "res/head.png")) std::cout << "unable to load playerHead" << std::endl;
+    
+    if(!shoesText.loadFromFile( "res/theshoes.png")) std::cout << "unable to load peus" << std::endl;
+    if(!legsText.loadFromFile( "res/thelegs.png")) std::cout << "unable to load legs" << std::endl;
+    if(!bodyText.loadFromFile( "res/thebody.png")) std::cout << "unable to load body" << std::endl;
+    if(!armsText.loadFromFile( "res/thearms.png")) std::cout << "unable to load arms" << std::endl;
+    if(!handText.loadFromFile( "res/thehand.png")) std::cout << "unable to load hand" << std::endl;
+    if(!headText.loadFromFile( "res/thehead.png")) std::cout << "unable to load headsol" << std::endl;
+    if(!wingsText.loadFromFile( "res/thewings.png")) std::cout << "unable to load wings" << std::endl;
 }
