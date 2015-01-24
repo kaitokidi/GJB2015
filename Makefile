@@ -55,7 +55,9 @@ SOURCES       = main.cpp \
 		Board.cpp \
 		Stone.cpp \
 		Door.cpp \
-		Button.cpp 
+		Button.cpp \
+		Portada.cpp \
+		BodyPart.cpp 
 OBJECTS       = main.o \
 		Resources.o \
 		utils.o \
@@ -66,7 +68,9 @@ OBJECTS       = main.o \
 		Board.o \
 		Stone.o \
 		Door.o \
-		Button.o
+		Button.o \
+		Portada.o \
+		BodyPart.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/shell-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -303,7 +307,8 @@ main.o: main.cpp Resources.hpp \
 		Board.hpp \
 		Stone.hpp \
 		Player.hpp \
-		Button.hpp
+		Button.hpp \
+		Portada.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 Resources.o: Resources.cpp Resources.hpp \
@@ -326,7 +331,8 @@ GameManager.o: GameManager.cpp GameManager.hpp \
 		Resources.hpp \
 		Stone.hpp \
 		Player.hpp \
-		Button.hpp
+		Button.hpp \
+		Portada.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GameManager.o GameManager.cpp
 
 Collisionable.o: Collisionable.cpp Collisionable.hpp \
@@ -338,13 +344,21 @@ Collisionable.o: Collisionable.cpp Collisionable.hpp \
 		Resources.hpp \
 		Stone.hpp \
 		Player.hpp \
-		Button.hpp
+		Button.hpp \
+		Portada.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Collisionable.o Collisionable.cpp
 
 Player.o: Player.cpp Player.hpp \
 		utils.hpp \
 		Collisionable.hpp \
-		Resources.hpp
+		Stone.hpp \
+		Resources.hpp \
+		GameManager.hpp \
+		Game.hpp \
+		Door.hpp \
+		Board.hpp \
+		Button.hpp \
+		Portada.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Player.o Player.cpp
 
 Board.o: Board.cpp Board.hpp \
@@ -369,6 +383,18 @@ Button.o: Button.cpp Button.hpp \
 		Collisionable.hpp \
 		Resources.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Button.o Button.cpp
+
+Portada.o: Portada.cpp Portada.hpp \
+		utils.hpp \
+		Button.hpp \
+		Collisionable.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Portada.o Portada.cpp
+
+BodyPart.o: BodyPart.cpp BodyPart.hpp \
+		utils.hpp \
+		Collisionable.hpp \
+		Resources.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BodyPart.o BodyPart.cpp
 
 ####### Install
 
