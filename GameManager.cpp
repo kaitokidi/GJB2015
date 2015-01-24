@@ -61,6 +61,19 @@ void GameManager::generaItems(){
     Button bu3 = Button(this, 5600, 1900, 150,75, 2);
     buttons.push_back(bu3);
 
+    BodyPart p1 = BodyPart(this, 0,0 ,100,100,PState::legs);
+    parts.push_back(p1);
+    BodyPart p2 = BodyPart(this, 0,0 ,100,100,PState::body);
+    parts.push_back(p2);
+    BodyPart p3 = BodyPart(this, 0,0 ,100,100,PState::arms);
+    parts.push_back(p3);
+    BodyPart p4 = BodyPart(this, 0,0 ,100,100,PState::hands);
+    parts.push_back(p4);
+    BodyPart p5 = BodyPart(this, 0,0 ,100,100,PState::head);
+    parts.push_back(p5);
+    BodyPart p6 = BodyPart(this, 0,0 ,100,100,PState::wings);
+    parts.push_back(p6);
+
     
 }
 
@@ -86,6 +99,9 @@ void GameManager::update(float deltaTime) {
     for(uint i = 0; i < doors.size(); ++i){
         doors[i].update(deltaTime);
     }
+    for(uint i = 0; i < parts.size(); ++i){
+        parts[i].update(deltaTime);
+    }
 }
 
 void GameManager::draw() {
@@ -98,6 +114,9 @@ void GameManager::draw() {
     }
     for(uint i = 0; i < doors.size(); ++i){
         doors[i].draw(&window);
+    }
+    for(uint i = 0; i < parts.size(); ++i){
+        parts[i].draw(&window);
     }
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
