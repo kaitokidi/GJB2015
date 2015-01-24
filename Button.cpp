@@ -6,7 +6,7 @@ Button::Button() {}
 
 
 Button::Button(GameManager *gm, float px, float py, float sx, float sy, int ide) 
-    : Collisionable(gm, &Resources::buttonTexture, Resources::buttonTexture.getSize().x, Resources::buttonTexture.getSize().y, px, py) {
+    : Collisionable(gm, &Resources::buttonTexture, sx, sy, 1, 1) {
     id = ide;
     sprite.setPosition(px,py);
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);

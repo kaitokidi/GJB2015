@@ -13,10 +13,12 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     state = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    time_to_next_sprite = 0.1;
-    sprite.setPosition(2800,1000);
+    sprite.setPosition(2800,400);
     jumping = false;
     jumpTimer = 0;
+    lastDir = Dir::none;
+    loadNewLevel(state);
+    pushing = false;
 }
 
 
@@ -26,7 +28,6 @@ Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resou
     state = PState::legs;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    time_to_next_sprite = 0.1;
     sprite.setPosition(px,py);
 }
 
@@ -53,6 +54,7 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
+    pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
         jumpTimer -= deltaTime;
@@ -69,6 +71,7 @@ void Player::update(float deltaTime) {
         }
     }
     else if(direction == Dir::left){
+        lastDir = direction;
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
         }
@@ -78,6 +81,7 @@ void Player::update(float deltaTime) {
         }
     }
     else if(direction == Dir::right){
+        lastDir = direction;
         if (speed.x >= 0){
             speed.x += PLAYER_ACCELERATION[state]*deltaTime;
             if(speed.x > PLAYER_MAX_SPEED[state]) speed.x = PLAYER_MAX_SPEED[state];
@@ -119,7 +123,9 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
+
                     if(state >= 2)c->move(direction);
+
                 }
             }
         }
@@ -179,20 +185,69 @@ void Player::update(float deltaTime) {
 }
 
 
+void Player::loadNewLevel(PState::level level) {
+    spriteHeight = PLAYER_SIZE_Y[level];
+    spriteWidth = PLAYER_SIZE_X[level];
+    scont = 0;
+
+    switch (level) {
+    case PState::head:
+        sprite.setTexture(Resources::playerHead);
+        nSprites = HEAD_N;
+        time_to_next_sprite = HEAD_TIMER;
+        break;
+    default:
+        break;
+    }
+}
+
 void Player::animation(float deltaTime) {
-    if (!onGround) spriteSource.y = Dir::down;
+    if (!onGround)  {
+        if (speed.y < 0) {
+            if (lastDir == Dir::right) {
+                spriteSource.y = PState::jumpingRight;
+                spriteSource.x = 1;
+            }
+            else {
+                spriteSource.y = PState::jumpingLeft;
+                spriteSource.x = 5;
+            }
+        }
+        else {
+            if (lastDir == Dir::right) {
+                spriteSource.y = PState::jumpingRight;
+                spriteSource.x = 4;
+            }
+            else {
+                spriteSource.y = PState::jumpingLeft;
+                spriteSource.x = 2;
+            }
+        }
+    }
+    else if (pushing) {
+        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
+        else spriteSource.y = PState::pushingLeft;
+        spriteSource.x = 1;
+    }
     else {
         scont += deltaTime;
-        if (speed.x > 0) spriteSource.y = Dir::right;
-        else if (speed.x == 0) spriteSource.y = Dir::none;
-        else spriteSource.y = Dir::left;
-
-        if (scont >= time_to_next_sprite){
-            scont = 0;
-            spriteSource.x = (spriteSource.x+1)%nSpriteX;
+        if (speed.x > 0) spriteSource.y = PState::walkingRight;
+        else if (speed.x == 0) {
+            if (lastDir == Dir::right) spriteSource.y = PState::idleRight;
+            else spriteSource.y = PState::idleLeft;
         }
+        else spriteSource.y = PState::walkingLeft;
+        nextFrame();
     }
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
 }
 
+void Player::nextFrame() {
+    int n = 1;
+    if (spriteSource.y % 2 == 1) n = -1;
+    if (scont >= time_to_next_sprite[spriteSource.y]){
+        scont = 0;
+        spriteSource.x = (spriteSource.x+n)%nSprites[spriteSource.y];
+    }
+}
