@@ -45,22 +45,24 @@ void Collisionable::setPosition(float x,float y) {
 }
 
 bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
-    if(a->getPosition().x > b->getPosition().x + b->getWidth()) return false;
-    if(a->getPosition().x + a->getWidth() < b->getPosition().x) return false;
+    int n = 30;
+    if(a->getPosition().x +n > b->getPosition().x + b->getWidth()) return false;
+    if(a->getPosition().x + a->getWidth() - n < b->getPosition().x) return false;
     if(a->getPosition().y > b->getPosition().y + b->getHeight()) return false;
     if(a->getPosition().y + a->getHeight() < b->getPosition().y) return false;
     return true;
 }
 
 int Collisionable::collisionVertical(float x, float y) {
+    int m = 30;
     int n = 20;
-    int maxX = spriteWidth;
+    int maxX = spriteWidth-2*m;
     std::string color;
     for (int i = 0; i < maxX; i +=  maxX/n) {
-        color = gm->getBoard()->getPixelColor(x+i,y);
+        color = gm->getBoard()->getPixelColor(x+m+i,y);
         if (color == "Red") return 2;
         if (color == "Black") return 1;
-        color = (gm->getBoard()->getPixelColor(x+i,y+spriteHeight));
+        color = (gm->getBoard()->getPixelColor(x+m+i,y+spriteHeight));
         if (color == "Red") return 2;
         if (color == "Black") return 1;
     }
@@ -72,10 +74,10 @@ int Collisionable::collisionHorizontal(float x, float y) {
     int maxY = spriteHeight;
     std::string color;
     for (int j = 0; j < maxY; j +=  maxY/n) {
-        color = gm->getBoard()->getPixelColor(x,y+j);
+        color = gm->getBoard()->getPixelColor(x + 30,y+j);
         if (color == "Red") return 2;
         if (color == "Black") return 1;
-        color = gm->getBoard()->getPixelColor(x+spriteWidth,y+j);
+        color = gm->getBoard()->getPixelColor(x+spriteWidth - 30,y+j);
         if (color == "Red") return 2;
         if (color == "Black") return 1;
     }
