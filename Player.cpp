@@ -49,6 +49,11 @@ void Player::move(Dir::Direction dir) {
     direction = dir;
 }
 
+void Player::pushStone(Stone *s){
+    s.move(direction);
+    speed.x=0;
+}
+
 Dir::Direction Player::getDirection() {
     return direction;
 }
@@ -89,6 +94,8 @@ void Player::update(float deltaTime) {
         }
     }
 
+
+    //Colisions amb el mon & moviment
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
@@ -122,6 +129,14 @@ void Player::update(float deltaTime) {
             scont = 0;
             spriteSource.x = (spriteSource.x+1)%nSpriteX;
         }
+    }
+    //colisions amb caixes
+    for(int i=0; i<VECTORDECAIXES.size();++i){
+        bool col = Collisionable::areCollisioning(this, *VECTORDECAIXES[i]);
+        if(col){
+
+        }
+
     }
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
