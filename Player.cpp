@@ -3,7 +3,7 @@
 
 Player::Player() {}
 
-Player::Player(GameManager *gm) : Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1){
+Player::Player(GameManager *gm) : Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 4, 4){
     direction = Dir::none;
     state = PState::shoes;
 }
