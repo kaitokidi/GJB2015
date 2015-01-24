@@ -23,6 +23,7 @@ void Player::draw(sf::RenderWindow* render) {
 }
 
 void Player::jump(bool b){
+    if (onGround)
     speed.y = -100;
 }
 void Player::move(Dir::Direction dir) {
@@ -72,28 +73,29 @@ void Player::update(float deltaTime) {
     float y = sprite.getPosition().y;
 
     if (collisionMap(x,y+deltaTime*speed.y)) {
-        speed.y = 0;
         if (speed.y > 0) onGround = true;
+        speed.y = 0;
     }
+    else onGround = false;
     if (collisionMap(x+deltaTime*speed.x,y)) {
         speed.x = 0;
     }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 
-    if (!onGround) spriteSource.y = Dir::down;
-    else {
+
     scont += deltaTime;
-    if (speed.x > 0) spriteSource.y = Dir::right;
+    if (!onGround) spriteSource.y = Dir::down;
+    else if (speed.x > 0) spriteSource.y = Dir::right;
     else if (speed.x == 0) spriteSource.y = Dir::none;
     else spriteSource.y = Dir::left;
 
-        if (scont >= time_to_next_sprite){
+    if (scont >= time_to_next_sprite){
         scont = 0;
         spriteSource.x = (spriteSource.x+1)%nSpriteX;
-        }
-        sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
-                    spriteSource.y*spriteHeight, spriteWidth, spriteWidth));
     }
+    sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
+                                      spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
+
 }
 
 
