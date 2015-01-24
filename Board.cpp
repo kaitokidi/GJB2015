@@ -27,7 +27,7 @@ void Board::draw(sf::RenderWindow* rW){
 //     std::cout << "bmo " << visibleMap.getSize().x << std::endl;
 //      std::cout << "map ---- " << map.getTexture()->getSize().x << std::endl;
     map.setTexture(visibleMap);
-    map.scale(rW->getSize().x/map.getGlobalBounds().width, rW->getSize().y/map.getGlobalBounds().height);
+//     map.scale(rW->getSize().x/map.getGlobalBounds().width, rW->getSize().y/map.getGlobalBounds().height);
 	rW->draw(map);
     
 //     std::cout << "BMO" << std::endl;

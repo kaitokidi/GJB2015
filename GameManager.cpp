@@ -20,21 +20,12 @@ void GameManager::draw() {
     window.clear();
 	board.draw(&window);
     player.draw(&window);
-//      sf::Image img(txt.copyToImage());
-//      img.flipVertically();
-//      txt.loadFromImage(img);
-
-    //     sf::Sprite spr(txt);
-    //     spr.setPosition(0,0);
-
-//     spr.setScale(window.getSize().x/spr.getGlobalBounds().width,window.getSize().x/spr.getGlobalBounds().width);
-
-//     view.reset(sf::FloatRect(player.getPosition().x,player.getPosition().y, window.getSize().x/10, window.getSize().y/10));
-//     view.setCenter(player.getPosition().x, player.getPosition().y);
-//     view.zoom(0.4);
     
-//     window.draw(spr);
-//     window.setView(view);
+     view.reset(sf::FloatRect(0,0, 1350, 800));
+     view.setCenter(player.getPosition().x, player.getPosition().y);
+//      view.zoom(0.4);
+        
+    window.setView(view);
     window.display();
 }
 
