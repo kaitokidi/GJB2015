@@ -25,7 +25,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
 Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::legs;
+    state = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(px,py);
@@ -54,6 +54,9 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
+    
+    if(state > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x += PLAYER_SPRINT_SPEED;
+        
     pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
@@ -138,8 +141,8 @@ void Player::update(float deltaTime) {
 //             std::cout << " " << state << " , "  << std::endl;
             if (Collisionable::areCollisioning(&p, c)) {
 //                  std::cout << "COOOOOOOOOOOOL" << state << " , " << c->getId() << std::endl;
-                if(c->getId()==state+1){
-                    state=state+1;
+                if(c->getId() == state+1){
+                    state = state+1;
                     gm->eliminaElBody(i);
                 }
             }
