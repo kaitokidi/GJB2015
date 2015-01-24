@@ -9,6 +9,7 @@
 class Player : Collisionable {
 private:
     Dir::Direction direction;
+    int stat;
 public:
     Player();
     ~Player();
@@ -16,6 +17,7 @@ public:
     void draw();
     void move(Dir::Direction dir);
     Dir::Direction getDirection();
+
 };
 
 #endif // PLAYER_H

@@ -5,6 +5,8 @@
 Player::Player() : Collisionable(&Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1){
     //sprite.setTexture(Resources::playerTexture);
     direction = Dir::none;
+    stat = PState::shoes;
+
 }
 
 Player::~Player() {
@@ -26,7 +28,7 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
 	if(direction==Dir::none){
-		speed.x=
+		speed.x=1.5*PLAYER_ACCELERATION[stat];
 	}
 	if(direction==Dir::left){
 		
