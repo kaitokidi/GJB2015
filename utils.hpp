@@ -28,6 +28,7 @@ extern const int PLAYER_MAX_SPEED[7];
 extern const int PLAYER_ACCELERATION[7];
 extern const int PLAYER_SIZE_X[7];
 extern const int PLAYER_SIZE_Y[7];
+extern const int PLAYER_ANIMATION_TIMER[7];
 extern const float GRAVITY;
 
 
