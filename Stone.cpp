@@ -19,11 +19,6 @@ void Stone::draw(sf::RenderWindow* window) {
     window->draw(sprite);
 }
 
-
-void Stone::move(Dir::Direction dir) {
-    direction = dir;
-}
-
 Dir::Direction Stone::getDirection() {
     return direction;
 }

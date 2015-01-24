@@ -9,7 +9,6 @@
 class Player : public Collisionable {
 private:
     sf::Vector2f lastGround;
-    Dir::Direction direction;
     int state;
     sf::Vector2u spriteSource;
     float scont;
@@ -24,7 +23,6 @@ public:
     ~Player();
     void update(float deltaTime);
     void draw(sf::RenderWindow* window);
-    void move(Dir::Direction dir);
     void jump(bool jump);
     Dir::Direction getDirection();
 

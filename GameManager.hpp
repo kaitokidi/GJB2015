@@ -14,6 +14,7 @@ private:
 	std::vector<Stone> stones;
     std::vector<Door> doors;
     std::vector<Button> buttons;
+    std::vector<BodyPart> parts;
     Player player;
 	Board board;
 	

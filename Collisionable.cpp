@@ -6,7 +6,7 @@ Collisionable::Collisionable() {
 
 }
 
-Collisionable::Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
+Collisionable::Collisionable(GameManager* gm, sf::Texture* text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
     this->gm = gm;
     sprite.setTexture(*text);
     this->spriteWidth = spriteWidth;
@@ -38,6 +38,10 @@ sf::Vector2f Collisionable::getSpeed() {
 
 sf::Vector2f Collisionable::getPosition() {
     return sprite.getPosition();
+}
+
+void Collisionable::setPosition(float x,float y) {
+    sprite.setPosition(sf::Vector2f(x,y));
 }
 
 bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
@@ -76,5 +80,9 @@ int Collisionable::collisionHorizontal(float x, float y) {
         if (color == "Black") return 1;
     }
     return 0;
+}
+
+void Collisionable::move(Dir::Direction dir) {
+    direction = dir;
 }
 
