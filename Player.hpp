@@ -6,7 +6,7 @@
 #include "Collisionable.hpp"
 
 
-class Player : Collisionable {
+class Player : public Collisionable {
 private:
     Dir::Direction direction;
     int state;
