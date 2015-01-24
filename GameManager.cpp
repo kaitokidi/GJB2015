@@ -20,12 +20,15 @@ void GameManager::draw() {
     renderText.clear();
 	board.draw(&renderText);
     player.draw(&renderText);
-    sf::Texture txt;
-    sf::Image img(renderText.getTexture().copyToImage());
-    img.flipVertically();
-    txt.loadFromImage(img);
+    sf::Texture txt(renderText.getTexture());
+//     sf::Image img(txt.copyToImage());
+//     img.flipVertically();
+//     txt.loadFromImage(img);
     sf::Sprite spr(txt);
     spr.setPosition(0,0);
+//     spr.setOrigin(spr.getGlobalBounds().width/2, spr.getGlobalBounds().height/2);
+//     spr.setRotation(180);
+    spr.setScale(window.getSize().x/spr.getGlobalBounds().width,window.getSize().x/spr.getGlobalBounds().width);
     window.draw(spr);
     window.display();
 }
