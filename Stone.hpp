@@ -8,7 +8,6 @@ class Stone : public Collisionable {
 
 private:
     Dir::Direction direction;
-
 public:
     Stone();
     Stone(GameManager *gm, float px, float py, float sx, float sy);

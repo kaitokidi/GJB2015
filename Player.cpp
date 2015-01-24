@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "Stone.hpp"
 #include "Resources.hpp"
 
 Player::Player() {}
@@ -49,8 +50,17 @@ void Player::move(Dir::Direction dir) {
     direction = dir;
 }
 
-void Player::pushStone(Stone *s){
-    s.move(direction);
+void Player::colStone(Stone *s){
+
+    if(sprite.getPosition.x > s->sprite.getPosition.x && direction == Dir::left){
+        s->move(direction);
+        speed.x=0;
+    }
+    else if(sprite.getPosition.x < s->sprite.getPosition.x && direction == Dir::right) {
+        s->move(direction);
+        speed.x=0;
+    }
+    s->move(direction);
     speed.x=0;
 }
 
@@ -131,10 +141,10 @@ void Player::update(float deltaTime) {
         }
     }
     //colisions amb caixes
-    for(int i=0; i<VECTORDECAIXES.size();++i){
-        bool col = Collisionable::areCollisioning(this, *VECTORDECAIXES[i]);
+    for(int i=0; i<gm->getStones.size();++i){
+        bool col = Collisionable::areCollisioning(this, *gm->getStones[i]);
         if(col){
-
+            colStone(gm->getStones[i]);
         }
 
     }
