@@ -46,18 +46,11 @@ bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
     return true;
 }
 
-bool Collisionable::collisionBackground() {
-    int x = sprite.getPosition().x;
-    int y = sprite.getPosition().y;
-    if (gm->getBoard()->getPixelColor(x,y) == "Black") speed.x = 0;
-    else if (gm->getBoard()->getPixelColor(x+spriteWidth,y) == "Black") speed.x = 0;
-    if (gm->getBoard()->getPixelColor(x,y+spriteHeight) == "Black") {
-        onGround = true;
-        speed.y = 0;
-    }
-    else if (gm->getBoard()->getPixelColor(x+spriteWidth,y+spriteHeight) == "Black") {
-        onGround = true;
-        speed.y = 0;
-    }
-    return true;
+bool Collisionable::collisionMap(float x, float y) {
+    if (gm->getBoard()->getPixelColor(x,y) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x+spriteWidth,y) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x,y+spriteHeight) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x+spriteWidth,y+spriteHeight) == "Black") return true;
+    return false;
 }
+

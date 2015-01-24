@@ -15,11 +15,11 @@ public:
     Player(GameManager *gm);
     ~Player();
     void update(float deltaTime);
-    void draw();
+    void draw(sf::RenderTexture* render);
     void move(Dir::Direction dir);
+    void jump(bool b);
     Dir::Direction getDirection();
 
 };
-//sida
 
 #endif // PLAYER_H
