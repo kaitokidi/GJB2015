@@ -17,24 +17,23 @@ void GameManager::update(float deltaTime) {
 }
 
 void GameManager::draw() {
-    renderText.clear();
-	board.draw(&renderText);
-    player.draw(&renderText);
-    sf::Texture txt(renderText.getTexture());
-     sf::Image img(txt.copyToImage());
-     img.flipVertically();
-     txt.loadFromImage(img);
-    sf::Sprite spr(txt);
-    spr.setPosition(0,0);
-//     spr.setOrigin(spr.getGlobalBounds().width/2, spr.getGlobalBounds().height/2);
-//     spr.setRotation(180);
-    spr.setScale(window.getSize().x/spr.getGlobalBounds().width,window.getSize().x/spr.getGlobalBounds().width);
+    window.clear();
+	board.draw(&window);
+    player.draw(&window);
+//      sf::Image img(txt.copyToImage());
+//      img.flipVertically();
+//      txt.loadFromImage(img);
+
+    //     sf::Sprite spr(txt);
+    //     spr.setPosition(0,0);
+
+//     spr.setScale(window.getSize().x/spr.getGlobalBounds().width,window.getSize().x/spr.getGlobalBounds().width);
 
 //     view.reset(sf::FloatRect(player.getPosition().x,player.getPosition().y, window.getSize().x/10, window.getSize().y/10));
 //     view.setCenter(player.getPosition().x, player.getPosition().y);
 //     view.zoom(0.4);
     
-    window.draw(spr);
+//     window.draw(spr);
 //     window.setView(view);
     window.display();
 }

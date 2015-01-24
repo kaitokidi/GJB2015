@@ -15,7 +15,7 @@ public:
     Player(GameManager *gm);
     ~Player();
     void update(float deltaTime);
-    void draw(sf::RenderTexture* render);
+    void draw(sf::RenderWindow* render);
     void move(Dir::Direction dir);
     void jump(bool b);
     Dir::Direction getDirection();

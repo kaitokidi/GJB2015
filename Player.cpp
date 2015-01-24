@@ -13,7 +13,7 @@ Player::~Player() {
 }
 
 
-void Player::draw(sf::RenderTexture* render) {
+void Player::draw(sf::RenderWindow* render) {
     render->draw(sprite);
 }
 

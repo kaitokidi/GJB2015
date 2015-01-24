@@ -22,13 +22,13 @@ std::string Board::getPixelColor(float px, float py){
     return "Penguins";
 }
 
-void Board::draw(sf::RenderTexture* rT){
-    rT->clear(sf::Color::Red);
+void Board::draw(sf::RenderWindow* rW){
+//     rT->clear(sf::Color::Red);
 //     std::cout << "bmo " << visibleMap.getSize().x << std::endl;
 //      std::cout << "map ---- " << map.getTexture()->getSize().x << std::endl;
     map.setTexture(visibleMap);
-    map.scale(rT->getSize().x/map.getGlobalBounds().width, rT->getSize().y/map.getGlobalBounds().height);
-	rT->draw(map);
+    map.scale(rW->getSize().x/map.getGlobalBounds().width, rW->getSize().y/map.getGlobalBounds().height);
+	rW->draw(map);
     
 //     std::cout << "BMO" << std::endl;
 }

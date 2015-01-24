@@ -10,7 +10,7 @@ class Board {
 		Board();
 		Board(sf::Texture* vM, sf::Image* cM);
 		std::string getPixelColor(float x, float y);
-		void draw(sf::RenderTexture* rT);
+		void draw(sf::RenderWindow* rW);
 		
 	private:
 		
