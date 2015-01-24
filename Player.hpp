@@ -16,6 +16,8 @@ private:
     bool jumping;
     float jumpTimer;
 
+    void animation(float deltaTime);
+
 public:
     Player();
     Player(GameManager *gm);

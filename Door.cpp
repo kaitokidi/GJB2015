@@ -27,6 +27,7 @@ Door::Door(GameManager *gm, float px, float py, float sx, float sy)
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
         down = false;
         up = false;
+        acted = false;
 }
 
 Door::~Door() {
@@ -41,10 +42,12 @@ void Door::draw(sf::RenderWindow* render) {
 
 void Door::moveDown(bool b) {
     down = b;
+    if(acted) down = false;
 }
 
 void Door::moveUp(bool b) {
     up = b;
+    if(acted) up = false;
 }
 
 
@@ -52,10 +55,12 @@ void Door::update(float deltaTime) {
     if(down){ 
         sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y+sprite.getGlobalBounds().height);
         down = false;
+        acted = true;
     }
     if(up){ 
         sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y-sprite.getGlobalBounds().height);
         up = false;
+        acted = true;
     }
 }
 

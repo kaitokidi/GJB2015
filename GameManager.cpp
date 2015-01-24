@@ -23,7 +23,7 @@ void GameManager::generaItems(){
                 else if(pixelColor == colorsArray[colors::doorColor]) { //add door
 
 //                     std::cout << "Generate door on" << x << " , " << y << std::endl;
-                    Door d = Door(this, x, y, 50, 400);
+                    Door* d = new Door(this, x, y, 50, 400);
                     doors.push_back(d);
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
@@ -54,11 +54,11 @@ void GameManager::generaItems(){
             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
         }
     }
-    Button bu = Button(this, 5250, 300, 150,75, 3);
+    Button* bu = new Button(this, 5250, 300, 150,75, 3);
     buttons.push_back(bu);
-    Button bu2 = Button(this, 5200, 1900, 150,75, 1);
+    Button* bu2 = new Button(this, 5200, 1900, 150,75, 1);
     buttons.push_back(bu2);
-    Button bu3 = Button(this, 5600, 1900, 150,75, 2);
+    Button* bu3 = new Button(this, 5600, 1900, 150,75, 2);
     buttons.push_back(bu3);
 
     BodyPart *p1 = new BodyPart(this, 4760, 1300,100,100,PState::legs);
@@ -99,7 +99,10 @@ void GameManager::update(float deltaTime) {
         stones[i]->update(deltaTime);
     }
     for(uint i = 0; i < doors.size(); ++i){
-        doors[i].update(deltaTime);
+        doors[i]->update(deltaTime);
+    }
+    for(uint i = 0; i < buttons.size(); ++i){
+        buttons[i]->update(deltaTime);
     }
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->update(deltaTime);
@@ -115,7 +118,10 @@ void GameManager::draw() {
         stones[i]->draw(&window);
     }
     for(uint i = 0; i < doors.size(); ++i){
-        doors[i].draw(&window);
+        doors[i]->draw(&window);
+    }
+    for(uint i = 0; i < buttons.size(); ++i){
+        buttons[i]->draw(&window);
     }
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->draw(&window);
@@ -163,10 +169,11 @@ Board *GameManager::getBoard() {
 }
 
     std::vector<Stone*> GameManager::getStones() { return stones; }
-    std::vector<Door> GameManager::getDoors(){ return doors; }
-    std::vector<Button> GameManager::getButtons(){ return buttons; }
     std::vector<BodyPart*> GameManager::getBodyParts(){ return parts; }
 void GameManager::eliminaElBody(int i){
     parts.erase(parts.begin());
 }
+
+    std::vector<Door*> GameManager::getDoors(){ return doors; }
+    std::vector<Button*> GameManager::getButtons(){ return buttons; }
 

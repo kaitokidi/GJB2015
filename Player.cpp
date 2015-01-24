@@ -3,6 +3,7 @@
 #include "Resources.hpp"
 #include "GameManager.hpp"
 
+
 Player::Player() {}
 
 
@@ -107,7 +108,7 @@ void Player::update(float deltaTime) {
         if (collision2) speed.x = 0;
 
         //colisions amb caixes
-        for(int i = 0; i < this->gm->getStones().size();++i){
+        for(uint i = 0; i < this->gm->getStones().size();++i){
             Collisionable* c = gm->getStones()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
@@ -122,6 +123,7 @@ void Player::update(float deltaTime) {
                 }
             }
         }
+<<<<<<< HEAD
         //colisions amb bodyParts
         for(int i = 0; i < this->gm->getBodyParts().size();++i){
             BodyPart* c = gm->getBodyParts()[i];
@@ -136,10 +138,50 @@ void Player::update(float deltaTime) {
                 }
             }
         }
+=======
+        
+        //colisions Doors
+        for(uint i = 0; i < this->gm->getDoors().size();++i){
+            Collisionable* c = gm->getDoors()[i];
+            Collisionable p = *this;
+            p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+            if (Collisionable::areCollisioning(&p, c)) {
+                if (y+spriteHeight < c->getPosition().y) {
+                    speed.y = 0;
+                }
+                else {
+                    speed.x = 0;
+                }
+            }
+        }
+        
+        //colisions Buttons
+        for(uint i = 0; i < this->gm->getButtons().size();++i){
+            Collisionable* c = gm->getButtons()[i];
+            Collisionable p = *this;
+            p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
+            if (Collisionable::areCollisioning(&p, c)) {
+                if (gm->getButtons()[i]->getID() == 1) { //aball
+                    gm->getDoors()[1]->moveDown(true);
+                }
+                else {
+                    gm->getDoors()[gm->getButtons()[i]->getID()]->moveUp(true);
+                }
+            }
+        }
+        
+        
+>>>>>>> b2c0706c53ee84af8e0a3e7ed814b98022f0ec97
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();
-    
+
+    animation(deltaTime);
+
+}
+
+
+void Player::animation(float deltaTime) {
     if (!onGround) spriteSource.y = Dir::down;
     else {
         scont += deltaTime;
@@ -152,11 +194,7 @@ void Player::update(float deltaTime) {
             spriteSource.x = (spriteSource.x+1)%nSpriteX;
         }
     }
-    std::cout << "bounds player " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
-
 }
-
-
 
