@@ -24,34 +24,36 @@ Dir::Direction Stone::getDirection() {
 }
 
 void Stone::update(float deltaTime) {
+    float stoneAceleration = 3000;
+    float maxSpeed = 6000;
     if(direction == Dir::none){
         if (speed.x > 0){
-            speed.x -= 1.5*PLAYER_ACCELERATION[0]*deltaTime;
+            speed.x -= 1.5*stoneAceleration*deltaTime;
             if(speed.x < 0) speed.x = 0;
         }
         else if( speed.x < 0) {
-            speed.x += 1.5*PLAYER_ACCELERATION[0]*deltaTime;
+            speed.x += 1.5*stoneAceleration*deltaTime;
             if (speed.x > 0) speed.x = 0;
         }
     }
     else if(direction == Dir::left){
         std::cout << "dir left" << std::endl;
         if (speed.x > 0){
-            speed.x -= 1.5*PLAYER_ACCELERATION[0]*deltaTime;
+            speed.x -= 1.5*stoneAceleration*deltaTime;
         }
         else {
-            speed.x -= PLAYER_ACCELERATION[0]*deltaTime;
-            if (speed.x < -PLAYER_MAX_SPEED[0]) speed.x = -PLAYER_MAX_SPEED[0];
+            speed.x -= stoneAceleration*deltaTime;
+            if (speed.x < -maxSpeed) speed.x = -maxSpeed;
         }
     }
     else if(direction == Dir::right){
         std::cout << "dir right" << std::endl;
         if (speed.x >= 0) {
-            speed.x += PLAYER_ACCELERATION[0]*deltaTime;
-            if(speed.x > PLAYER_MAX_SPEED[0]) speed.x = PLAYER_MAX_SPEED[0];
+            speed.x += stoneAceleration*deltaTime;
+            if(speed.x > maxSpeed) speed.x = maxSpeed;
         }
         else {
-            speed.x += 1.5*PLAYER_ACCELERATION[0]*deltaTime;
+            speed.x += 1.5*stoneAceleration*deltaTime;
             if (speed.x > 0) speed.x = 0;
         }
     }
@@ -60,20 +62,15 @@ void Stone::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
-    if (collisionVertical(x,y+deltaTime*speed.y)) {
-        if (direction != Dir::none) std::cout << "floatanomas " << speed.y << std::endl;
-        speed.y = 0;
-    }
-    if (collisionHorizontal(x+deltaTime*speed.x,y)) {
-         if (direction != Dir::none) std::cout << "ioro " << speed.x << std::endl;
-        speed.x = 0;
-    }
+    if (collisionVertical(x,y+deltaTime*speed.y)) speed.y = 0;
+    if (collisionHorizontal(x+deltaTime*speed.x,y)) speed.x = 0;
+
    
     if (direction != Dir::none) {
         std::cout << "bounds caja " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
     }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-
+    direction = Dir::none;
 }
 
 

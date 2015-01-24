@@ -54,7 +54,7 @@ bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
 
 int Collisionable::collisionVertical(float x, float y) {
     int n = 20;
-    int maxX = spriteWidth/nSpriteX;
+    int maxX = spriteWidth;
     std::string color;
     for (int i = 0; i < maxX; i +=  maxX/n) {
         color = gm->getBoard()->getPixelColor(x+i,y);
@@ -69,7 +69,7 @@ int Collisionable::collisionVertical(float x, float y) {
 
 int Collisionable::collisionHorizontal(float x, float y) {
     int n = 20;
-    int maxY = spriteHeight/nSpriteY;
+    int maxY = spriteHeight;
     std::string color;
     for (int j = 0; j < maxY; j +=  maxY/n) {
         color = gm->getBoard()->getPixelColor(x,y+j);

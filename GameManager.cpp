@@ -15,7 +15,7 @@ void GameManager::generaItems(){
                 if(pixelColor == colorsArray[colors::boxColor] ) { //add box STONE
                     
 //                     std::cout << "Generate Box on" << x << " , " << y << std::endl;
-                    Stone* s = new Stone(this, x, y-100, 200, 200);
+                    Stone* s = new Stone(this, x, y-10, 200, 200);
                     stones.push_back(s);
                     //createBox(pos = x,y  size = i,j);
                     
