@@ -28,13 +28,30 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
 	if(direction==Dir::none){
-		speed.x=1.5*PLAYER_ACCELERATION[stat];
+		if(speed.x>0){
+			speed.x=-1.5*PLAYER_ACCELERATION[stat]*deltaTime + speed.x;
+			if(speed.x<0)speed.x=0;
+		}
+		else if(speed.x<0){
+			speed.x=1.5*PLAYER_ACCELERATION[stat]*deltaTime + speed.x;
+			if(speed.x>0)speed.x=0;
+		}
+		speed.y=-GRAVITY*deltaTime + speed.y;
 	}
 	if(direction==Dir::left){
-		
+		if(speed.x>0){
+			speed.x=-1.5*PLAYER_ACCELERATION[stat]*deltaTime + speed.x;
+			if(speed.x<0)speed.x=0;
+		}
+		else if(speed.x<0){
+			speed.x=1.5*PLAYER_ACCELERATION[stat]*deltaTime + speed.x;
+			if(speed.x>0)speed.x=0;
+		}
+		speed.y=-GRAVITY*deltaTime + speed.y;
 	}
 	if(direction==Dir::right){
-		
+		speed.x= PLAYER_ACCELERATION[stat]*deltaTime + speed.x;
+		speed.y=-GRAVITY*deltaTime + speed.y;
 	}
 }
 
