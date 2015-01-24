@@ -19,5 +19,6 @@ public:
     Dir::Direction getDirection();
 
 };
+//sida
 
 #endif // PLAYER_H
