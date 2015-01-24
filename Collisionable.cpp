@@ -13,6 +13,7 @@ Collisionable::Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth
     this->spriteHeight = spriteHeight;
     this->nSpriteX = nSpriteX;
     this->nSpriteY = nSpriteY;
+    speed = sf::Vector2f(0,0);
 }
 
 int Collisionable::getWidth() {
