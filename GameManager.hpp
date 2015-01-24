@@ -8,7 +8,7 @@
 #include "Player.hpp"
 #include "Button.hpp"
 #include "BodyPart.hpp"
-
+#include "Portada.hpp"
 class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
