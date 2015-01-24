@@ -3,26 +3,30 @@
 
 Door::Door() {
     down = false;
+    up = false;
 }
 
 
 Door::Door(GameManager *gm) :
-    Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x/4, Resources::stoneTexture.getSize().y/4, 4, 4) {
+    Collisionable(gm, &Resources::doorTexture, Resources::doorTexture.getSize().x/4, Resources::doorTexture.getSize().y/4, 4, 4) {
     sprite.setPosition(0,0);
         down = false;
+        up = false;
 }
 
 Door::Door(GameManager *gm, float px, float py) 
-    : Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x/4, Resources::stoneTexture.getSize().y/4, 4, 4) {
+    : Collisionable(gm, &Resources::doorTexture, Resources::doorTexture.getSize().x/4, Resources::doorTexture.getSize().y/4, 4, 4) {
     sprite.setPosition(px,py);
         down = false;
+        up = false;
 }
 
 Door::Door(GameManager *gm, float px, float py, float sx, float sy) 
-    : Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x, Resources::stoneTexture.getSize().y, px, py) {
+    : Collisionable(gm, &Resources::doorTexture, Resources::doorTexture.getSize().x, Resources::doorTexture.getSize().y, px, py) {
     sprite.setPosition(px,py);
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
         down = false;
+        up = false;
 }
 
 Door::~Door() {
