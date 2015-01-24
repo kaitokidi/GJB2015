@@ -10,7 +10,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     state = PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    time_to_next_sprite = 0.2;
+    time_to_next_sprite = 0.1;
 }
 
 Player::~Player() {
@@ -23,8 +23,8 @@ void Player::draw(sf::RenderWindow* render) {
 }
 
 void Player::jump(bool b){
-    if (onGround)
-    speed.y = -100;
+//    if (onGround)
+    speed.y = -300;
 }
 void Player::move(Dir::Direction dir) {
     direction = dir;
@@ -79,6 +79,11 @@ void Player::update(float deltaTime) {
     else onGround = false;
     if (collisionMap(x+deltaTime*speed.x,y)) {
         speed.x = 0;
+    }
+    if (collisionMap(x+deltaTime*speed.x,y+deltaTime*speed.y)) {
+        if (speed.y > 0) onGround = true;
+        speed.x = 0;
+        speed.y = 0;
     }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 
