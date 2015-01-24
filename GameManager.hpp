@@ -20,6 +20,10 @@ private:
     void generaItems();
     
 public:
+    
+    std::vector<Stone> getStones();
+    std::vector<Door> getDoors();
+    std::vector<Button> getButtons();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);
