@@ -14,7 +14,7 @@ const sf::Color colorsArray[12] = {
 
 const float GRAVITY = 980;
 
-const int PLAYER_MAX_SPEED[7] =         { 100, 260,   0,   0,   0,   0,   0};
+const int PLAYER_MAX_SPEED[7] =         { 100, 760,   0,   0,   0,   0,   0};
 const int PLAYER_ACCELERATION[7] =      { 800, 800,   0,   0,   0,   0,   0};
 const float PLAYER_JUMP_TIME[7] =       { 100, 300, 999, 999, 999, 999, 999};
 const int PLAYER_JUMP_SPEED = 500;
