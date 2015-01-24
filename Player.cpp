@@ -10,7 +10,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    state = PState::shoes;
+    state = PState::head;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2800,400);
@@ -123,8 +123,10 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
-
-                    if(state >= 2)c->move(direction);
+                    if(state >= 2) {
+                        pushing = true;
+                        c->move(direction);
+                    }
 
                 }
             }
@@ -185,7 +187,7 @@ void Player::update(float deltaTime) {
 }
 
 
-void Player::loadNewLevel(PState::level level) {
+void Player::loadNewLevel(int level) {
     spriteHeight = PLAYER_SIZE_Y[level];
     spriteWidth = PLAYER_SIZE_X[level];
     scont = 0;

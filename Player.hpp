@@ -9,7 +9,7 @@
 class Player : public Collisionable {
 private:
     sf::Vector2f lastGround;
-    PState::level state;
+    int state;
     sf::Vector2u spriteSource;
     float scont;
     float* time_to_next_sprite;
@@ -20,7 +20,7 @@ private:
     int *nSprites;
     bool pushing;
 
-    void loadNewLevel(PState::level level);
+    void loadNewLevel(int level);
     void animation(float deltaTime);
     void nextFrame();
 
