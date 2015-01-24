@@ -139,6 +139,7 @@ void Player::update(float deltaTime) {
             spriteSource.x = (spriteSource.x+1)%nSpriteX;
         }
     }
+    std::cout << "bounds player " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
 

@@ -25,7 +25,6 @@ Dir::Direction Stone::getDirection() {
 
 void Stone::update(float deltaTime) {
     if(direction == Dir::none){
-        std::cout << "dir none" << std::endl;
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[0]*deltaTime;
             if(speed.x < 0) speed.x = 0;
@@ -56,7 +55,7 @@ void Stone::update(float deltaTime) {
             if (speed.x > 0) speed.x = 0;
         }
     }
-    speed.y += 0*deltaTime;
+    speed.y += GRAVITY*deltaTime;
 
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
@@ -67,9 +66,12 @@ void Stone::update(float deltaTime) {
     }
     if (collisionHorizontal(x+deltaTime*speed.x,y)) {
          if (direction != Dir::none) std::cout << "ioro " << speed.x << std::endl;
-//        speed.x = 0;
+        speed.x = 0;
     }
    
+    if (direction != Dir::none) {
+        std::cout << "bounds caja " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
+    }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 
 }
