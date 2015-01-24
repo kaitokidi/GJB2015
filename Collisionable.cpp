@@ -85,7 +85,6 @@ int Collisionable::collisionHorizontal(float x, float y) {
 }
 
 void Collisionable::move(Dir::Direction dir) {
-    std::cout << "moving" << std::endl;
     direction = dir;
 }
 
