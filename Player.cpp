@@ -119,13 +119,13 @@ void Player::update(float deltaTime) {
                 }
                 else {
                     speed.x = 0;
-                    c->move(direction);
+                    if(state >= 2)c->move(direction);
                 }
             }
         }
 
         //colisions amb bodyParts
-        for(int i = 0; i < this->gm->getBodyParts().size();++i){
+        for(uint i = 0; i < this->gm->getBodyParts().size();++i){
             BodyPart* c = gm->getBodyParts()[i];
             Collisionable p = *this;
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);

@@ -15,8 +15,8 @@ const sf::Color colorsArray[12] = {
 const float GRAVITY = 980;
 
 
-const int PLAYER_MAX_SPEED[PState::qttLevel] =         { 100, 260,   0,   0,   0,   0,   0};
-const int PLAYER_ACCELERATION[PState::qttLevel] =      { 800, 800,   0,   0,   0,   0,   0};
+const int PLAYER_MAX_SPEED[PState::qttLevel] =         { 100, 260,   260,   260,   300,   320,  4000};
+const int PLAYER_ACCELERATION[PState::qttLevel] =      { 800, 800,   800,   800,   800,   800,  1000};
 const float PLAYER_JUMP_TIME[PState::qttLevel] =       { 100, 300, 999, 999, 999, 999, 999};
 const int PLAYER_JUMP_SPEED = 500;
 const float PLAYER_ANIMATION_TIMER[PState::qttLevel] = { 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
