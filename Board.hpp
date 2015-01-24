@@ -11,7 +11,8 @@ class Board {
 		Board(sf::Texture* vM, sf::Image* cM);
 		std::string getPixelColor(float x, float y);
 		void draw(sf::RenderWindow* rW);
-		
+		sf::Color get_pixel_color(float px, float py);
+        void setPixel(float px, float py, sf::Color c);
 	private:
 		
 		sf::Texture visibleMap;

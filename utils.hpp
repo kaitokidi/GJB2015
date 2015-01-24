@@ -23,6 +23,7 @@
 // If you want to declare global variables you can do it here:
 extern const int mx[5];
 extern const int my[5];
+extern const sf::Color colorsArray[12];
 
 extern const int PLAYER_MAX_SPEED[7];
 extern const int PLAYER_ACCELERATION[7];
@@ -41,5 +42,9 @@ namespace PState {
     enum state { idle, walkingRight, walkingLeft, jumping, pushing, running};
 }
 
+namespace colors {
+    enum itemColor { boxColor, doorColor, buttonColor, muffinColor, hammerColor, 
+        footColor, legsColor, bodyColor, armsColor, handColor, headColor, wingColor};
+}
 
 #endif // UTILS_HPP

@@ -22,6 +22,14 @@ std::string Board::getPixelColor(float px, float py){
     return "Penguins";
 }
 
+sf::Color Board::get_pixel_color(float px, float py){
+    return colorMap.getPixel(px, py);
+}
+
+void Board::setPixel(float px, float py, sf::Color c){
+    colorMap.setPixel(px, py, c);
+}
+
 void Board::draw(sf::RenderWindow* rW){
 //     rT->clear(sf::Color::Red);
 //     std::cout << "bmo " << visibleMap.getSize().x << std::endl;

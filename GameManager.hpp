@@ -12,6 +12,8 @@ private:
 	std::vector<Collisionable> collisionables;
 	Board board;
 	
+    void generaItems();
+    
 public:
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
