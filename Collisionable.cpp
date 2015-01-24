@@ -43,6 +43,13 @@ sf::Vector2f Collisionable::getPosition() {
 void Collisionable::setPosition(float x,float y) {
     sprite.setPosition(sf::Vector2f(x,y));
 }
+void Collisionable::modTexture(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY){
+    sprite.setTexture(*text);
+    this->spriteWidth = spriteWidth;
+    this->spriteHeight = spriteHeight;
+    this->nSpriteX = nSpriteX;
+    this->nSpriteY = nSpriteY;
+}
 
 bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
     if(a->getPosition().x > b->getPosition().x + b->getWidth()) return false;

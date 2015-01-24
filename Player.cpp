@@ -10,11 +10,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-<<<<<<< HEAD
-    state = PState::head;
-=======
     state = PState::shoes;
->>>>>>> 5a419b40aa18f8754b7c181fa5ec32e5bed3ca02
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2800,400);

@@ -22,6 +22,7 @@ public:
     int getHeight();
     int getNSpriteX();
     int getNSpriteY();
+    void modTexture(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
     sf::Vector2f getSpeed();
     sf::Vector2f getPosition();
     void setPosition(float x, float y);
