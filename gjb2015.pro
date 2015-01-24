@@ -20,6 +20,7 @@ SOURCES += main.cpp \
     BodyPart.cpp \
     Portada.cpp
 
+
 HEADERS += \
     Resources.hpp \
     utils.hpp \
