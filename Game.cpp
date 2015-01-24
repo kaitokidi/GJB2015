@@ -23,5 +23,4 @@ void Game::run() {
 void Game::render() {
     window.clear(sf::Color(100,195,95));
     draw();
-    window.display();
 }
