@@ -12,7 +12,7 @@
 class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
-	std::vector<Stone> stones;
+    std::vector<Stone*> stones;
     std::vector<Door> doors;
     std::vector<Button> buttons;
     std::vector<BodyPart> parts;
@@ -23,7 +23,7 @@ private:
     
 public:
     
-    std::vector<Stone> getStones();
+    std::vector<Stone*> getStones();
     std::vector<Door> getDoors();
     std::vector<Button> getButtons();
     GameManager(int scrwidth, int scrheight, std::string title, int style);

@@ -5,8 +5,6 @@
 #include "Collisionable.hpp"
 
 class Stone : public Collisionable {
-
-private:
 public:
     Stone();
     Stone(GameManager *gm, float px, float py, float sx, float sy);

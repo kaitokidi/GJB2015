@@ -15,7 +15,7 @@ void GameManager::generaItems(){
                 if(pixelColor == colorsArray[colors::boxColor] ) { //add box STONE
                     
 //                     std::cout << "Generate Box on" << x << " , " << y << std::endl;
-                    Stone s = Stone(this, x, y, 200, 200);
+                    Stone* s = new Stone(this, x, y-100, 200, 200);
                     stones.push_back(s);
                     //createBox(pos = x,y  size = i,j);
                     
@@ -96,7 +96,7 @@ void GameManager::update(float deltaTime) {
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
-        stones[i].update(deltaTime);
+        stones[i]->update(deltaTime);
     }
     for(uint i = 0; i < doors.size(); ++i){
         doors[i].update(deltaTime);
@@ -112,7 +112,7 @@ void GameManager::draw() {
     player.draw(&window);
 
     for(uint i = 0; i < stones.size(); ++i){
-        stones[i].draw(&window);
+        stones[i]->draw(&window);
     }
     for(uint i = 0; i < doors.size(); ++i){
         doors[i].draw(&window);
@@ -162,6 +162,6 @@ Board *GameManager::getBoard() {
     return &board;
 }
 
-    std::vector<Stone> GameManager::getStones() { return stones; }
+    std::vector<Stone*> GameManager::getStones() { return stones; }
     std::vector<Door> GameManager::getDoors(){ return doors; }
     std::vector<Button> GameManager::getButtons(){ return buttons; }
