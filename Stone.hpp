@@ -11,12 +11,10 @@ private:
 
 public:
     Stone();
-    Stone(GameManager *gm);
-    Stone(GameManager *gm, float px, float py);
     Stone(GameManager *gm, float px, float py, float sx, float sy);
     ~Stone();
     void update(float deltaTime);
-    void draw(sf::RenderWindow* render);
+    void draw(sf::RenderWindow* window);
     void move(Dir::Direction dir);
     Dir::Direction getDirection();
 

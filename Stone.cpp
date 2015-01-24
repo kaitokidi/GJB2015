@@ -3,21 +3,8 @@
 
 Stone::Stone() {}
 
-
-Stone::Stone(GameManager *gm) :
-    Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x/4, Resources::stoneTexture.getSize().y/4, 4, 4) {
-    direction = Dir::none;
-    sprite.setPosition(0,0);
-}
-
-Stone::Stone(GameManager *gm, float px, float py) 
-    : Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x/4, Resources::stoneTexture.getSize().y/4, 4, 4) {
-    direction = Dir::none;
-    sprite.setPosition(px,py);
-}
-
 Stone::Stone(GameManager *gm, float px, float py, float sx, float sy) 
-    : Collisionable(gm, &Resources::stoneTexture, Resources::stoneTexture.getSize().x, Resources::stoneTexture.getSize().y, px, py) {
+    : Collisionable(gm, &Resources::stoneTexture, sx, sy, 1, 1) {
     direction = Dir::none;
     sprite.setPosition(px,py);
     sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
@@ -28,8 +15,8 @@ Stone::~Stone() {
 }
 
 
-void Stone::draw(sf::RenderWindow* render) {
-    render->draw(sprite);
+void Stone::draw(sf::RenderWindow* window) {
+    window->draw(sprite);
 }
 
 
@@ -42,7 +29,6 @@ Dir::Direction Stone::getDirection() {
 }
 
 void Stone::update(float deltaTime) {
-
     if(direction == Dir::none){
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[0]*deltaTime;
@@ -63,11 +49,11 @@ void Stone::update(float deltaTime) {
         }
     }
     else if(direction == Dir::right){
-        if (speed.x >= 0){
+        if (speed.x >= 0) {
             speed.x += PLAYER_ACCELERATION[0]*deltaTime;
             if(speed.x > PLAYER_MAX_SPEED[0]) speed.x = PLAYER_MAX_SPEED[0];
         }
-        else if(speed.x < 0){
+        else {
             speed.x += 1.5*PLAYER_ACCELERATION[0]*deltaTime;
             if (speed.x > 0) speed.x = 0;
         }
@@ -77,16 +63,8 @@ void Stone::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
-    if (collisionVertical(x,y+deltaTime*speed.y)) {
-        if (speed.y > 0) onGround = true;
-        speed.y = 0;
-    }
-    else {
-        onGround = false;
-    }
-    if (collisionHorizontal(x+deltaTime*speed.x,y)) {
-        speed.x = 0;
-    }
+    if (collisionVertical(x,y+deltaTime*speed.y)) speed.y = 0;
+    if (collisionHorizontal(x+deltaTime*speed.x,y)) speed.x = 0;
    
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
 

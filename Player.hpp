@@ -23,7 +23,7 @@ public:
     Player(GameManager *gm, float px, float py);
     ~Player();
     void update(float deltaTime);
-    void draw(sf::RenderWindow* render);
+    void draw(sf::RenderWindow* window);
     void move(Dir::Direction dir);
     void jump(bool jump);
     Dir::Direction getDirection();

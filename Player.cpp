@@ -32,8 +32,8 @@ Player::~Player() {
 }
 
 
-void Player::draw(sf::RenderWindow* render) {
-    render->draw(sprite);
+void Player::draw(sf::RenderWindow* window) {
+    window->draw(sprite);
 }
 
 void Player::jump(bool jump){
