@@ -14,6 +14,7 @@
 // Also, you dont need to worry of where have you saved the texture,
 // plus that you only load the texture one time and you can use it infinite times.
 
+sf::Texture     Resources::buttonTexture;
 sf::Texture     Resources::playerTexture;
 sf::Texture     Resources::stoneTexture;
 sf::Texture     Resources::visibleBoard;
@@ -21,6 +22,7 @@ sf::Texture     Resources::doorTexture;
 sf::Image		Resources::colorBoard;
 
 void Resources::load() {
+    if(!buttonTexture.loadFromFile("res/buttonTexture.png")) std::cout << "unable to load buttonTexture" << std::endl;
     if(!playerTexture.loadFromFile("res/playerTexture.png")) std::cout << "unable to load playerTexture" << std::endl;
     if(!stoneTexture.loadFromFile("res/stoneTexture.png")) std::cout << "unable to load stoneTexture" << std::endl;
     if(!doorTexture.loadFromFile("res/doorTexture.png")) std::cout << "unable to load doorTexture" << std::endl;

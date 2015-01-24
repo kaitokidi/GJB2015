@@ -54,6 +54,13 @@ void GameManager::generaItems(){
             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
         }
     }
+    Button bu = Button(this, 5250, 300, 150,75, 3);
+    buttons.push_back(bu);
+    Button bu2 = Button(this, 5200, 1900, 150,75, 1);
+    buttons.push_back(bu2);
+    Button bu3 = Button(this, 5600, 1900, 150,75, 2);
+    buttons.push_back(bu3);
+
     
 }
 
