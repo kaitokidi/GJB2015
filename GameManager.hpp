@@ -13,8 +13,8 @@ class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
     std::vector<Stone*> stones;
-    std::vector<Door> doors;
-    std::vector<Button> buttons;
+    std::vector<Door*> doors;
+    std::vector<Button*> buttons;
     std::vector<BodyPart> parts;
     Player player;
 	Board board;
@@ -24,8 +24,8 @@ private:
 public:
     
     std::vector<Stone*> getStones();
-    std::vector<Door> getDoors();
-    std::vector<Button> getButtons();
+    std::vector<Door*> getDoors();
+    std::vector<Button*> getButtons();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);
