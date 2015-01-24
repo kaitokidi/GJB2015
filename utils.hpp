@@ -25,7 +25,7 @@ namespace Dir {
 }
 
 namespace PState {
-    enum level { shoes, legs, body, arms, hands, head, wings };
+    enum level { shoes, legs, body, arms, hands, head, wings, qttLevel};
     enum state { idle, walkingRight, walkingLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft, runningRight, runningLeft, qttState};
 }
 
@@ -44,30 +44,23 @@ extern const int PLAYER_MAX_SPEED[7];
 extern const int PLAYER_ACCELERATION[7];
 extern const float PLAYER_JUMP_TIME[7];
 extern const int PLAYER_JUMP_SPEED;
-extern const int PLAYER_SIZE_X[7];
-extern const int PLAYER_SIZE_Y[7];
+extern const int PLAYER_SIZE_X[PState::qttLevel];
+extern const int PLAYER_SIZE_Y[PState::qttLevel];
 extern const float PLAYER_ANIMATION_TIMER[7];
 
 // shoes
-extern const int SHOES_SIZE[PState::qttState];
 extern const float SHOES_TIMER[PState::qttState];
 // legs
-extern const int LEGS_SIZE[PState::qttState];
 extern const float LEGS_TIMER[PState::qttState];
 // body
-extern const int BODY_SIZE[PState::qttState];
 extern const float BODY_TIMER[PState::qttState];
 // arms
-extern const int ARMS_SIZE[PState::qttState];
 extern const float ARMS_TIMER[PState::qttState];
 // hands
-extern const int HANDS_SIZE[PState::qttState];
 extern const float HANDS_TIMER[PState::qttState];
 // head
-extern const int HEAD_SIZE[PState::qttState];
 extern const float HEAD_TIMER[PState::qttState];
 // wings
-extern const int WINGS_SIZE[PState::qttState];
 extern const float WINGS_TIMER[PState::qttState];
 
 
