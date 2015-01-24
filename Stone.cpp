@@ -77,14 +77,14 @@ void Stone::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
-    if (collisionMap(x,y+deltaTime*speed.y)) {
+    if (collisionVertical(x,y+deltaTime*speed.y)) {
         if (speed.y > 0) onGround = true;
         speed.y = 0;
     }
     else {
         onGround = false;
     }
-    if (collisionMap(x+deltaTime*speed.x,y)) {
+    if (collisionHorizontal(x+deltaTime*speed.x,y)) {
         speed.x = 0;
     }
    

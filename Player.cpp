@@ -13,6 +13,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     time_to_next_sprite = 0.1;
     sprite.setPosition(2800,1000);
     jumping = false;
+    jumpTimer = 0;
 }
 
 
@@ -36,7 +37,11 @@ void Player::draw(sf::RenderWindow* render) {
 }
 
 void Player::jump(bool jump){
-    if (onGround && jump) jumping = true;
+    if (onGround && jump) {
+        jumping = true;
+        speed.y = 0;
+        jumpTimer = PLAYER_JUMP_TIME[state]/1000;
+    }
     else if (!(jumping && jump)) jumping = false;
 }
 
@@ -49,7 +54,11 @@ Dir::Direction Player::getDirection() {
 }
 
 void Player::update(float deltaTime) {
-    if (jumping) speed.y = -PLAYER_JUMP_SPEED[state];
+    if (jumping && jumpTimer > 0) {
+        speed.y = -PLAYER_JUMP_SPEED;
+        jumpTimer -= deltaTime;
+    }
+    else speed.y += GRAVITY*deltaTime;
     if(direction == Dir::none){
         if (speed.x > 0){
             speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
@@ -79,15 +88,13 @@ void Player::update(float deltaTime) {
             if (speed.x > 0) speed.x = 0;
         }
     }
-    speed.y += GRAVITY*deltaTime;
 
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
-    int collision1 = collisionMap(x,y+deltaTime*speed.y);
-    int collision2 = collisionMap(x+deltaTime*speed.x,y);
-    int collision3 = collisionMap(x+deltaTime*speed.x,y+deltaTime*speed.y);
-    if (collision1 == 2 || collision2 == 2 || collision3 == 2) {
+    int collision1 = collisionVertical(x,y+deltaTime*speed.y);
+    int collision2 = collisionHorizontal(x+deltaTime*speed.x,y);
+    if (collision1 == 2 || collision2 == 2) {
         speed = sf::Vector2f(0,0);
         sprite.setPosition(lastGround);
     }

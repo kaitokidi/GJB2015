@@ -15,6 +15,7 @@ private:
     float scont;
     float time_to_next_sprite;
     bool jumping;
+    float jumpTimer;
 
 public:
     Player();

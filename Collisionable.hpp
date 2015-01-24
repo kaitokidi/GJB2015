@@ -26,8 +26,8 @@ public:
     sf::Vector2f getSpeed();
     sf::Vector2f getPosition();
     static bool areCollisioning(Collisionable *a, Collisionable *b);
-    int collisionMap(float x, float y);
-
+    int collisionVertical(float x, float y);
+    int collisionHorizontal(float x, float y);
 };
 
 #endif // COLLISIONABLE_H

@@ -2,15 +2,17 @@
 #define GAMEMANAGER_HPP
 
 #include "Game.hpp"
+#include "Door.hpp"
 #include "Board.hpp"
 #include "Stone.hpp"
 #include "Player.hpp"
 
 class GameManager : public Game {
 private:
-    Player player;
     sf::RenderTexture renderText;
 	std::vector<Stone> stones;
+    std::vector<Door> doors;
+    Player player;
 	Board board;
 	
     void generaItems();
