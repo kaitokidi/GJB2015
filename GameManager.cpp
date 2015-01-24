@@ -23,6 +23,7 @@ void GameManager::generaItems(){
                 else if(pixelColor == colorsArray[colors::doorColor]) { //add door
 
                     std::cout << "Generate door on" << x << " , " << y << std::endl;
+                    Door d = Door(this, x, y, 50, 400);
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::buttonColor]) { //add button

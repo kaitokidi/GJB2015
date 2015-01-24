@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     Collisionable.cpp \
     Player.cpp \
     Board.cpp \
-    Stone.cpp
+    Stone.cpp \
+    Door.cpp
 
 HEADERS += \
     Resources.hpp \
@@ -24,5 +25,6 @@ HEADERS += \
     Collisionable.hpp \
     Player.hpp  \
     Board.hpp \
-    Stone.hpp
+    Stone.hpp \
+    Door.hpp
 

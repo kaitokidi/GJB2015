@@ -2,6 +2,7 @@
 #define GAMEMANAGER_HPP
 
 #include "Game.hpp"
+#include "Door.hpp"
 #include "Board.hpp"
 #include "Stone.hpp"
 #include "Player.hpp"
