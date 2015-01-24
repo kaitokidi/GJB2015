@@ -24,8 +24,7 @@ const float PLAYER_ANIMATION_TIMER[PState::qttLevel] = { 0.1, 0.1, 0.1, 0.1, 0.1
 const int PLAYER_SIZE_X[PState::qttLevel] = {  0,  0,  0,  0,  0,150,  0};
 const int PLAYER_SIZE_Y[PState::qttLevel] = {  0,  0,  0,  0,  0,220,  0};
 
-// idle, walkingRight, walkingLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft, runningRight, runningLeft
-
+//  idleRight, idleLeft, walkingRight, walkingLeft, runningRight, runningLeft, jumpingRight, jumpingLeft, pushingRight, pushingLeft
 // shoes
 const float SHOES_TIMER[PState::qttState] = {};
 // legs
@@ -37,6 +36,6 @@ const float ARMS_TIMER[PState::qttState] = {};
 // hands
 const float HANDS_TIMER[PState::qttState] = {};
 // head
-const float HEAD_TIMER[PState::qttState] = {};
+const float HEAD_TIMER[PState::qttState] = {0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1};
 // wings
 const float WINGS_TIMER[PState::qttState] = {};
