@@ -9,9 +9,10 @@
 
 class GameManager : public Game {
 private:
-    Player player;
     sf::RenderTexture renderText;
 	std::vector<Stone> stones;
+    std::vector<Door> doors;
+    Player player;
 	Board board;
 	
     void generaItems();

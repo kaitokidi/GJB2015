@@ -24,6 +24,7 @@ void GameManager::generaItems(){
 
                     std::cout << "Generate door on" << x << " , " << y << std::endl;
                     Door d = Door(this, x, y, 50, 400);
+                    doors.push_back(d);
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
@@ -75,6 +76,9 @@ void GameManager::update(float deltaTime) {
     for(uint i = 0; i < stones.size(); ++i){
         stones[i].update(deltaTime);
     }
+    for(uint i = 0; i < doors.size(); ++i){
+        doors[i].update(deltaTime);
+    }
 }
 
 void GameManager::draw() {
@@ -84,6 +88,9 @@ void GameManager::draw() {
     
     for(uint i = 0; i < stones.size(); ++i){
         stones[i].draw(&window);
+    }
+    for(uint i = 0; i < doors.size(); ++i){
+        doors[i].draw(&window);
     }
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);

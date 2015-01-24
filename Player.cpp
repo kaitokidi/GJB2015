@@ -11,7 +11,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     time_to_next_sprite = 0.1;
-    sprite.setPosition(500,500);
+    sprite.setPosition(2800,1000);
 }
 
 
