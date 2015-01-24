@@ -1,75 +1,45 @@
 #include "GameManager.hpp"
 
 void GameManager::generaItems(){
-    
     sf::Image aux = Resources::colorBoard;
     int size_x, size_y;
     size_x = aux.getSize().x;
     size_y = aux.getSize().y;
     
-    for(int x = 0; x < size_x; ++x){
-        for(int y = 0; y < size_y; ++y){
+    for(int x = 1; x < size_x; ++x){
+        for(int y = 1; y < size_y; ++y){
             sf::Color pixelColor = board.get_pixel_color(x,y);
             
-            if(pixelColor == colorsArray[colors::boxColor]) { //add box
-                int i = x; int j = y;
-                while(board.get_pixel_color(i, y) == colorsArray[colors::boxColor]){ 
-                    if(i < size_x-1) ++i;
-                    board.setPixel(i, y, sf::Color::White);
+            if (board.get_pixel_color(x-1,y) != pixelColor && board.get_pixel_color(x,y-1) != pixelColor) {
+
+                if(pixelColor == colorsArray[colors::boxColor] ) { //add box STONE
+                    
+                    std::cout << "Generate Box on" << x << " , " << y << std::endl;
+                    Stone s = Stone(this, x, y, 200, 200);
+                    stones.push_back(s);
+                    //createBox(pos = x,y  size = i,j);
+                    
                 }
-                while(board.get_pixel_color(x, j) == colorsArray[colors::boxColor]){ 
-                    if(j < size_y-1) ++j;
-                    board.setPixel(x, j, sf::Color::White);
+                else if(pixelColor == colorsArray[colors::doorColor]) { //add door
+
+                    std::cout << "Generate door on" << x << " , " << y << std::endl;
+                    //createDoor(pos = x,y  size = i-x,j-y);
                 }
-                //createBox(pos = x,y  size = i,j);
-            }
-            else if(pixelColor == colorsArray[colors::doorColor]) { //add door
-                int i = x; int j = y;
-                while(board.get_pixel_color(i, y) == colorsArray[colors::doorColor]){ 
-                    if(i < size_x-1) ++i;
-                    board.setPixel(i, y, sf::Color::White);
+                else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
+
+                    std::cout << "Generate button on" << x << " , " << y << std::endl;
+                    //createButton(pos = x,y  size = i-x,j-y);
                 }
-                while(board.get_pixel_color(x, j) == colorsArray[colors::doorColor]){ 
-                    if(j < size_y-1) ++j;
-                    board.setPixel(x, j, sf::Color::White);
+                else if(pixelColor == colorsArray[colors::muffinColor]) { //add muffin
+
+                    std::cout << "Generate Muffin on" << x << " , " << y << std::endl;
+                    //createMuffin(pos = x,y  size = i-x,j-y);
                 }
-                //createDoor(pos = x,y  size = i,j);
-            }
-            else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
-                int i = x; int j = y;
-                while(board.get_pixel_color(i, y) == colorsArray[colors::buttonColor]){ 
-                    if(i < size_x-1) ++i;
-                    board.setPixel(i, y, sf::Color::White);
+                else if(pixelColor == colorsArray[colors::hammerColor]) { //add hammer
+
+                    std::cout << "Generate hammer on" << x << " , " << y << std::endl;
+                //createHammer(pos = x,y  size = i-x,j-y);
                 }
-                while(board.get_pixel_color(x, j) == colorsArray[colors::buttonColor]){ 
-                    if(j < size_y-1) ++j;
-                    board.setPixel(x, j, sf::Color::White);
-                }
-                //createButton(pos = x,y  size = i,j);
-            }
-            else if(pixelColor == colorsArray[colors::muffinColor]) { //add muffin
-                int i = x; int j = y;
-                while(board.get_pixel_color(i, y) == colorsArray[colors::muffinColor]){ 
-                    if(i < size_x-1) ++i;
-                    board.setPixel(i, y, sf::Color::White);
-                }
-                while(board.get_pixel_color(x, j) == colorsArray[colors::muffinColor]){ 
-                    if(j < size_y-1) ++j;
-                    board.setPixel(x, j, sf::Color::White);
-                }
-                //createMuffin(pos = x,y  size = i,j);
-            }
-            else if(pixelColor == colorsArray[colors::hammerColor]) { //add hammer
-                int i = x; int j = y;
-                while(board.get_pixel_color(i, y) == colorsArray[colors::hammerColor]){ 
-                    if(i < size_x-1) ++i;
-                    board.setPixel(i, y, sf::Color::White);
-                }
-                while(board.get_pixel_color(x, j) == colorsArray[colors::hammerColor]){ 
-                    if(j < size_y-1) ++j;
-                    board.setPixel(x, j, sf::Color::White);
-                }
-                //createHammer(pos = x,y  size = i,j);
             }
 
             int part = 0;
@@ -101,6 +71,9 @@ GameManager::~GameManager() {}
 void GameManager::update(float deltaTime) {
     checkMovement();
     player.update(deltaTime);
+    for(uint i = 0; i < stones.size(); ++i){
+        stones[i].update(deltaTime);
+    }
 }
 
 void GameManager::draw() {
@@ -108,6 +81,9 @@ void GameManager::draw() {
 	board.draw(&window);
     player.draw(&window);
     
+    for(uint i = 0; i < stones.size(); ++i){
+        stones[i].draw(&window);
+    }
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
 //      view.zoom(0.4);

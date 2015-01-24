@@ -14,6 +14,17 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     sprite.setPosition(500,500);
 }
 
+
+Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
+    Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
+    direction = Dir::none;
+    state = PState::shoes;
+    spriteSource = sf::Vector2u(0,Dir::none);
+    scont = 0;
+    time_to_next_sprite = 0.1;
+    sprite.setPosition(px,py);
+}
+
 Player::~Player() {
 	
 }
@@ -68,16 +79,18 @@ void Player::update(float deltaTime) {
             if (speed.x > 0) speed.x = 0;
         }
 	}
-    speed.y += GRAVITY * deltaTime;
+    speed.y += GRAVITY*deltaTime;
 
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
-
+    
     if (collisionMap(x,y+deltaTime*speed.y)) {
         if (speed.y > 0) onGround = true;
         speed.y = 0;
     }
-    else onGround = false;
+    else {
+        onGround = false;
+    }
     if (collisionMap(x+deltaTime*speed.x,y)) {
         speed.x = 0;
     }
@@ -86,9 +99,10 @@ void Player::update(float deltaTime) {
         speed.x = 0;
         speed.y = 0;
     }
+//     std::cout << "grav -> " << GRAVITY*deltaTime << " dT ->" << deltaTime <<  std::endl;
+//     std::cout << speed.x << " - " << speed.y << std::endl;
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
-
-
+    
     scont += deltaTime;
     if (!onGround) spriteSource.y = Dir::down;
     else if (speed.x > 0) spriteSource.y = Dir::right;

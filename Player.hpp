@@ -16,6 +16,7 @@ private:
 public:
     Player();
     Player(GameManager *gm);
+    Player(GameManager *gm, float px, float py);
     ~Player();
     void update(float deltaTime);
     void draw(sf::RenderWindow* render);

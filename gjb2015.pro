@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     GameManager.cpp \
     Collisionable.cpp \
     Player.cpp \
-    Board.cpp
+    Board.cpp \
+    Stone.cpp
 
 HEADERS += \
     Resources.hpp \
@@ -22,5 +23,6 @@ HEADERS += \
     GameManager.hpp \
     Collisionable.hpp \
     Player.hpp  \
-    Board.hpp
+    Board.hpp \
+    Stone.hpp
 

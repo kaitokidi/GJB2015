@@ -7,6 +7,7 @@ class Resources {
 public:
     static void load();
     static sf::Texture playerTexture;
+    static sf::Texture stoneTexture;
     static sf::Texture visibleBoard;
     static sf::Image colorBoard;
 };

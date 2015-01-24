@@ -6,10 +6,11 @@ Board::Board(){
 
 Board::Board(sf::Texture* vM, sf::Image* cM){
 //         std::cout << "vM ---- " << vM->getSize().x << std::endl;    
-//     std::cout << "visibleMap ---- " << visibleMap.getSize().x << std::endl;    
 //          std::cout << "map ---- " << map.getTexture()->getSize().x << std::endl;
 		visibleMap = *vM;
+//     std::cout << "visibleMap ---- " << visibleMap.getSize().x << std::endl;    
 		colorMap = *cM;
+//     std::cout << "colorMap ---- " << colorMap.getSize().x << std::endl;    
 
 }
 
@@ -28,6 +29,7 @@ sf::Color Board::get_pixel_color(float px, float py){
 
 void Board::setPixel(float px, float py, sf::Color c){
     colorMap.setPixel(px, py, c);
+    colorMap.loadFromFile("res/mapaColors.png");
 }
 
 void Board::draw(sf::RenderWindow* rW){

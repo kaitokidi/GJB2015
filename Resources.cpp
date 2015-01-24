@@ -15,11 +15,13 @@
 // plus that you only load the texture one time and you can use it infinite times.
 
 sf::Texture     Resources::playerTexture;
+sf::Texture     Resources::stoneTexture;
 sf::Texture     Resources::visibleBoard;
 sf::Image		Resources::colorBoard;
 
 void Resources::load() {
-	if(!playerTexture.loadFromFile("res/playerTexture.png")) std::cout << "unable to load playerTexture" << std::endl;
+    if(!playerTexture.loadFromFile("res/playerTexture.png")) std::cout << "unable to load playerTexture" << std::endl;
+    if(!stoneTexture.loadFromFile("res/stoneTexture.png")) std::cout << "unable to load stoneTexture" << std::endl;
     if(!visibleBoard.loadFromFile("res/mapaNormal.png")) std::cout << "unable to load mapNormal" << std::endl;
 	if(!colorBoard.loadFromFile( "res/mapaColors.png")) std::cout << "unable to load mapaColors" << std::endl;
 }

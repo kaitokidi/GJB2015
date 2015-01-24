@@ -3,13 +3,14 @@
 
 #include "Game.hpp"
 #include "Board.hpp"
+#include "Stone.hpp"
 #include "Player.hpp"
 
 class GameManager : public Game {
 private:
     Player player;
     sf::RenderTexture renderText;
-	std::vector<Collisionable> collisionables;
+	std::vector<Stone> stones;
 	Board board;
 	
     void generaItems();

@@ -6,7 +6,7 @@ const int my[5] = {1,	0,	 0,   -1,   0   };
 
 const sf::Color colorsArray[12] = {
     // boxColor,            doorColor,         buttonColor,     muffinColor,        hammerColor, 
-       sf::Color(255,153,0),sf::Color(0,153,0),sf::Color(0,0,0),sf::Color(102,51,0),sf::Color(0,51,153),
+       sf::Color(255,153,0),sf::Color(0,153,0),sf::Color(250,250,2),sf::Color(102,51,0),sf::Color(0,51,153),
     // footColor,     legsColor,       bodyColor,        armsColor,       handColor,      headColor,        wingColor
      sf::Color(0,0,0),sf::Color(0,0,0),sf::Color(0,0,0),sf::Color(0,0,0),sf::Color(0,0,0),sf::Color(0,0,0),sf::Color(0,0,0)
     
