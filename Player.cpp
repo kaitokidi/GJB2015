@@ -30,29 +30,27 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {
     if(direction == Dir::none){
-        if(speed.x > 0){
-            speed.x += -1.5*PLAYER_ACCELERATION[state]*deltaTime;
+        if (speed.x > 0){
+            speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
             if(speed.x < 0) speed.x = 0;
 		}
-        else if(speed.x < 0) {
+        else if( speed.x < 0) {
             speed.x += 1.5*PLAYER_ACCELERATION[state]*deltaTime;
-            if(speed.x > 0) speed.x = 0;
+            if (speed.x > 0) speed.x = 0;
 		}
 	}
-    if(direction == Dir::left){
+    else if(direction == Dir::left){
 		//si et movies en direccio contraria
-        if(speed.x > 0){
-            speed.x += -1.5*PLAYER_ACCELERATION[state]*deltaTime;
-            if(speed.x < 0) speed.x = 0;
+        if (speed.x > 0){
+            speed.x -= 1.5*PLAYER_ACCELERATION[state]*deltaTime;
 		}
-        else if(speed.x <= 0) {
-            speed.x += -PLAYER_ACCELERATION[state]*deltaTime;
-            if(speed.x > 0) speed.x = 0;
-            if(speed.x < -PLAYER_MAX_SPEED[state]) speed.x = -PLAYER_MAX_SPEED[state];
+        else {
+            speed.x -= PLAYER_ACCELERATION[state]*deltaTime;
+            if (speed.x < -PLAYER_MAX_SPEED[state]) speed.x = -PLAYER_MAX_SPEED[state];
         }
 	}
-    if(direction == Dir::right){
-        if(speed.x >= 0){
+    else if(direction == Dir::right){
+        if (speed.x >= 0){
             speed.x += PLAYER_ACCELERATION[state]*deltaTime;
             if(speed.x > PLAYER_MAX_SPEED[state]) speed.x = PLAYER_MAX_SPEED[state];
 		}
