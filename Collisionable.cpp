@@ -1,10 +1,12 @@
 #include "Collisionable.hpp"
+#include "GameManager.hpp"
 
 Collisionable::Collisionable() {
 
 }
 
-Collisionable::Collisionable(sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
+Collisionable::Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY) {
+    this->gm = gm;
     sprite.setTexture(*text);
     this->spriteWidth = spriteWidth;
     this->spriteHeight = spriteHeight;
@@ -43,3 +45,12 @@ bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
     if(a->getPosition().y + a->getHeight() < b->getPosition().y) return false;
     return true;
 }
+
+bool Collisionable::collisionMap(float x, float y) {
+    if (gm->getBoard()->getPixelColor(x,y) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x+spriteWidth,y) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x,y+spriteHeight) == "Black") return true;
+    if (gm->getBoard()->getPixelColor(x+spriteWidth,y+spriteHeight) == "Black") return true;
+    return false;
+}
+

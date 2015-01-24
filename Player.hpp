@@ -9,12 +9,13 @@
 class Player : Collisionable {
 private:
     Dir::Direction direction;
-    int stat;
+    int state;
 public:
     Player();
+    Player(GameManager *gm);
     ~Player();
     void update(float deltaTime);
-    void draw();
+    void draw(sf::RenderTexture* render);
     void move(Dir::Direction dir);
     void jump(bool b);
     Dir::Direction getDirection();

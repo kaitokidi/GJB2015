@@ -20,6 +20,7 @@ public:
     void processEvents();
 	void checkMovement();
     sf::RenderTexture *getRenderTexture();
+    Board *getBoard();
 };
 
 #endif // GAMEMANAGER_HPP
