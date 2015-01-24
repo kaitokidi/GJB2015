@@ -14,7 +14,7 @@ void GameManager::generaItems(){
 
                 if(pixelColor == colorsArray[colors::boxColor] ) { //add box STONE
                     
-                    std::cout << "Generate Box on" << x << " , " << y << std::endl;
+//                     std::cout << "Generate Box on" << x << " , " << y << std::endl;
                     Stone s = Stone(this, x, y, 200, 200);
                     stones.push_back(s);
                     //createBox(pos = x,y  size = i,j);
@@ -22,24 +22,24 @@ void GameManager::generaItems(){
                 }
                 else if(pixelColor == colorsArray[colors::doorColor]) { //add door
 
-                    std::cout << "Generate door on" << x << " , " << y << std::endl;
+//                     std::cout << "Generate door on" << x << " , " << y << std::endl;
                     Door d = Door(this, x, y, 50, 400);
                     doors.push_back(d);
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
 
-                    std::cout << "Generate button on" << x << " , " << y << std::endl;
+//                     std::cout << "Generate button on" << x << " , " << y << std::endl;
                     //createButton(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::muffinColor]) { //add muffin
 
-                    std::cout << "Generate Muffin on" << x << " , " << y << std::endl;
+//                     std::cout << "Generate Muffin on" << x << " , " << y << std::endl;
                     //createMuffin(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::hammerColor]) { //add hammer
 
-                    std::cout << "Generate hammer on" << x << " , " << y << std::endl;
+//                     std::cout << "Generate hammer on" << x << " , " << y << std::endl;
                 //createHammer(pos = x,y  size = i-x,j-y);
                 }
             }
@@ -71,7 +71,9 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
         
         generaItems();
-
+        
+        Portada p;
+        p.display(&window);
 
 }
 
