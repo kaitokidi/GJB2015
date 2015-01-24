@@ -13,6 +13,7 @@ protected:
     int spriteHeight;
     int nSpriteX;
     int nSpriteY;
+    bool onGround;
 
 public:
     Collisionable();

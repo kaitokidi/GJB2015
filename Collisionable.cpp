@@ -1,4 +1,5 @@
 #include "Collisionable.hpp"
+#include "GameManager.hpp"
 
 Collisionable::Collisionable() {
 
@@ -46,5 +47,17 @@ bool Collisionable::areCollisioning(Collisionable *a, Collisionable *b) {
 }
 
 bool Collisionable::collisionBackground() {
+    int x = sprite.getPosition().x;
+    int y = sprite.getPosition().y;
+    if (gm->getBoard()->getPixelColor(x,y) == "Black") speed.x = 0;
+    else if (gm->getBoard()->getPixelColor(x+spriteWidth,y) == "Black") speed.x = 0;
+    if (gm->getBoard()->getPixelColor(x,y+spriteHeight) == "Black") {
+        onGround = true;
+        speed.y = 0;
+    }
+    else if (gm->getBoard()->getPixelColor(x+spriteWidth,y+spriteHeight) == "Black") {
+        onGround = true;
+        speed.y = 0;
+    }
     return true;
 }

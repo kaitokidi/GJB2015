@@ -44,6 +44,10 @@ void GameManager::checkMovement(){
 }
 
 sf::RenderTexture *GameManager::getRenderTexture() {
-   return &renderText;
+    return &renderText;
+}
+
+Board *GameManager::getBoard() {
+    return &board;
 }
 

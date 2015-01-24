@@ -9,6 +9,7 @@
 class Player : Collisionable {
 private:
     Dir::Direction direction;
+    int state;
 public:
     Player();
     Player(GameManager *gm);
@@ -17,6 +18,8 @@ public:
     void draw();
     void move(Dir::Direction dir);
     Dir::Direction getDirection();
+
 };
+//sida
 
 #endif // PLAYER_H
