@@ -13,7 +13,9 @@ public:
     static sf::Texture doorTexture;
     static sf::Image colorBoard;
     static sf::Texture bodyPartTexture;
+
     static sf::Texture playerShoes;
+    static sf::Texture playerLegs;
     static sf::Texture playerHead;
     
 static sf::Texture shoesText;

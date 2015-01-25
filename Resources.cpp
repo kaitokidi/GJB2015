@@ -23,6 +23,7 @@ sf::Image		Resources::colorBoard;
 sf::Texture     Resources::bodyPartTexture;
 
 sf::Texture     Resources::playerShoes;
+sf::Texture     Resources::playerLegs;
 sf::Texture     Resources::playerHead;
 
 sf::Texture Resources::shoesText;
@@ -45,6 +46,7 @@ void Resources::load() {
     if(!bodyPartTexture.loadFromFile( "res/BodyPartTexture.png")) std::cout << "unable to load BodyPartTexture" << std::endl;
 
     if(!playerShoes.loadFromFile( "res/shoes.png")) std::cout << "unable to load playerShoes" << std::endl;
+    if(!playerLegs.loadFromFile( "res/legs.png")) std::cout << "unable to load playerLegs" << std::endl;
     if(!playerHead.loadFromFile( "res/head.png")) std::cout << "unable to load playerHead" << std::endl;
     
     if(!shoesText.loadFromFile( "res/theshoes.png")) std::cout << "unable to load peus" << std::endl;

@@ -53,7 +53,8 @@ extern const int PLAYER_SPRINT_SPEED;
 extern float SHOES_TIMER[4];
 extern int SHOES_N[4];
 // legs
-extern const float LEGS_TIMER[PState::qttState];
+extern float LEGS_TIMER[8];
+extern int LEGS_N[8];
 // body
 extern const float BODY_TIMER[PState::qttState];
 // arms

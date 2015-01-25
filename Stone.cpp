@@ -24,8 +24,8 @@ Dir::Direction Stone::getDirection() {
 }
 
 void Stone::update(float deltaTime) {
-    float stoneAceleration = 3000;
-    float maxSpeed = 6000;
+    float stoneAceleration = 200;
+    float maxSpeed = 150;
     if(direction == Dir::none){
         if (speed.x > 0){
             speed.x -= 1.5*stoneAceleration*deltaTime;
@@ -36,27 +36,8 @@ void Stone::update(float deltaTime) {
             if (speed.x > 0) speed.x = 0;
         }
     }
-    else if(direction == Dir::left){
-        std::cout << "dir left" << std::endl;
-        if (speed.x > 0){
-            speed.x -= 1.5*stoneAceleration*deltaTime;
-        }
-        else {
-            speed.x -= stoneAceleration*deltaTime;
-            if (speed.x < -maxSpeed) speed.x = -maxSpeed;
-        }
-    }
-    else if(direction == Dir::right){
-        std::cout << "dir right" << std::endl;
-        if (speed.x >= 0) {
-            speed.x += stoneAceleration*deltaTime;
-            if(speed.x > maxSpeed) speed.x = maxSpeed;
-        }
-        else {
-            speed.x += 1.5*stoneAceleration*deltaTime;
-            if (speed.x > 0) speed.x = 0;
-        }
-    }
+    else if(direction == Dir::left)  speed.x = -maxSpeed;
+    else if(direction == Dir::right) speed.x = maxSpeed;
     speed.y += GRAVITY*deltaTime;
 
     float x = sprite.getPosition().x;
@@ -65,10 +46,6 @@ void Stone::update(float deltaTime) {
     if (collisionVertical(x,y+deltaTime*speed.y)) speed.y = 0;
     if (collisionHorizontal(x+deltaTime*speed.x,y)) speed.x = 0;
 
-   
-    if (direction != Dir::none) {
-        std::cout << "bounds caja " << x << " " << y << " " << sprite.getGlobalBounds().width << " " << sprite.getGlobalBounds().height << std::endl;
-    }
     sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     direction = Dir::none;
 }
