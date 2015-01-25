@@ -114,9 +114,9 @@ void Player::update(float deltaTime) {
     float x = sprite.getPosition().x;
     float y = sprite.getPosition().y;
     
-    int collision1 = collisionVertical(x,y+deltaTime*speed.y);
-    int collision2 = collisionHorizontal(x+deltaTime*speed.x,y);
-    int collision3 = collisionHorizontal(x+deltaTime*speed.x,y+deltaTime*speed.y);
+    int collision1 = collisionVertical(x,y+deltaTime*speed.y, level);
+    int collision2 = collisionHorizontal(x+deltaTime*speed.x,y, level);
+    int collision3 = collisionHorizontal(x+deltaTime*speed.x,y+deltaTime*speed.y, level);
     if (collision1 == 2 || collision2 == 2) {
         speed = sf::Vector2f(0,0);
         sprite.setPosition(lastGround);
@@ -124,6 +124,7 @@ void Player::update(float deltaTime) {
     else {
         if (collision1) {
             if (speed.y > 0) onGround = true;
+            std::cout << "col" << onGround << std::endl;
             speed.y = 0;
         }
         else onGround = false;

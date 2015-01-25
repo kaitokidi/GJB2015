@@ -76,6 +76,7 @@ int Collisionable::collisionVertical(float x, float y) {
     return 0;
 }
 
+
 int Collisionable::collisionHorizontal(float x, float y) {
     int n = 20;
     int maxY = spriteHeight;
@@ -87,6 +88,46 @@ int Collisionable::collisionHorizontal(float x, float y) {
         color = gm->getBoard()->getPixelColor(x+spriteWidth - 30,y+j);
         if (color == "Red") return 2;
         if (color == "Black") return 1;
+    }
+    return 0;
+}
+int Collisionable::collisionVertical(float x, float y, int lvl) {
+    int m = 30;
+    int n = 20;
+    int maxX = spriteWidth-2*m;
+    int maxY = spriteHeight;
+    int elValor=0;
+    if(lvl==1) elValor=80;
+    else if(lvl==2) elValor=80;
+    else if(lvl==3 || lvl==4 ) elValor=100;
+    std::string color;
+    for (int i = 0; i < maxX; i +=  maxX/n) {
+        color = gm->getBoard()->getPixelColor(x+m+i,y+elValor);
+        if (color == "Red") return 2;
+        if (color == "Black") return 1;
+        color = (gm->getBoard()->getPixelColor(x+m+i,y+maxY));
+        if (color == "Red") return 2;
+        if (color == "Black") return 1;
+    }
+    return 0;
+}
+int Collisionable::collisionHorizontal(float x, float y, int lvl) {
+    int n = 20;
+    int maxY = spriteHeight;
+    int elValor=0;
+    if(lvl==1) elValor=80;
+    else if(lvl==2) elValor=80;
+    else if(lvl==3 || lvl==4) elValor=100;
+    std::string color;
+    for (int j = 0; j < maxY-elValor; j +=  (maxY-elValor)/n) {
+        std::cout << "soy yo " << j  << " " << y+maxY << " " << y+j+elValor << std::endl; 
+        color = gm->getBoard()->getPixelColor(x + 30, y + j + elValor);
+        if (color == "Red") return 2;
+        if (color == "Black") return 1;
+        color = gm->getBoard()->getPixelColor(x+spriteWidth - 30,y+elValor+j);
+        if (color == "Red") return 2;
+        if (color == "Black") return 1;
+
     }
     return 0;
 }

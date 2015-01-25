@@ -30,7 +30,9 @@ public:
     sf::Vector2f getPosition();
     void setPosition(float x, float y);
     static bool areCollisioning(Collisionable *a, Collisionable *b);
+    int collisionHorizontal(float x, float y, int lvl);
     int collisionVertical(float x, float y);
+    int collisionVertical(float x, float y, int lvl);
     int collisionHorizontal(float x, float y);
     void move(Dir::Direction dir);
 };
