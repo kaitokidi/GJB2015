@@ -27,6 +27,7 @@ private:
     sf::Font font;
     float speedRunerTimer;
     sf::Text text;
+    float aids;
     
 public:
     

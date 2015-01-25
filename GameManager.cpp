@@ -17,9 +17,9 @@ void GameManager::generaItems(){
     speedRunerTimer=0;
     
     /***************************/
-//     sf::Texture text;
-//     text.loadFromFile("res/foregroundMap.png");
-//     mapaForeground.setTexture(text);
+    //     sf::Texture text;
+    //     text.loadFromFile("res/foregroundMap.png");
+    //     mapaForeground.setTexture(text);
     
     for(int x = 1; x < size_x; ++x){
         for(int y = 1; y < size_y; ++y){
@@ -29,7 +29,7 @@ void GameManager::generaItems(){
 
                 if(pixelColor == colorsArray[colors::boxColor] ) { //add box STONE
                     
-//                     std::cout << "Generate Box on" << x << " , " << y << std::endl;
+                    //                     std::cout << "Generate Box on" << x << " , " << y << std::endl;
                     Stone* s = new Stone(this, x, y-10, 200, 200);
                     stones.push_back(s);
                     //createBox(pos = x,y  size = i,j);
@@ -37,35 +37,35 @@ void GameManager::generaItems(){
                 }
                 else if(pixelColor == colorsArray[colors::doorColor]) { //add door
 
-//                     std::cout << "Generate door on" << x << " , " << y << std::endl;
+                    //                     std::cout << "Generate door on" << x << " , " << y << std::endl;
 
                     //createDoor(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::buttonColor]) { //add button
 
-//                     std::cout << "Generate button on" << x << " , " << y << std::endl;
+                    //                     std::cout << "Generate button on" << x << " , " << y << std::endl;
                     //createButton(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::muffinColor]) { //add muffin
 
-//                     std::cout << "Generate Muffin on" << x << " , " << y << std::endl;
+                    //                     std::cout << "Generate Muffin on" << x << " , " << y << std::endl;
                     //createMuffin(pos = x,y  size = i-x,j-y);
                 }
                 else if(pixelColor == colorsArray[colors::hammerColor]) { //add hammer
 
-//                     std::cout << "Generate hammer on" << x << " , " << y << std::endl;
-                //createHammer(pos = x,y  size = i-x,j-y);
+                    //                     std::cout << "Generate hammer on" << x << " , " << y << std::endl;
+                    //createHammer(pos = x,y  size = i-x,j-y);
                 }
             }
 
-//             int part = 0;
-//             if(pixelColor == colorsArray[colors::footColor]) part = 1 ;//peus (inici player)
-//             else if(pixelColor == colorsArray[colors::legsColor]) part = 2 ;//cames
-//             else if(pixelColor == colorsArray[colors::bodyColor]) part = 3 ;//cos
-//             else if(pixelColor == colorsArray[colors::armsColor]) part = 4 ;//brac,os
-//             else if(pixelColor == colorsArray[colors::handColor]) part = 5 ;//ma1
-//             else if(pixelColor == colorsArray[colors::headColor]) part = 6 ;//cap
-//             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
+            //             int part = 0;
+            //             if(pixelColor == colorsArray[colors::footColor]) part = 1 ;//peus (inici player)
+            //             else if(pixelColor == colorsArray[colors::legsColor]) part = 2 ;//cames
+            //             else if(pixelColor == colorsArray[colors::bodyColor]) part = 3 ;//cos
+            //             else if(pixelColor == colorsArray[colors::armsColor]) part = 4 ;//brac,os
+            //             else if(pixelColor == colorsArray[colors::handColor]) part = 5 ;//ma1
+            //             else if(pixelColor == colorsArray[colors::headColor]) part = 6 ;//cap
+            //             else if(pixelColor == colorsArray[colors::wingColor]) part = 7 ;//ales
         }
     }
     Door* d = new Door(this, 5100, 100, 50, 400);
@@ -74,7 +74,7 @@ void GameManager::generaItems(){
     doors.push_back(d);
     doors.push_back(d2);
     doors.push_back(d3);
-                     
+
     Button* bu = new Button(this, 5250, 300, 75,150, 3);
     Button* bu2 = new Button(this, 5200, 1900, 75,150, 1);
     Button* bu3 = new Button(this, 5600, 1900, 75,150, 2);
@@ -114,34 +114,36 @@ void GameManager::generaItems(){
 }
 
 GameManager::GameManager(int scrwidth, int scrheight, std::string title, int style)
-    : Game(scrwidth,scrheight,title,style) { //RECKT 
+    : Game(scrwidth,scrheight,title,style) { //RECKT
 
-        player = Player(this);
-		board = Board(& Resources::visibleBoard, & Resources::colorBoard);
-        
-        generaItems();
-        
-        Portada p;
-        p.display(&window, "res/Portada.png");
-//         p.display(&window, "res/inst1.png");
-//         p.display(&window, "res/inst2.png");
-//         p.display(&window, "res/inst3.png");
-//         p.display(&window, "res/inst4.png");
-//         p.display(&window, "res/inst5.png");
-//         p.display(&window, "res/inst6.png");
+    player = Player(this);
+    board = Board(& Resources::visibleBoard, & Resources::colorBoard);
+
+    generaItems();
+
+    Portada p;
+    p.display(&window, "res/Portada.png");
+    aids = 0;
+    //         p.display(&window, "res/inst1.png");
+    //         p.display(&window, "res/inst2.png");
+    //         p.display(&window, "res/inst3.png");
+    //         p.display(&window, "res/inst4.png");
+    //         p.display(&window, "res/inst5.png");
+    //         p.display(&window, "res/inst6.png");
 
 }
 
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
-    
+    deltaTime -= aids;
+    int level = player.getLvl();
     if(player.getH()==false){
         speedRunerTimer += deltaTime;
     }
     
     else{
-        Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100); 
+        Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100);
     }
     if(player.getM()==true){
         speedRunerTimer -= 20;
@@ -160,15 +162,19 @@ void GameManager::update(float deltaTime) {
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->update(deltaTime);
     }
-    window.setView(window.getDefaultView());
-    Portada p1;
-    p1.display(&window, "res/inst2.png");
-    
+    if (player.getLvl() > level) {
+        sf::Clock c;
+        window.setView(window.getDefaultView());
+        Portada p1;
+        p1.display(&window, "res/inst"+level+".png");
+        aids = c.restart().asSeconds();
+    }
+    else aids = 0;
 }
 
 void GameManager::draw() {
     window.clear();
-	board.draw(&window);
+    board.draw(&window);
     player.draw(&window);
 
     for(uint i = 0; i < stones.size(); ++i){
@@ -197,7 +203,7 @@ void GameManager::draw() {
     // Draw it
     
     
-//     mapaForeground.setScale(window.getSize().y/mapaForeground.getGlobalBounds().height, window.getSize().y/mapaForeground.getGlobalBounds().height);
+    //     mapaForeground.setScale(window.getSize().y/mapaForeground.getGlobalBounds().height, window.getSize().y/mapaForeground.getGlobalBounds().height);
     window.draw(mapaForeground);
 
 
@@ -208,12 +214,12 @@ void GameManager::draw() {
 
 
 
-     view.reset(sf::FloatRect(0,0, 1350, 800));
-     view.setCenter(player.getPosition().x, player.getPosition().y);
-     text.setPosition(player.getPosition().x-500, player.getPosition().y-300);
-     window.draw(text);
-//      view.zoom(0.4);
-        
+    view.reset(sf::FloatRect(0,0, 1350, 800));
+    view.setCenter(player.getPosition().x, player.getPosition().y);
+    text.setPosition(player.getPosition().x-500, player.getPosition().y-300);
+    window.draw(text);
+    //      view.zoom(0.4);
+
     window.setView(view);
     window.display();
 }
@@ -252,8 +258,8 @@ Board *GameManager::getBoard() {
     return &board;
 }
 
-    std::vector<Stone*> GameManager::getStones() { return stones; }
-    std::vector<BodyPart*> GameManager::getBodyParts(){ return parts; }
+std::vector<Stone*> GameManager::getStones() { return stones; }
+std::vector<BodyPart*> GameManager::getBodyParts(){ return parts; }
 void GameManager::eliminaElBody(int i){
     parts.erase(parts.begin());
 }
@@ -262,8 +268,8 @@ void GameManager::eliminaElMuffin(int i){
     Muffins.erase(Muffins.begin());
 }
 
-    std::vector<Door*> GameManager::getDoors(){ return doors; }
-    std::vector<Button*> GameManager::getButtons(){ return buttons; }
-    std::vector<Hammer*> GameManager::getHammers(){ return Hammers; }
-    std::vector<Muffin*> GameManager::getMuffins(){ return Muffins; }
+std::vector<Door*> GameManager::getDoors(){ return doors; }
+std::vector<Button*> GameManager::getButtons(){ return buttons; }
+std::vector<Hammer*> GameManager::getHammers(){ return Hammers; }
+std::vector<Muffin*> GameManager::getMuffins(){ return Muffins; }
 
