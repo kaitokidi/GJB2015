@@ -180,8 +180,11 @@ void Player::update(float deltaTime) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
                     gm->getDoors()[1]->moveDown(true);
                 }
+                if (gm->getButtons()[i]->getID() == 2) { //aball
+                    gm->getDoors()[3]->moveDown(true);
+                }
                 else {
-                    gm->getDoors()[gm->getButtons()[i]->getID()]->moveUp(true);
+                    gm->getDoors()[gm->getButtons()[2]->getID()]->moveUp(true);
                 }
             }
         }
