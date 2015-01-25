@@ -22,8 +22,6 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     pushing = false;
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
-
-    level = PState::body;
 }
 
 
@@ -115,6 +113,7 @@ void Player::update(float deltaTime) {
     
     int collision1 = collisionVertical(x,y+deltaTime*speed.y);
     int collision2 = collisionHorizontal(x+deltaTime*speed.x,y);
+    int collision3 = collisionHorizontal(x+deltaTime*speed.x,y+deltaTime*speed.y);
     if (collision1 == 2 || collision2 == 2) {
         speed = sf::Vector2f(0,0);
         sprite.setPosition(lastGround);
@@ -126,7 +125,7 @@ void Player::update(float deltaTime) {
         }
         else onGround = false;
         if (collision2) speed.x = 0;
-
+        if (collision3 && !collision1 && !collision2) speed = sf::Vector2f(0,0);
         //colisions amb caixes
         for(uint i = 0; i < this->gm->getStones().size();++i){
             Collisionable* c = gm->getStones()[i];
@@ -158,6 +157,7 @@ void Player::update(float deltaTime) {
 //                  std::cout << "COOOOOOOOOOOOL" << level << " , " << c->getId() << std::endl;
                 if(c->getId() == level+1){
                     level = level+1;
+                    loadNewLevel(level);
                     gm->eliminaElBody(i);
                 }
             }
@@ -222,6 +222,12 @@ void Player::loadNewLevel(int level) {
         sprite.setTexture(Resources::playerShoes);
         nSprites = SHOES_N;
         time_to_next_sprite = SHOES_TIMER;
+        break;
+    case PState::legs:
+        sprite.setTexture((Resources::playerLegs));
+        nSprites = LEGS_N;
+        time_to_next_sprite = LEGS_TIMER;
+        sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y-125);
         break;
     case PState::head:
         sprite.setTexture(Resources::playerHead);
