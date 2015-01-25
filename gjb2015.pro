@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     Door.cpp \
     Button.cpp \
     BodyPart.cpp \
-    Portada.cpp
+    Portada.cpp \
+    Hammer.cpp
 
 
 HEADERS += \
@@ -33,5 +34,6 @@ HEADERS += \
     Door.hpp \
     Button.hpp \
     BodyPart.hpp \
-    Portada.hpp
+    Portada.hpp \
+    Hammer.hpp
 

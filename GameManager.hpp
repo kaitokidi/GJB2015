@@ -9,6 +9,7 @@
 #include "Button.hpp"
 #include "BodyPart.hpp"
 #include "Portada.hpp"
+#include "Hammer.hpp"
 class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
@@ -16,6 +17,7 @@ private:
     std::vector<BodyPart*> parts;
     std::vector<Door*> doors;
     std::vector<Button*> buttons;
+    std::vector<Hammer*> Hammers;
     Player player;
 	Board board;
 	sf::Sprite mapaForeground;
@@ -30,6 +32,7 @@ public:
     std::vector<BodyPart*> getBodyParts();
     std::vector<Door*> getDoors();
     std::vector<Button*> getButtons();
+    std::vector<Hammer*> getHammers();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);

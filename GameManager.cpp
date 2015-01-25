@@ -95,6 +95,9 @@ void GameManager::generaItems(){
     BodyPart *p6 = new BodyPart(this, 7450, 1050,100,100,PState::wings);
     parts.push_back(p6);
 
+    Hammer* h = new Hammer(this, 4360, 1350,174,63);
+    Hammers.push_back(h);
+
     
 }
 
@@ -114,7 +117,7 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
-    if(player.getLvl() < PState::wings)speedRunerTimer += deltaTime;
+    if(player.getLvl() <= PState::wings)speedRunerTimer += deltaTime;
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
@@ -147,6 +150,9 @@ void GameManager::draw() {
     }
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->draw(&window);
+    }
+    for(uint i = 0; i < Hammers.size(); ++i){
+        Hammers[i]->draw(&window);
     }
     // Declare and load a font
     
@@ -219,4 +225,5 @@ void GameManager::eliminaElBody(int i){
 
     std::vector<Door*> GameManager::getDoors(){ return doors; }
     std::vector<Button*> GameManager::getButtons(){ return buttons; }
+    std::vector<Hammer*> GameManager::getHammers(){ return Hammers; }
 

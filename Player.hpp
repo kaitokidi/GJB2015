@@ -23,6 +23,7 @@ private:
     void loadNewLevel(int level);
     void animation(float deltaTime);
     void nextFrame();
+    bool hammer;
 
     unsigned lastState;
 
@@ -36,6 +37,7 @@ public:
     void jump(bool jump);
     Dir::Direction getDirection();
     int getLvl();
+    bool getH();
 
 };
 

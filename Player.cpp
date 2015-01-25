@@ -22,6 +22,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     pushing = false;
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
+    hammer = false;
 }
 
 
@@ -34,6 +35,7 @@ Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resou
     sprite.setPosition(px,py);
     sprint=false;
     maxS = PLAYER_MAX_SPEED[level];
+    hammer=false;
 }
 
 Player::~Player() {
@@ -47,6 +49,9 @@ void Player::draw(sf::RenderWindow* window) {
 
 int Player::getLvl(){
     return level;
+}
+bool Player::getH(){
+    return hammer;
 }
 void Player::jump(bool jump){
     if (onGround && jump) {
@@ -149,6 +154,12 @@ void Player::update(float deltaTime) {
 
                 }
             }
+        }
+        //colisions amb hammer
+        Collisionable* c = gm->getHammers()[0];
+        Collisionable p = *this;
+        if (Collisionable::areCollisioning(&p, c)) {
+            hammer=true;
         }
 
         //colisions amb bodyParts

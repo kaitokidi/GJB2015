@@ -21,6 +21,7 @@ sf::Texture     Resources::visibleBoard;
 sf::Texture     Resources::doorTexture;
 sf::Image		Resources::colorBoard;
 sf::Texture     Resources::bodyPartTexture;
+sf::Texture     Resources::HammerTexture;
 
 sf::Texture     Resources::playerShoes;
 sf::Texture     Resources::playerLegs;
@@ -62,5 +63,6 @@ void Resources::load() {
     if(!handText.loadFromFile( "res/thehand.png")) std::cout << "unable to load hand" << std::endl;
     if(!headText.loadFromFile( "res/thehead.png")) std::cout << "unable to load headsol" << std::endl;
     if(!wingsText.loadFromFile( "res/thewings.png")) std::cout << "unable to load wings" << std::endl;
+    if(!HammerTexture.loadFromFile( "res/HammerTexture.png")) std::cout << "unable to load Hammer" << std::endl;
     if(!djvu.loadFromFile( "res/djvu.ttf")) std::cout << "unable to load font" << std::endl;
 }
