@@ -4,6 +4,13 @@ void GameManager::generaItems(){
     sf::Image aux = Resources::colorBoard;
     int size_x, size_y;
     sf::Font font = Resources::djvu;
+    sf::Text text;
+    text.setFont(font); 
+    text.setString("hddddddddddddello");
+    text.setCharacterSize(200);
+    text.setStyle(sf::Text::Bold);
+    text.setColor(sf::Color::Red);
+    text.setPosition(2600, 800);
     size_x = aux.getSize().x;
     size_y = aux.getSize().y;
     float speedRunerTimer=0;
@@ -107,7 +114,7 @@ GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
     speedRunerTimer = speedRunerTimer + deltaTime;
-    std::cout << "time" << speedRunerTimer << " , " << std::endl;
+    std::cout << "time" << speedRunerTimer << "" << player.getPosition().x <<" "<< player.getPosition().y<< std::endl;
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
@@ -144,11 +151,8 @@ void GameManager::draw() {
     // Declare and load a font
     
     // Create a text
-    sf::Text text("hddddddddddddello", font);
-    text.setCharacterSize(200);
-    text.setStyle(sf::Text::Bold);
-    text.setColor(sf::Color::Red);
-    text.setPosition(player.getPosition().x, player.getPosition().y);
+    
+    
     // Draw it
     
     

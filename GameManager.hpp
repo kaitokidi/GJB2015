@@ -22,6 +22,7 @@ private:
     void generaItems();
     sf::Font font;
     float speedRunerTimer;
+    sf::Text text;
     
 public:
     
