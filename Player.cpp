@@ -176,13 +176,13 @@ void Player::update(float deltaTime) {
             p.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
             if (Collisionable::areCollisioning(&p, c) && level >= 5) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
-                    gm->getDoors()[1]->moveDown(true);
+                    gm->getDoors()[2]->moveDown(true);
                 }
                 if (gm->getButtons()[i]->getID() == 2) { //aball
-                    gm->getDoors()[3]->moveDown(true);
+                    gm->getDoors()[0]->moveDown(true);
                 }
                 else {
-                    gm->getDoors()[gm->getButtons()[2]->getID()]->moveUp(true);
+                    gm->getDoors()[gm->getButtons()[1]->getID()]->moveDown(true);
                 }
             }
         }
