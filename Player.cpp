@@ -20,6 +20,9 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     lastState = PState::idleRight;
     loadNewLevel(level);
     pushing = false;
+    sprint = false;
+    maxS = PLAYER_MAX_SPEED[level];
+
 }
 
 
@@ -30,6 +33,8 @@ Player::Player(GameManager *gm, float px, float py) /*: Collisionable(gm, &Resou
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(px,py);
+    sprint=false;
+    maxS = PLAYER_MAX_SPEED[level];
 }
 
 Player::~Player() {
@@ -54,7 +59,9 @@ Dir::Direction Player::getDirection() {
     return direction;
 }
 
-void Player::update(float deltaTime) {       
+void Player::update(float deltaTime) {  
+    maxS = PLAYER_MAX_SPEED[level]; 
+    if(sprint==true)maxS= PLAYER_MAX_SPEED[level]*2;
     pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
@@ -78,14 +85,14 @@ void Player::update(float deltaTime) {
         }
         else {
             speed.x -= PLAYER_ACCELERATION[level]*deltaTime;
-            if (speed.x < -PLAYER_MAX_SPEED[level]) speed.x = -PLAYER_MAX_SPEED[level];
+            if (speed.x < -maxS) speed.x = -maxS;
         }
     }
     else if(direction == Dir::right){
         lastDir = direction;
         if (speed.x >= 0){
             speed.x += PLAYER_ACCELERATION[level]*deltaTime;
-            if(speed.x > PLAYER_MAX_SPEED[level]) speed.x = PLAYER_MAX_SPEED[level];
+            if(speed.x > maxS) speed.x = maxS;
         }
         else {
             speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
@@ -178,7 +185,13 @@ void Player::update(float deltaTime) {
             }
         }
         
-        if(level > 2) if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) speed.x *= 1.1;
+        if(level > 2) {
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+                sprint=true;
+            }
+            else sprint=false;
+        }
+
         sprite.setPosition(sprite.getPosition().x+speed.x*deltaTime,sprite.getPosition().y+speed.y*deltaTime);
     }
     if (onGround) lastGround = sprite.getPosition();
