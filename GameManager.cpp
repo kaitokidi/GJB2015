@@ -8,7 +8,7 @@ void GameManager::generaItems(){
 
     text.setFont(Resources::djvu);
     text.setString("hddddddddddddello");
-    text.setCharacterSize(200);
+    text.setCharacterSize(20);
     text.setStyle(sf::Text::Bold);
     text.setColor(sf::Color::Red);
     text.setPosition(2600, 800);
@@ -160,9 +160,17 @@ void GameManager::draw() {
 //     mapaForeground.setScale(window.getSize().y/mapaForeground.getGlobalBounds().height, window.getSize().y/mapaForeground.getGlobalBounds().height);
     window.draw(mapaForeground);
 
-    
+
+    std::stringstream text2;
+    text2 << speedRunerTimer;
+    std::string str = text2.str();
+    text.setString(str);
+
+
+
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
+     text.setPosition(player.getPosition().x-500, player.getPosition().y-300);
      window.draw(text);
 //      view.zoom(0.4);
         
