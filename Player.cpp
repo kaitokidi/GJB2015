@@ -10,7 +10,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    level= PState::shoes;
+    level= PState::head;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2600,800);
@@ -282,21 +282,40 @@ void Player::animation(float deltaTime) {
         if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::idleRight;
         else spriteSource.y = PState::idleLeft;
     }
-    else if (speed.x > 0) spriteSource.y = PState::walkingRight;
-    else spriteSource.y = PState::walkingLeft;
-    if (pushing) spriteSource.y = PState::idleLeft;
+    else if (speed.x > 0) {
+        if (sprint) spriteSource.y = PState::runningRight;
+        else spriteSource.y = PState::walkingRight;
+    }
+    else {
+        if (sprint) spriteSource.y = PState::runningLeft;
+        else spriteSource.y = PState::walkingLeft;
+    }
+    if (pushing && level > 2) {
+        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
+        else spriteSource.y = PState::pushingLeft;
+    }
+    if (!onGround && level > 0) {
+        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::jumpingRight;
+        else spriteSource.y = PState::jumpingLeft;
+    }
+
     nextFrame();
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
 }
 
 void Player::nextFrame() {
-    int n = 1;
-    if (lastState != spriteSource.y) spriteSource.x = 0;
+    if ((lastState == PState::jumpingLeft  && spriteSource.y == PState::jumpingRight) ||
+        (lastState == PState::jumpingRight && spriteSource.y == PState::jumpingLeft)) spriteSource.x = 6-spriteSource.x;
+    else if (lastState != spriteSource.y) spriteSource.x = 0;
     lastState = spriteSource.y;
+    int n = 1;
     if (spriteSource.y % 2 == 1) n = -1;
-    if (scont >= time_to_next_sprite[spriteSource.y] and !pushing){
+    if (scont >= time_to_next_sprite[spriteSource.y]){
         scont = 0;
-        spriteSource.x = (spriteSource.x+n)%nSprites[spriteSource.y];
+        if (spriteSource.y == PState::jumpingLeft || spriteSource.y == PState::jumpingRight) {
+            if ((speed.y < 0 && spriteSource.x < 3) || (speed.y > 0 && spriteSource.x < 6)) spriteSource.x = (spriteSource.x+n)%nSprites[spriteSource.y];
+        }
+        else spriteSource.x = (spriteSource.x+n)%nSprites[spriteSource.y];
     }
 }
