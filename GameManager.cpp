@@ -141,6 +141,7 @@ void GameManager::update(float deltaTime) {
     if(player.getH()==false){
         speedRunerTimer += deltaTime;
     }    else{
+        window.setView(window.getDefaultView());
         Portada q;
                 q.display(&window, "res/fin0.png");
                 q.display(&window, "res/fin1.png");
