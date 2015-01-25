@@ -22,7 +22,6 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     pushing = false;
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
-
 }
 
 
@@ -61,8 +60,8 @@ Dir::Direction Player::getDirection() {
 
 void Player::update(float deltaTime) {  
     maxS = PLAYER_MAX_SPEED[level]; 
-    if(sprint==true)maxS= PLAYER_MAX_SPEED[level]*2;
-    pushing = false;
+    if(sprint)maxS= PLAYER_MAX_SPEED[level]*2;
+    if (direction == Dir::none or lastDir != direction) pushing = false;
     if (jumping && jumpTimer > 0) {
         speed.y = -PLAYER_JUMP_SPEED;
         jumpTimer -= deltaTime;
@@ -179,8 +178,11 @@ void Player::update(float deltaTime) {
                 if (gm->getButtons()[i]->getID() == 1) { //aball
                     gm->getDoors()[1]->moveDown(true);
                 }
+                if (gm->getButtons()[i]->getID() == 2) { //aball
+                    gm->getDoors()[3]->moveDown(true);
+                }
                 else {
-                    gm->getDoors()[gm->getButtons()[i]->getID()]->moveUp(true);
+                    gm->getDoors()[gm->getButtons()[2]->getID()]->moveUp(true);
                 }
             }
         }
@@ -267,6 +269,7 @@ void Player::animation(float deltaTime) {
     }
     else if (speed.x > 0) spriteSource.y = PState::walkingRight;
     else spriteSource.y = PState::walkingLeft;
+    if (pushing) spriteSource.y = PState::idleLeft;
     nextFrame();
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));
@@ -277,7 +280,7 @@ void Player::nextFrame() {
     if (lastState != spriteSource.y) spriteSource.x = 0;
     lastState = spriteSource.y;
     if (spriteSource.y % 2 == 1) n = -1;
-    if (scont >= time_to_next_sprite[spriteSource.y]){
+    if (scont >= time_to_next_sprite[spriteSource.y] and !pushing){
         scont = 0;
         spriteSource.x = (spriteSource.x+n)%nSprites[spriteSource.y];
     }
