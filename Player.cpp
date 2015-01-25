@@ -13,7 +13,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     level= PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    sprite.setPosition(2600,400);
+    sprite.setPosition(2600,800);
     jumping = false;
     jumpTimer = 0;
     lastDir = Dir::none;
@@ -230,6 +230,9 @@ void Player::loadNewLevel(int level) {
         sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y-125);
         break;
     case PState::body:
+        sprite.setTexture(Resources::playerBody);
+        nSprites = BODY_N;
+        time_to_next_sprite = BODY_TIMER;
     case PState::arms:
         sprite.setTexture(Resources::playerArms);
         nSprites = ARMS_N;
