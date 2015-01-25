@@ -23,6 +23,7 @@ static sf::Texture armsText;
 static sf::Texture handText;
 static sf::Texture headText;
 static sf::Texture wingsText;
+static sf::Font djvu;
 
 };
 

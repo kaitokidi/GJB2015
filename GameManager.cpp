@@ -5,8 +5,10 @@ void GameManager::generaItems(){
     
     sf::Image aux = Resources::colorBoard;
     int size_x, size_y;
+    sf::Font font = Resources::djvu;
     size_x = aux.getSize().x;
     size_y = aux.getSize().y;
+    float speedRunerTimer=0;
     
     /***************************/
 //     sf::Texture text;
@@ -106,6 +108,8 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
+    speedRunerTimer = speedRunerTimer + deltaTime;
+    std::cout << "time" << speedRunerTimer << " , " << std::endl;
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
@@ -139,12 +143,24 @@ void GameManager::draw() {
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->draw(&window);
     }
+    // Declare and load a font
+    
+    // Create a text
+    sf::Text text("hddddddddddddello", font);
+    text.setCharacterSize(200);
+    text.setStyle(sf::Text::Bold);
+    text.setColor(sf::Color::Red);
+    text.setPosition(player.getPosition().x, player.getPosition().y);
+    // Draw it
+    
     
 //     mapaForeground.setScale(window.getSize().y/mapaForeground.getGlobalBounds().height, window.getSize().y/mapaForeground.getGlobalBounds().height);
     window.draw(mapaForeground);
+
     
      view.reset(sf::FloatRect(0,0, 1350, 800));
      view.setCenter(player.getPosition().x, player.getPosition().y);
+     window.draw(text);
 //      view.zoom(0.4);
         
     window.setView(view);

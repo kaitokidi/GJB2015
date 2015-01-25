@@ -20,6 +20,8 @@ private:
 	Board board;
 	sf::Sprite mapaForeground;
     void generaItems();
+    sf::Font font;
+    float speedRunerTimer;
     
 public:
     
