@@ -56,11 +56,13 @@ extern int SHOES_N[4];
 extern float LEGS_TIMER[8];
 extern int LEGS_N[8];
 // body
-extern const float BODY_TIMER[PState::qttState];
+extern float BODY_TIMER[PState::qttState];
 // arms
-extern const float ARMS_TIMER[PState::qttState];
+extern float ARMS_TIMER[10];
+extern int ARMS_N[10];
 // hands
-extern const float HANDS_TIMER[PState::qttState];
+extern float HANDS_TIMER[10];
+extern int HANDS_N[10];
 // head
 extern float HEAD_TIMER[PState::qttState];
 extern int HEAD_N[PState::qttState];
