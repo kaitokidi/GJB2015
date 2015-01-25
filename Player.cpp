@@ -22,8 +22,6 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     pushing = false;
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
-
-    level = PState::body;
 }
 
 
