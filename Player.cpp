@@ -185,7 +185,7 @@ void Player::update(float deltaTime) {
             }
         }
         
-        if(level > 0) {
+        if(level > 2) {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
                 sprint=true;
             }
