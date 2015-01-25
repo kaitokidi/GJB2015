@@ -6,6 +6,7 @@ BodyPart::BodyPart() {}
 BodyPart::BodyPart(GameManager *gm, float px, float py, float sx, float sy, int idBody) 
     : Collisionable(gm, &Resources::bodyPartTexture, sx, sy, 1, 1) {
     
+    sprite = sf::Sprite();
         switch (idBody){
             case 0:
                 sprite.setTexture(Resources::shoesText);
@@ -34,8 +35,8 @@ BodyPart::BodyPart(GameManager *gm, float px, float py, float sx, float sy, int 
         }
     
     sprite.setPosition(px,py);
-    sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
-    id= idBody;
+//    sprite.setScale(sx/sprite.getGlobalBounds().width, sy/sprite.getGlobalBounds().height);
+    id = idBody;
 }
 
 BodyPart::~BodyPart() {
