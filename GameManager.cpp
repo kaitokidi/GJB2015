@@ -76,9 +76,9 @@ void GameManager::generaItems(){
     doors.push_back(d2);
     doors.push_back(d3);
                      
-    Button* bu = new Button(this, 5250, 300, 150,75, 3);
-    Button* bu2 = new Button(this, 5200, 1900, 150,75, 1);
-    Button* bu3 = new Button(this, 5600, 1900, 150,75, 2);
+    Button* bu = new Button(this, 5250, 300, 75,150, 3);
+    Button* bu2 = new Button(this, 5200, 1900, 75,150, 1);
+    Button* bu3 = new Button(this, 5600, 1900, 75,150, 2);
     buttons.push_back(bu);
     buttons.push_back(bu2);
     buttons.push_back(bu3);
