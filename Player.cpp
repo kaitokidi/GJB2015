@@ -45,6 +45,9 @@ void Player::draw(sf::RenderWindow* window) {
     window->draw(sprite);
 }
 
+int Player::getLvl(){
+    return level;
+}
 void Player::jump(bool jump){
     if (onGround && jump) {
         jumping = true;

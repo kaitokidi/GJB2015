@@ -114,7 +114,7 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
-    speedRunerTimer += deltaTime;
+    if(player.getLvl() < PState::wings)speedRunerTimer += deltaTime;
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
