@@ -10,10 +10,10 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    level= PState::head;
+    level= PState::arms;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
-    sprite.setPosition(2600,800);
+    sprite.setPosition(2600,400);
     jumping = false;
     jumpTimer = 0;
     lastDir = Dir::none;
@@ -224,10 +224,21 @@ void Player::loadNewLevel(int level) {
         time_to_next_sprite = SHOES_TIMER;
         break;
     case PState::legs:
-        sprite.setTexture((Resources::playerLegs));
+        sprite.setTexture(Resources::playerLegs);
         nSprites = LEGS_N;
         time_to_next_sprite = LEGS_TIMER;
         sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y-125);
+        break;
+    case PState::body:
+    case PState::arms:
+        sprite.setTexture(Resources::playerArms);
+        nSprites = ARMS_N;
+        time_to_next_sprite = ARMS_TIMER;
+        break;
+    case PState::hands:
+        sprite.setTexture(Resources::playerHands);
+        nSprites = HANDS_N;
+        time_to_next_sprite = HANDS_TIMER;
         break;
     case PState::head:
         sprite.setTexture(Resources::playerHead);
