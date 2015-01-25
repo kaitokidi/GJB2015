@@ -5,9 +5,8 @@ void GameManager::generaItems(){
     
     sf::Image aux = Resources::colorBoard;
     int size_x, size_y;
-    sf::Font font = Resources::djvu;
-    sf::Text text;
-    text.setFont(font); 
+//    font = Resources::djvu;
+    text.setFont(Resources::djvu);
     text.setString("hddddddddddddello");
     text.setCharacterSize(200);
     text.setStyle(sf::Text::Bold);

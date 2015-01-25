@@ -22,6 +22,8 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     pushing = false;
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
+
+    level = PState::body;
 }
 
 
@@ -89,14 +91,21 @@ void Player::update(float deltaTime) {
     }
     else if(direction == Dir::right){
         lastDir = direction;
-        if (speed.x >= 0){
-            speed.x += PLAYER_ACCELERATION[level]*deltaTime;
-            if(speed.x > maxS) speed.x = maxS;
+        if (speed.x < 0) {
+            speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
         }
         else {
-            speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
-            if (speed.x > 0) speed.x = 0;
+            speed.x += PLAYER_ACCELERATION[level]*deltaTime;
+            if (speed.x > maxS) speed.x = maxS;
         }
+//        if (speed.x >= 0){
+//            speed.x += PLAYER_ACCELERATION[level]*deltaTime;
+//            if(speed.x > maxS) speed.x = maxS;
+//        }
+//        else {
+//            speed.x += 1.5*PLAYER_ACCELERATION[level]*deltaTime;
+//            if (speed.x > 0) speed.x = 0;
+//        }
     }
 
 
