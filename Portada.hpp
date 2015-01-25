@@ -16,7 +16,8 @@ public:
     Portada();
     ~Portada();
     void display(sf::RenderWindow* window);
-
+    void display(sf::RenderWindow* window, std::string pathImage);
+    
 };
 
 #endif // PORTADA_H

@@ -122,13 +122,20 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
         generaItems();
         
         Portada p;
-        p.display(&window);
+        p.display(&window, "res/Portada.png");
+//         p.display(&window, "res/inst1.png");
+//         p.display(&window, "res/inst2.png");
+//         p.display(&window, "res/inst3.png");
+//         p.display(&window, "res/inst4.png");
+//         p.display(&window, "res/inst5.png");
+//         p.display(&window, "res/inst6.png");
 
 }
 
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
+    
     if(player.getH()==false){
         speedRunerTimer += deltaTime;
     }
@@ -153,6 +160,10 @@ void GameManager::update(float deltaTime) {
     for(uint i = 0; i < parts.size(); ++i){
         parts[i]->update(deltaTime);
     }
+    window.setView(window.getDefaultView());
+    Portada p1;
+    p1.display(&window, "res/inst2.png");
+    
 }
 
 void GameManager::draw() {
