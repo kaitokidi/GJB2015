@@ -15,9 +15,12 @@ protected:
     int nSpriteY;
     bool onGround;
     Dir::Direction direction;
+    sf::FloatRect bBox;
+    
 public:
     Collisionable();
     Collisionable(GameManager *gm, sf::Texture *text, int spriteWidth, int spriteHeight, int nSpriteX, int nSpriteY);
+    void setBBox(float offsetX, float offsetY, float width, float height);
     int getWidth();
     int getHeight();
     int getNSpriteX();
