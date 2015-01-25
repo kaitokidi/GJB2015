@@ -16,10 +16,10 @@ private:
     bool jumping;
     float jumpTimer;
     Dir::Direction lastDir;
-
+    int maxS;
     int *nSprites;
     bool pushing;
-
+    bool sprint;
     void loadNewLevel(int level);
     void animation(float deltaTime);
     void nextFrame();
