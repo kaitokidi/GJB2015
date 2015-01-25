@@ -1,6 +1,8 @@
 #include "GameManager.hpp"
 
 void GameManager::generaItems(){
+    
+    
     sf::Image aux = Resources::colorBoard;
     int size_x, size_y;
     size_x = aux.getSize().x;
