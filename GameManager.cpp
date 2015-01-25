@@ -14,7 +14,7 @@ void GameManager::generaItems(){
     text.setPosition(2600, 800);
     size_x = aux.getSize().x;
     size_y = aux.getSize().y;
-    float speedRunerTimer=0;
+    speedRunerTimer=0;
     
     /***************************/
 //     sf::Texture text;

@@ -10,7 +10,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    level= PState::arms;
+    level= PState::shoes;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2600,400);
@@ -251,43 +251,6 @@ void Player::loadNewLevel(int level) {
 }
 
 void Player::animation(float deltaTime) {
-//    if (!onGround)  {
-//        if (speed.y < 0) {
-//            if (lastDir == Dir::right) {
-//                spriteSource.y = PState::jumpingRight;
-//                spriteSource.x = 1;
-//            }
-//            else {
-//                spriteSource.y = PState::jumpingLeft;
-//                spriteSource.x = 5;
-//            }
-//        }
-//        else {
-//            if (lastDir == Dir::right) {
-//                spriteSource.y = PState::jumpingRight;
-//                spriteSource.x = 4;
-//            }
-//            else {
-//                spriteSource.y = PState::jumpingLeft;
-//                spriteSource.x = 2;
-//            }
-//        }
-//    }
-//    else if (pushing) {
-//        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
-//        else spriteSource.y = PState::pushingLeft;
-//        spriteSource.x = 1;
-//    }
-//    else {
-//        scont += deltaTime;
-//        if (speed.x > 0) spriteSource.y = PState::walkingRight;
-//        else if (speed.x == 0) {
-//            if (lastDir == Dir::right) spriteSource.y = PState::idleRight;
-//            else spriteSource.y = PState::idleLeft;
-//        }
-//        else spriteSource.y = PState::walkingLeft;
-//        nextFrame();
-//    }
     scont += deltaTime;
     if (speed.x == 0) {
         if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::idleRight;

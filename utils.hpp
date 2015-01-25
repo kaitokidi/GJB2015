@@ -56,7 +56,8 @@ extern int SHOES_N[4];
 extern float LEGS_TIMER[8];
 extern int LEGS_N[8];
 // body
-extern float BODY_TIMER[PState::qttState];
+extern float BODY_TIMER[8];
+extern int BODY_N[8];
 // arms
 extern float ARMS_TIMER[10];
 extern int ARMS_N[10];
