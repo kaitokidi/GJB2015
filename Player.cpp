@@ -269,7 +269,7 @@ void Player::animation(float deltaTime) {
         if (sprint) spriteSource.y = PState::runningLeft;
         else spriteSource.y = PState::walkingLeft;
     }
-    if (pushing && level > 2) {
+    if (pushing && level >= 2) {
         if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::pushingRight;
         else spriteSource.y = PState::pushingLeft;
     }

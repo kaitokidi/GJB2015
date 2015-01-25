@@ -82,7 +82,7 @@ void GameManager::generaItems(){
     buttons.push_back(bu2);
     buttons.push_back(bu3);
 
-    BodyPart *p1 = new BodyPart(this, 4360, 1300,100,100,PState::legs);
+    BodyPart *p1 = new BodyPart(this, 4360, 1300,78,103,PState::legs);
     parts.push_back(p1);
     BodyPart *p2 = new BodyPart(this, 3400, 1980 ,100,100,PState::body);
     parts.push_back(p2);
