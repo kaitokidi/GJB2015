@@ -37,6 +37,8 @@ sf::Texture Resources::armsText;
 sf::Texture Resources::handText;
 sf::Texture Resources::headText;
 sf::Texture Resources::wingsText;
+sf::Texture Resources::hammerText;
+sf::Texture Resources::muffinText;
 sf::Font Resources::djvu;
 
 
@@ -64,5 +66,7 @@ void Resources::load() {
     if(!handText.loadFromFile( "res/thehand.png")) std::cout << "unable to load hand" << std::endl;
     if(!headText.loadFromFile( "res/thehead.png")) std::cout << "unable to load headsol" << std::endl;
     if(!wingsText.loadFromFile( "res/thewings.png")) std::cout << "unable to load wings" << std::endl;
+    if(!hammerText.loadFromFile( "res/hammer.png")) std::cout << "unable to load hammer" << std::endl;
+    if(!muffinText.loadFromFile( "res/muffin.png")) std::cout << "unable to load muffin" << std::endl;
     if(!djvu.loadFromFile( "res/djvu.ttf")) std::cout << "unable to load font" << std::endl;
 }
