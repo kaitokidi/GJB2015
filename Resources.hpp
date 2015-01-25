@@ -20,7 +20,7 @@ public:
     static sf::Texture playerArms;
     static sf::Texture playerHands;
     static sf::Texture playerHead;
-    static sf::Texture HammerTexture;
+    static sf::Texture playerWings;
     
 static sf::Texture shoesText;
 static sf::Texture legsText;
@@ -29,6 +29,8 @@ static sf::Texture armsText;
 static sf::Texture handText;
 static sf::Texture headText;
 static sf::Texture wingsText;
+static sf::Texture hammerText;
+static sf::Texture muffinText;
 static sf::Font djvu;
 
 };

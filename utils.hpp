@@ -68,7 +68,8 @@ extern int HANDS_N[10];
 extern float HEAD_TIMER[PState::qttState];
 extern int HEAD_N[PState::qttState];
 // wings
-extern const float WINGS_TIMER[PState::qttState];
+extern float WINGS_TIMER[2];
+extern int WINGS_N[2];
 
 
 

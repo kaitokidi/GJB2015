@@ -10,7 +10,7 @@ Player::Player() {}
 Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture, PLAYER_SIZE_X[PState::shoes], PLAYER_SIZE_Y[PState::shoes], 1, 1)*/:
     Collisionable(gm, &Resources::playerTexture, Resources::playerTexture.getSize().x/4, Resources::playerTexture.getSize().y/4, 4, 4) {
     direction = Dir::none;
-    level= PState::shoes;
+    level= PState::wings;
     spriteSource = sf::Vector2u(0,Dir::none);
     scont = 0;
     sprite.setPosition(2600,800);
@@ -54,7 +54,7 @@ bool Player::getH(){
     return hammer;
 }
 void Player::jump(bool jump){
-    if (onGround && jump) {
+    if ((onGround || level == PState::wings )&& jump) {
         jumping = true;
         speed.y = 0;
         jumpTimer = PLAYER_JUMP_TIME[level]/1000;
@@ -129,7 +129,6 @@ void Player::update(float deltaTime) {
     else {
         if (collision1) {
             if (speed.y > 0) onGround = true;
-            std::cout << "col" << onGround << std::endl;
             speed.y = 0;
         }
         else onGround = false;
@@ -265,6 +264,11 @@ void Player::loadNewLevel(int level) {
         nSprites = HEAD_N;
         time_to_next_sprite = HEAD_TIMER;
         break;
+    case PState::wings:
+        sprite.setTexture(Resources::playerWings);
+        nSprites = WINGS_N;
+        time_to_next_sprite = WINGS_TIMER;
+        break;
     default:
         break;
     }
@@ -292,7 +296,10 @@ void Player::animation(float deltaTime) {
         if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::jumpingRight;
         else spriteSource.y = PState::jumpingLeft;
     }
-
+    if (PState::wings == level) {
+        if (direction == Dir::right or lastDir == Dir::right) spriteSource.y = PState::idleRight;
+        else spriteSource.y = PState::idleLeft;
+    }
     nextFrame();
     sprite.setTextureRect(sf::IntRect(spriteSource.x*spriteWidth,
                                       spriteSource.y*spriteHeight, spriteWidth, spriteHeight));

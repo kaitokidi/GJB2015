@@ -21,7 +21,6 @@ sf::Texture     Resources::visibleBoard;
 sf::Texture     Resources::doorTexture;
 sf::Image		Resources::colorBoard;
 sf::Texture     Resources::bodyPartTexture;
-sf::Texture     Resources::HammerTexture;
 
 sf::Texture     Resources::playerShoes;
 sf::Texture     Resources::playerLegs;
@@ -29,6 +28,7 @@ sf::Texture     Resources::playerBody;
 sf::Texture     Resources::playerArms;
 sf::Texture     Resources::playerHands;
 sf::Texture     Resources::playerHead;
+sf::Texture     Resources::playerWings;
 
 sf::Texture Resources::shoesText;
 sf::Texture Resources::legsText;
@@ -37,6 +37,8 @@ sf::Texture Resources::armsText;
 sf::Texture Resources::handText;
 sf::Texture Resources::headText;
 sf::Texture Resources::wingsText;
+sf::Texture Resources::hammerText;
+sf::Texture Resources::muffinText;
 sf::Font Resources::djvu;
 
 
@@ -55,6 +57,7 @@ void Resources::load() {
     if(!playerArms.loadFromFile( "res/arms.png")) std::cout << "unable to load playerArms" << std::endl;
     if(!playerHands.loadFromFile("res/hands.png")) std::cout << "unable to load playerHands" << std::endl;
     if(!playerHead.loadFromFile( "res/head.png")) std::cout << "unable to load playerHead" << std::endl;
+    if(!playerWings.loadFromFile( "res/wings.png")) std::cout << "unable to load playerWings" << std::endl;
     
     if(!shoesText.loadFromFile( "res/theshoes.png")) std::cout << "unable to load peus" << std::endl;
     if(!legsText.loadFromFile( "res/thelegs.png")) std::cout << "unable to load legs" << std::endl;
@@ -63,6 +66,7 @@ void Resources::load() {
     if(!handText.loadFromFile( "res/thehand.png")) std::cout << "unable to load hand" << std::endl;
     if(!headText.loadFromFile( "res/thehead.png")) std::cout << "unable to load headsol" << std::endl;
     if(!wingsText.loadFromFile( "res/thewings.png")) std::cout << "unable to load wings" << std::endl;
-    if(!HammerTexture.loadFromFile( "res/HammerTexture.png")) std::cout << "unable to load Hammer" << std::endl;
+    if(!hammerText.loadFromFile( "res/hammer.png")) std::cout << "unable to load hammer" << std::endl;
+    if(!muffinText.loadFromFile( "res/muffin.png")) std::cout << "unable to load muffin" << std::endl;
     if(!djvu.loadFromFile( "res/djvu.ttf")) std::cout << "unable to load font" << std::endl;
 }

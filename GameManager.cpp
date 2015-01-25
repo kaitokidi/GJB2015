@@ -90,7 +90,7 @@ void GameManager::generaItems(){
     parts.push_back(p3);
     BodyPart *p4 = new BodyPart(this, 4100, 530,144,27,PState::hands);
     parts.push_back(p4);
-    BodyPart *p5 = new BodyPart(this, 5200, 2090,143,67,PState::head);
+    BodyPart *p5 = new BodyPart(this, 5200, 1970,143,67,PState::head);
     parts.push_back(p5);
     BodyPart *p6 = new BodyPart(this, 7450, 1050,100,100,PState::wings);
     parts.push_back(p6);
