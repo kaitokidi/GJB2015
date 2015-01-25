@@ -20,6 +20,7 @@ public:
     static sf::Texture playerArms;
     static sf::Texture playerHands;
     static sf::Texture playerHead;
+    static sf::Texture playerWings;
     
 static sf::Texture shoesText;
 static sf::Texture legsText;
