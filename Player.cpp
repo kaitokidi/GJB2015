@@ -169,10 +169,20 @@ void Player::update(float deltaTime) {
             hammer=true;
         }
         //colisions amb muffin
+        /*
         Muffin* c2 = gm->getMuffins()[0];
         if (Collisionable::areCollisioning(&p, c2)) {
             c2->modPos(0,0);
             muffin=true;
+        }
+        */
+        for(uint i = 0; i < this->gm->getMuffins().size();++i){
+            Muffin* c2 = gm->getMuffins()[i];
+            Collisionable p = *this;
+            if (Collisionable::areCollisioning(&p, c2)) {
+                c2->modPos(0,0);
+                muffin=true;
+            }
         }
 
         //colisions amb bodyParts

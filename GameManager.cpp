@@ -99,6 +99,16 @@ void GameManager::generaItems(){
     Hammers.push_back(h);
     Muffin* m = new Muffin(this, 6650, 2200,100,100);
     Muffins.push_back(m);
+    Muffin* m2 = new Muffin(this, 1080, 2400,100,100);
+    Muffins.push_back(m2);
+    Muffin* m3 = new Muffin(this, 1080, 2400,100,100);
+    Muffins.push_back(m3);
+    Muffin* m4 = new Muffin(this, 1080, 2400,100,100);
+    Muffins.push_back(m4);
+    Muffin* m5 = new Muffin(this, 1080, 2400,100,100);
+    Muffins.push_back(m5);
+    Muffin* m6 = new Muffin(this, 1080, 2400,100,100);
+    Muffins.push_back(m6);
 
     
 }
