@@ -23,6 +23,7 @@ private:
     void loadNewLevel(int level);
     void animation(float deltaTime);
     void nextFrame();
+
     unsigned lastState;
 
 public:
@@ -34,6 +35,7 @@ public:
     void draw(sf::RenderWindow* window);
     void jump(bool jump);
     Dir::Direction getDirection();
+    int getLvl();
 
 };
 
