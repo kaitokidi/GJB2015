@@ -23,6 +23,7 @@ Player::Player(GameManager *gm) /*: Collisionable(gm, &Resources::playerTexture,
     sprint = false;
     maxS = PLAYER_MAX_SPEED[level];
     hammer = false;
+    muffin = false;
 }
 
 
@@ -52,6 +53,13 @@ int Player::getLvl(){
 }
 bool Player::getH(){
     return hammer;
+}
+bool Player::getM(){
+    if(muffin==true){
+        muffin=false;
+        return true;
+    }
+    else return false;
 }
 void Player::jump(bool jump){
     if ((onGround || level == PState::wings )&& jump) {
@@ -159,6 +167,12 @@ void Player::update(float deltaTime) {
         Collisionable p = *this;
         if (Collisionable::areCollisioning(&p, c)) {
             hammer=true;
+        }
+        //colisions amb muffin
+        Muffin* c2 = gm->getMuffins()[0];
+        if (Collisionable::areCollisioning(&p, c2)) {
+            c2->modPos(0,0);
+            muffin=true;
         }
 
         //colisions amb bodyParts

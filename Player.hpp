@@ -24,6 +24,7 @@ private:
     void animation(float deltaTime);
     void nextFrame();
     bool hammer;
+    bool muffin;
 
     unsigned lastState;
 
@@ -38,6 +39,7 @@ public:
     Dir::Direction getDirection();
     int getLvl();
     bool getH();
+    bool getM();
 
 };
 

@@ -19,7 +19,8 @@ SOURCES += main.cpp \
     Button.cpp \
     BodyPart.cpp \
     Portada.cpp \
-    Hammer.cpp
+    Hammer.cpp \
+    Muffin.cpp
 
 
 HEADERS += \
@@ -35,5 +36,6 @@ HEADERS += \
     Button.hpp \
     BodyPart.hpp \
     Portada.hpp \
-    Hammer.hpp
+    Hammer.hpp \
+    Muffin.hpp 
 

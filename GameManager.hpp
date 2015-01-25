@@ -10,6 +10,7 @@
 #include "BodyPart.hpp"
 #include "Portada.hpp"
 #include "Hammer.hpp"
+#include "Muffin.hpp"
 class GameManager : public Game {
 private:
     sf::RenderTexture renderText;
@@ -18,6 +19,7 @@ private:
     std::vector<Door*> doors;
     std::vector<Button*> buttons;
     std::vector<Hammer*> Hammers;
+    std::vector<Muffin*> Muffins;
     Player player;
 	Board board;
 	sf::Sprite mapaForeground;
@@ -33,6 +35,7 @@ public:
     std::vector<Door*> getDoors();
     std::vector<Button*> getButtons();
     std::vector<Hammer*> getHammers();
+    std::vector<Muffin*> getMuffins();
     GameManager(int scrwidth, int scrheight, std::string title, int style);
     ~GameManager();
     void update(float deltaTime);
@@ -40,6 +43,7 @@ public:
     void processEvents();
 	void checkMovement();
     void eliminaElBody(int i);
+    void eliminaElMuffin(int i);
     sf::RenderTexture *getRenderTexture();
     Board *getBoard();
     sf::View view;

@@ -97,6 +97,8 @@ void GameManager::generaItems(){
 
     Hammer* h = new Hammer(this, 500, 120,520,420);
     Hammers.push_back(h);
+    Muffin* m = new Muffin(this, 6650, 2200,100,100);
+    Muffins.push_back(m);
 
     
 }
@@ -120,8 +122,12 @@ void GameManager::update(float deltaTime) {
     if(player.getH()==false){
         speedRunerTimer += deltaTime;
     }
+    
     else{
         Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100); 
+    }
+    if(player.getM()==true){
+        speedRunerTimer -= 20;
     }
     checkMovement();
     player.update(deltaTime);
@@ -158,6 +164,9 @@ void GameManager::draw() {
     }
     for(uint i = 0; i < Hammers.size(); ++i){
         Hammers[i]->draw(&window);
+    }
+    for(uint i = 0; i < Muffins.size(); ++i){
+        Muffins[i]->draw(&window);
     }
     // Declare and load a font
     
@@ -228,7 +237,12 @@ void GameManager::eliminaElBody(int i){
     parts.erase(parts.begin());
 }
 
+void GameManager::eliminaElMuffin(int i){
+    Muffins.erase(Muffins.begin());
+}
+
     std::vector<Door*> GameManager::getDoors(){ return doors; }
     std::vector<Button*> GameManager::getButtons(){ return buttons; }
     std::vector<Hammer*> GameManager::getHammers(){ return Hammers; }
+    std::vector<Muffin*> GameManager::getMuffins(){ return Muffins; }
 
