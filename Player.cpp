@@ -233,6 +233,8 @@ void Player::loadNewLevel(int level) {
         sprite.setTexture(Resources::playerBody);
         nSprites = BODY_N;
         time_to_next_sprite = BODY_TIMER;
+        sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y-65);
+        break;
     case PState::arms:
         sprite.setTexture(Resources::playerArms);
         nSprites = ARMS_N;

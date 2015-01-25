@@ -114,8 +114,7 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
-    speedRunerTimer = speedRunerTimer + deltaTime;
-    std::cout << "time" << speedRunerTimer << "" << player.getPosition().x <<" "<< player.getPosition().y<< std::endl;
+    speedRunerTimer += deltaTime;
     checkMovement();
     player.update(deltaTime);
     for(uint i = 0; i < stones.size(); ++i){
