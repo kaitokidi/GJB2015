@@ -166,7 +166,11 @@ void GameManager::update(float deltaTime) {
         sf::Clock c;
         window.setView(window.getDefaultView());
         Portada p1;
-        p1.display(&window, "res/inst"+level+".png");
+    std::stringstream text2;
+    text2 << "res/inst" << player.getLvl() << ".png";
+    std::string strn = text2.str();
+
+        p1.display(&window, strn);
         aids = c.restart().asSeconds();
     }
     else aids = 0;
