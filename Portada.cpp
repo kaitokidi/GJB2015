@@ -32,7 +32,7 @@
             t.loadFromFile("res/Portada.png");
             s.setTexture(t);
             s.scale(window->getSize().y/s.getGlobalBounds().height,window->getSize().y/s.getGlobalBounds().height);
-            s.setPosition(window->getSize().x/2 - s.getGlobalBounds().width/2, s.getPosition().y);
+            s.setPosition(window->getSize().x/2 - s.getGlobalBounds().width/2, 0);
             window->draw(s);
 
             window->display();

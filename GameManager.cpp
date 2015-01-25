@@ -140,9 +140,11 @@ void GameManager::update(float deltaTime) {
     int level = player.getLvl();
     if(player.getH()==false){
         speedRunerTimer += deltaTime;
-    }
-    
-    else{
+    }    else{
+        Portada q;
+                q.display(&window, "res/fin0.png");
+                q.display(&window, "res/fin1.png");
+                q.display(&window, "res/fin2.png");
         Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100);
     }
     if(player.getM()==true){
