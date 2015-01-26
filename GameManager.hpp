@@ -28,6 +28,7 @@ private:
     float speedRunerTimer;
     sf::Text text;
     float aids;
+    bool firstHammer;
     
 public:
     

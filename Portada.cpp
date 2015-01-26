@@ -49,6 +49,9 @@ void Portada::display(sf::RenderWindow* window, std::string pathImage){
     s.setTexture(t);
     s.scale(window->getSize().y/s.getGlobalBounds().height,window->getSize().y/s.getGlobalBounds().height);
     s.setPosition(window->getSize().x/2 - s.getGlobalBounds().width/2, 0);
+    window->clear();
+    window->draw(s);
+    window->display();
     while(open){
 
         sf::Event event;
@@ -68,14 +71,7 @@ void Portada::display(sf::RenderWindow* window, std::string pathImage){
                 break;
             }
         }
-
-        window->clear();
-        window->draw(s);
-
-        window->display();
-
     }
-
 }
 
 void Portada::display(sf::RenderWindow* window, std::string pathImage, int lvl){
