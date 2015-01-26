@@ -23,7 +23,7 @@ void Hammer::modPos(float px, float py){
 
 
 void Hammer::update(float deltaTime) {
-
+    (void) deltaTime;
 }
 
 

@@ -17,6 +17,7 @@ public:
     ~Portada();
     void display(sf::RenderWindow* window);
     void display(sf::RenderWindow* window, std::string pathImage);
+    void display(sf::RenderWindow* window, std::string pathImage, int lvl);
     
 };
 

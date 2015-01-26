@@ -8,9 +8,6 @@ BodyPart::BodyPart(GameManager *gm, float px, float py, float sx, float sy, int 
     
     sprite = sf::Sprite();
         switch (idBody){
-            case 0:
-                sprite.setTexture(Resources::shoesText);
-                break;
             case 1:
                 sprite.setTexture(Resources::legsText);
                 break;

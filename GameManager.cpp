@@ -173,7 +173,7 @@ void GameManager::update(float deltaTime) {
     text2 << "res/inst" << player.getLvl() << ".png";
     std::string strn = text2.str();
 
-        p1.display(&window, strn);
+        p1.display(&window, strn,player.getLvl());
         aids = c.restart().asSeconds();
     }
     else aids = 0;
@@ -267,11 +267,11 @@ Board *GameManager::getBoard() {
 
 std::vector<Stone*> GameManager::getStones() { return stones; }
 std::vector<BodyPart*> GameManager::getBodyParts(){ return parts; }
-void GameManager::eliminaElBody(int i){
+void GameManager::eliminaElBody(){
     parts.erase(parts.begin());
 }
 
-void GameManager::eliminaElMuffin(int i){
+void GameManager::eliminaElMuffin(){
     Muffins.erase(Muffins.begin());
 }
 
