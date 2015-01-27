@@ -52,6 +52,7 @@ void Door::moveUp(bool b) {
 
 
 void Door::update(float deltaTime) {
+    (void) deltaTime;
     if(down){ 
         sprite.setPosition(sprite.getPosition().x,sprite.getPosition().y+sprite.getGlobalBounds().height);
         down = false;

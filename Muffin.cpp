@@ -23,7 +23,7 @@ void Muffin::modPos(float px, float py){
 
 
 void Muffin::update(float deltaTime) {
-
+    (void) deltaTime;
 }
 
 

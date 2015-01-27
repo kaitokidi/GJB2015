@@ -124,6 +124,7 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
     Portada p;
     p.display(&window, "res/Portada.png");
     aids = 0;
+    firstHammer = true;
     //         p.display(&window, "res/inst1.png");
     //         p.display(&window, "res/inst2.png");
     //         p.display(&window, "res/inst3.png");
@@ -136,19 +137,9 @@ GameManager::GameManager(int scrwidth, int scrheight, std::string title, int sty
 GameManager::~GameManager() {}
 
 void GameManager::update(float deltaTime) {
-    deltaTime -= aids;
     int level = player.getLvl();
-    if(player.getH()==false){
-        speedRunerTimer += deltaTime;
-    }    else{
-        window.setView(window.getDefaultView());
-        Portada q;
-                q.display(&window, "res/fin0.png");
-                q.display(&window, "res/fin1.png");
-                q.display(&window, "res/fin2.png");
-        Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100);
-    }
-    if(player.getM()==true){
+    deltaTime -= aids;
+    if(player.getM() ){
         speedRunerTimer -= 20;
     }
     checkMovement();
@@ -169,14 +160,34 @@ void GameManager::update(float deltaTime) {
         sf::Clock c;
         window.setView(window.getDefaultView());
         Portada p1;
-    std::stringstream text2;
-    text2 << "res/inst" << player.getLvl() << ".png";
-    std::string strn = text2.str();
+        std::stringstream text2;
+        text2 << "res/inst" << player.getLvl() << ".png";
+        std::string strn = text2.str();
 
-        p1.display(&window, strn);
+        p1.display(&window, strn,player.getLvl());
         aids = c.restart().asSeconds();
     }
-    else aids = 0;
+    else if(player.getH()){
+        if (firstHammer) {
+            sf::Clock c;
+            firstHammer = false;
+            window.setView(window.getDefaultView());
+            Portada q;
+            q.display(&window, "res/fin0.png");
+            q.display(&window, "res/fin1.png");
+            q.display(&window, "res/fin2.png");
+
+            aids = c.restart().asSeconds();
+        }
+        else {
+            Hammers[0]->modPos(player.getPosition().x-200, player.getPosition().y-100);
+            aids = 0;
+        }
+    }
+    else {
+        speedRunerTimer += deltaTime;
+        aids = 0;
+    }
 }
 
 void GameManager::draw() {
@@ -225,7 +236,6 @@ void GameManager::draw() {
     view.setCenter(player.getPosition().x, player.getPosition().y);
     text.setPosition(player.getPosition().x-500, player.getPosition().y-300);
     window.draw(text);
-    //      view.zoom(0.4);
 
     window.setView(view);
     window.display();
@@ -267,11 +277,11 @@ Board *GameManager::getBoard() {
 
 std::vector<Stone*> GameManager::getStones() { return stones; }
 std::vector<BodyPart*> GameManager::getBodyParts(){ return parts; }
-void GameManager::eliminaElBody(int i){
+void GameManager::eliminaElBody(){
     parts.erase(parts.begin());
 }
 
-void GameManager::eliminaElMuffin(int i){
+void GameManager::eliminaElMuffin(){
     Muffins.erase(Muffins.begin());
 }
 

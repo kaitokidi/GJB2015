@@ -28,6 +28,7 @@ private:
     float speedRunerTimer;
     sf::Text text;
     float aids;
+    bool firstHammer;
     
 public:
     
@@ -43,8 +44,8 @@ public:
     void draw();
     void processEvents();
 	void checkMovement();
-    void eliminaElBody(int i);
-    void eliminaElMuffin(int i);
+    void eliminaElBody();
+    void eliminaElMuffin();
     sf::RenderTexture *getRenderTexture();
     Board *getBoard();
     sf::View view;
